@@ -72,6 +72,59 @@ a {
    END OF RESET 
    =================== */
 
+/* Declare custom fonts */
+/* Arima */
+@font-face {
+  font-family: 'Arima Bold';
+  src:
+    url('/src/assets/fonts/arima/Arima-Bold.woff2') format('woff2'),
+    url('/src/assets/fonts/arima/Arima-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arima Medium';
+  src:
+    url('/src/assets/fonts/arima/Arima-Medium.woff2') format('woff2'),
+    url('/src/assets/fonts/arima/Arima-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arima Regular';
+  src:
+    url('/src/assets/fonts/arima/Arima-Regular.woff2') format('woff2'),
+    url('/src/assets/fonts/arima/Arima-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Lato */
+@font-face {
+  font-family: 'Lato Bold';
+  src:
+    url('/src/assets/fonts/lato/Lato-Bold.woff2') format('woff2'),
+    url('/src/assets/fonts/lato/Lato-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lato Regular';
+  src:
+    url('/src/assets/fonts/lato/Lato-Regular.woff2') format('woff2'),
+    url('/src/assets/fonts/lato/Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS variables */
 :root {
   /* Core units
