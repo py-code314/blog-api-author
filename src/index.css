@@ -135,6 +135,10 @@ a {
   /* Typography
   ============== */
   /* Fonts */
+  --ff-primary: 'Lato Regular';
+  --ff-secondary: 'Lato Bold';
+  --ff-title: 'Arima Bold';
+
 
   /* Font sizes */
   --font-base-unit: var(--base-unit);

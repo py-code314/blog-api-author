@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <nav className={styles.navbar}>
       {/* Navigation links */}
-      <ul className={styles.navbarList}>
+      <ul className={styles.navList}>
         <li className={styles.navItem}>Our Story</li>
         <li className={styles.navItem}>Membership</li>
 
@@ -15,9 +15,9 @@ const NavBar = () => {
           <NavLink
             to={`/sign-up`}
             className={({ isActive }) =>
-              `${styles.navbarLink} ${isActive ? styles.active : ''}`
+              `${styles.navLink} ${isActive ? styles.active : ''}`
             }>
-            Shop
+            Sign up
           </NavLink>
         </li>
       </ul>
