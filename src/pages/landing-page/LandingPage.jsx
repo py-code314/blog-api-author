@@ -5,7 +5,7 @@ import Footer from '../../components/layouts/footer/Footer'
 const LandingPage = () => {
   return (
     <>
-      <main className={styles.landingPage}>
+      <main className={styles.main}>
         <Hero />
       </main>
       <Footer />

@@ -195,6 +195,7 @@ a {
   --clr-white: #fff;
   --clr-black: #000;
   --clr-red: #ff0000;
+  --clr-golden-yellow: #fafad2;
 
   /* Border
   ========== */
@@ -206,4 +207,14 @@ a {
   --bd-radius-round: 50%;
 
   /* Box shadow */
+}
+
+/* body {
+  height: 100svh;
+} */
+
+#root {
+
+  min-height: 100svh;
+  font-family: var(--ff-primary), sans-serif;
 }

@@ -1,12 +1,14 @@
-// import styles from './HomePageLayout.module.css'
+import styles from './PageLayout.module.css'
 import Header from '../header/Header'
 
 /* Display Header  */
 const PageLayout = ({ children }) => {
   return (
     <>
-      <Header />
-      {children}
+      <div className={styles.landingPage}>
+        <Header />
+        {children}
+      </div>
     </>
   )
 }

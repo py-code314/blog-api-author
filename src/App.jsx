@@ -1,15 +1,13 @@
-// import NavBar from "./components/layouts/navbar/Navbar"
-// import Header from './components/layouts/header/Header'
-// import Footer from './components/layouts/footer/Footer'
 import { useState } from 'react'
 import PageLayout from './components/layouts/page-layout/PageLayout'
 import LandingPage from './pages/landing-page/LandingPage'
+import './App.css'
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   return (
-    <div className="home-page">
-      <PageLayout>
+    <div className="page">
+      <PageLayout isSignedIn={isSignedIn}>
         {isSignedIn ? <p>Show Dashboard</p> : <LandingPage />}
       </PageLayout>
     </div>
