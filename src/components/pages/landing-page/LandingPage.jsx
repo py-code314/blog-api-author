@@ -1,14 +1,14 @@
 import styles from './LandingPage.module.css'
+import Hero from '../hero/Hero'
 
 const LandingPage = () => {
   return (
     <>
-      {/* <Hero /> */}
       {/* <Footer /> */}
-      <div className={styles.landingPage}>
-        <p>Hero section</p>
+      <main className={styles.landingPage}>
+        <Hero />
         <p>Footer section</p>
-      </div>
+      </main>
     </>
   )
 }
