@@ -1,0 +1,10 @@
+.header {
+  padding: var(--space-16, 1rem);
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--ff-title), system-ui;
+  font-size: var(--fs-48, 3rem);
+}
