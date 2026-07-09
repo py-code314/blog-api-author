@@ -10,13 +10,17 @@ const NavBar = () => {
         <li className={styles.navItem}>Our Story</li>
         <li className={styles.navItem}>Membership</li>
 
+        {/* Log-in link */}
+        <li className={styles.navItem}>
+          <NavLink to={`/log-in`}>Log in</NavLink>
+        </li>
+
         {/* Sign-up link */}
         <li className={styles.navItem}>
           <NavLink
             to={`/sign-up`}
-            className={({ isActive }) =>
-              `${styles.navLink} ${isActive ? styles.active : ''}`
-            }>
+            className={styles.signUp}
+          >
             Sign up
           </NavLink>
         </li>

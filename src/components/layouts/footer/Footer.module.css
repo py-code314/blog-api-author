@@ -1,0 +1,10 @@
+.footer {
+  padding-block-start: var(--space-16, 1rem);
+  border-block-start: 1px solid var(--clr-black, black);
+}
+
+.footerList {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

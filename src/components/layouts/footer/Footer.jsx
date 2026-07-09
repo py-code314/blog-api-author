@@ -11,7 +11,6 @@ const Footer = () => {
         <li className={styles.footerItem}>Careers</li>
         <li className={styles.footerItem}>Privacy</li>
         <li className={styles.footerItem}>Terms</li>
-        
       </ul>
     </footer>
   )

@@ -1,10 +1,14 @@
 .header {
-  padding: var(--space-16, 1rem);
+  /* padding-inline: var(--space-48, 3rem); */
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border-block-end: 1px solid var(--clr-black, black);
 }
 
 .title {
+  flex: 2;
   font-family: var(--ff-title), system-ui;
   font-size: var(--fs-48, 3rem);
 }
+
