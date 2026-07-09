@@ -2,16 +2,16 @@
 // import Header from './components/layouts/header/Header'
 // import Footer from './components/layouts/footer/Footer'
 import { useState } from 'react'
-import HomePageLayout from './components/layouts/homepage/HomePageLayout'
-import LandingPage from './components/pages/landing-page/LandingPage'
+import PageLayout from './components/layouts/page-layout/PageLayout'
+import LandingPage from './pages/landing-page/LandingPage'
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   return (
     <div className="home-page">
-      <HomePageLayout>
+      <PageLayout>
         {isSignedIn ? <p>Show Dashboard</p> : <LandingPage />}
-      </HomePageLayout>
+      </PageLayout>
     </div>
   )
 }

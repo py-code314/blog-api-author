@@ -2,7 +2,7 @@
 import Header from '../header/Header'
 
 /* Display Header  */
-const HomePageLayout = ({ children }) => {
+const PageLayout = ({ children }) => {
   return (
     <>
       <Header />
@@ -11,4 +11,4 @@ const HomePageLayout = ({ children }) => {
   )
 }
 
-export default HomePageLayout
+export default PageLayout
