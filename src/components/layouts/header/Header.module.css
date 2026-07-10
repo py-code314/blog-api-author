@@ -1,5 +1,4 @@
 .header {
-  /* padding-inline: var(--space-48, 3rem); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +8,6 @@
 .title {
   flex: 2;
   font-family: var(--ff-title), system-ui;
-  font-size: var(--fs-48, 3rem);
+  font-size: var(--fs-40, 2.5rem);
 }
 

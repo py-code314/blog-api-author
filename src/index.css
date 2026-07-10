@@ -139,7 +139,6 @@ a {
   --ff-secondary: 'Lato Bold';
   --ff-title: 'Arima Bold';
 
-
   /* Font sizes */
   --font-base-unit: var(--base-unit);
 
@@ -204,17 +203,13 @@ a {
   --radius-small: calc(var(--radius-base-unit) * 1);
   --radius-medium: calc(var(--radius-base-unit) * 2);
   --radius-large: calc(var(--radius-base-unit) * 4);
+  --radius-x-large: calc(var(--radius-base-unit) * 8);
   --radius-round: 50%;
 
   /* Box shadow */
 }
 
-/* body {
-  height: 100svh;
-} */
-
 #root {
-
   min-height: 100svh;
   font-family: var(--ff-primary), sans-serif;
 }
