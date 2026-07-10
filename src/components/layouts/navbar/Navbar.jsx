@@ -24,7 +24,9 @@ const NavBar = () => {
           >
             Sign up
           </NavLink> */}
-          <Button>Sign Up </Button>
+          <Button id="signup" className="signup" title="Sign up">
+            Sign Up{' '}
+          </Button>
         </li>
       </ul>
     </nav>

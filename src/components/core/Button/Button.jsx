@@ -1,16 +1,17 @@
 import styles from './Button.module.css'
 
-const Button = ({type = "button", children}) => {
+const Button = ({ type = 'button', children, ...rest }) => {
+  const { id, className, title } = rest
   return (
     <button
-      className={styles.btnSignup}
+      id={id}
+      className={styles[className]}
       type={type}
-      aria-label="Sign up"
-      title="Sign up"
-    >
+      aria-label={title}
+      title={title}>
       {children}
     </button>
   )
 }
- 
-export default Button;
+
+export default Button
