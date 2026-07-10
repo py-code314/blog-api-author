@@ -12,11 +12,11 @@
   font-size: var(--fs-18);
 }
 
-.signUp {
+/* .signUp {
   background-color: var(--clr-black, black);
   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   color: var(--clr-white, white);
   border-radius: var(--radius-large, 1.25rem);
-}
+} */
 
 

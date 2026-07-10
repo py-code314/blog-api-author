@@ -1,5 +1,6 @@
 import styles from './Navbar.module.css'
 import { NavLink } from 'react-router'
+import Button from '../../core/Button/Button'
 
 /* Display Navbar */
 const NavBar = () => {
@@ -17,12 +18,13 @@ const NavBar = () => {
 
         {/* Sign-up link */}
         <li className={styles.navItem}>
-          <NavLink
+          {/* <NavLink
             to={`/sign-up`}
             className={styles.signUp}
           >
             Sign up
-          </NavLink>
+          </NavLink> */}
+          <Button>Sign Up </Button>
         </li>
       </ul>
     </nav>
