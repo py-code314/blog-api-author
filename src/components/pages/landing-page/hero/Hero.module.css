@@ -21,4 +21,5 @@
   margin-block-start: var(--space-16, 1rem);
   font-size: var(--fs-18);
   align-self: start;
+  letter-spacing: 0.1em;
 }
