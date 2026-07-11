@@ -1,6 +1,6 @@
 import styles from './Button.module.css'
 
-const Button = ({ type = 'button', children, ...rest }) => {
+const Button = ({ type = 'button', children, onClick, ...rest }) => {
   const { id, className, title } = rest
   return (
     <button
@@ -8,7 +8,8 @@ const Button = ({ type = 'button', children, ...rest }) => {
       className={styles[className]}
       type={type}
       aria-label={title}
-      title={title}>
+      title={title}
+      onClick={onClick}>
       {children}
     </button>
   )

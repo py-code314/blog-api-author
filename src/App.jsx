@@ -7,7 +7,7 @@ function App() {
   const [isSignedIn, setIsSignedIn] = useState(false)
   return (
     <div className="page">
-      <PageLayout isSignedIn={isSignedIn}>
+      <PageLayout isSignedIn={isSignedIn} >
         {isSignedIn ? <p>Show Dashboard</p> : <LandingPage />}
       </PageLayout>
     </div>
