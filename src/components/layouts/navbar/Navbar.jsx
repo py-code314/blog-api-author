@@ -1,15 +1,29 @@
 import styles from './Navbar.module.css'
 import { NavLink } from 'react-router'
 import { useState } from 'react'
-import { ModalContext } from '../../../contexts/modal/modal'
+import { ModalContext } from '../../../contexts/modal/ModalContext'
 import Button from '../../core/Button/Button'
-import Modal from '../modal/Modal'
+import SignupModal from '../../../pages/signup-modal/SignupModal'
 
 /* Display Navbar */
 export const NavBar = () => {
   const [isModalOpen, setModalOpen] = useState(false)
 
-  const onClose = () => {
+  // const defaultSignupFormData = {
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: '',
+  //   name: '',
+  // }
+  // const [signupFormData, setSignupFormData] = useState(defaultSignupFormData)
+
+  // const handleSignupFormSubmit = (data) => {
+  //   setSignupFormData(data)
+  //   handleCloseModal()
+  // }
+
+  // Update 'isOpen' when modal is closed
+  const handleCloseModal = () => {
     setModalOpen(false)
   }
 
@@ -39,10 +53,16 @@ export const NavBar = () => {
         </ul>
       </nav>
 
-      <ModalContext value={{ isModalOpen, onClose }}>
-        <Modal>
-          <h1>Sign-up form</h1>
-        </Modal>
+      <ModalContext
+        value={{
+          isModalOpen,
+          handleCloseModal,
+          // signupFormData,
+          // handleSignupFormSubmit,
+        }}>
+        <SignupModal />
+        {/* <h1>Sign-up form</h1> */}
+        {/* </SignupModal> */}
       </ModalContext>
     </>
   )

@@ -1,10 +1,10 @@
-import styles from './SignUp.module.css'
+import styles from './SignupForm.module.css'
 
-const SignUp = () => {
+const SignupForm = () => {
   return (
     <div className={styles.signUp}>
       {/* Subtitle */}
-      <h2 className="">Sign Up</h2>
+      {/* <h2 className="">Sign Up</h2> */}
 
       {/* Sign-up form */}
       <form
@@ -96,4 +96,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignupForm

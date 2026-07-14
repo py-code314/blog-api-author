@@ -1,11 +1,11 @@
 import styles from './Modal.module.css'
 import { useRef, useEffect, useContext } from 'react'
-import { ModalContext } from '../../../contexts/modal/modal'
+import { ModalContext } from '../../../contexts/modal/ModalContext'
 import Button from '../../core/Button/Button'
 
 const Modal = ({ children }) => {
   const modalRef = useRef(null)
-  const { isModalOpen, onClose } = useContext(ModalContext)
+  const { isModalOpen, handleCloseModal } = useContext(ModalContext)
 
   useEffect(() => {
     // Grab a reference to the modal
@@ -20,15 +20,9 @@ const Modal = ({ children }) => {
     }
   }, [isModalOpen])
 
-  // Update 'isOpen' when modal closed
-  const handleCloseModal = () => {
-    onClose?.()
-  }
-
   // Update 'isOpen' when Esc key pressed
   const handleEscKeyDown = (e) => {
     if (e.key === 'Escape') {
-      // onClose()
       handleCloseModal()
     }
   }
