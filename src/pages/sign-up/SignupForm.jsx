@@ -1,15 +1,33 @@
 import styles from './SignupForm.module.css'
-import { useState } from 'react'
+// import { useState } from 'react'
+import { useRef, useEffect, useContext, useState } from 'react'
+import { ModalContext } from '../../contexts/modal/ModalContext'
+import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
 
 const SignupForm = () => {
+  const { isModalOpen, handleCloseModal } = useContext(ModalContext)
+  const emailInputRef = useRef(null)
+
+
+  useEffect(() => {
+    if (isModalOpen && emailInputRef.current) {
+      // Use setTimeout to make sure focus() runs after browser finishes drawing modal and input field
+      setTimeout(() => {
+        // Focus email input field upon modal is open
+        emailInputRef.current.focus()
+      }, 0)
+    }
+  }, [isModalOpen])
+
   const defaultSignupFormData = {
     email: '',
     password: '',
     confirmPassword: '',
     name: '',
   }
+  // State variables
   const [signupFormData, setSignupFormData] = useState(defaultSignupFormData)
   const [blurredInput, setBlurredInput] = useState({
     email: false,
@@ -29,89 +47,66 @@ const SignupForm = () => {
     confirmPassword: false,
     name: false,
   })
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
-  // const handleSignupFormSubmit = (data) => {
-  //   setSignupFormData(data)
-  //   handleCloseModal()
-  // }
+  // TODO: Reset form data to initial values when Esc key pressed or Close btn clicked
 
   // Handle input changes
   const handleEmailChange = (e) => {
-    setSignupFormData({ ...signupFormData, email: e.target.value })
-  }
-  const handlePasswordChange = (e) => {
-    setSignupFormData({ ...signupFormData, password: e.target.value })
-  }
-  const handleConfirmPasswordChange = (e) => {
-    setSignupFormData({ ...signupFormData, confirmPassword: e.target.value })
-  }
-  const handleNameChange = (e) => {
-    setSignupFormData({ ...signupFormData, name: e.target.value })
+    const email = e.target.value
+    const emailRegExp =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
+
+    setSignupFormData((prevFormData) => ({
+      ...prevFormData,
+      email,
+    }))
+    /* If this code is placed in email validation function, it's 
+    causing re-render of the form because of 'blur' event and the 
+    re-render is blocking 'submit' event eventually. Place this code
+    here to prevent that */
+    // Update state when email matches the regex
+    if (emailRegExp.test(email.trim())) {
+      setValidFormData((prevValid) => ({ ...prevValid, email: true }))
+      setErrorMessage((prevErrors) => ({
+        ...prevErrors,
+        email: '',
+      }))
+    }
   }
 
-  const handleEmailValidation = () => {
-    const emailRegExp =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-    setBlurredInput({ ...blurredInput, email: true })
-    if (!signupFormData.email) {
-      setValidFormData({ ...validFormData, email: false })
-      setErrorMessage({
-        ...errorMessage,
-        email: 'Please enter your email address',
-      })
-    } else if (!emailRegExp.test(signupFormData.email)) {
-      setValidFormData({ ...validFormData, email: false })
-      setErrorMessage({
-        ...errorMessage,
-        email: 'Please enter a valid email address',
-      })
-    } else {
-      setValidFormData({ ...validFormData, email: true })
-      setErrorMessage({
-        ...errorMessage,
-        email: '',
-      })
-    }
-  }
-  const handlePasswordValidation = () => {
-    const emailRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
-    setBlurredInput({ ...blurredInput, password: true })
-    if (!signupFormData.password) {
-      setValidFormData({ ...validFormData, password: false })
-      setErrorMessage({
-        ...errorMessage,
-        password: 'Please enter your password',
-      })
-    } else if (!emailRegExp.test(signupFormData.password)) {
-      setValidFormData({ ...validFormData, password: false })
-      setErrorMessage({
-        ...errorMessage,
-        password: 'Please enter a valid password',
-      })
-    } else {
-      setValidFormData({ ...validFormData, password: true })
-      setErrorMessage({
-        ...errorMessage,
+  const handlePasswordChange = (e) => {
+    const password = e.target.value
+    const passwordRegExp =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
+
+    setSignupFormData((prevFormData) => ({
+      ...prevFormData,
+      password,
+    }))
+    // Update state when email matches the regex
+    if (passwordRegExp.test(password.trim())) {
+      setValidFormData((prevValid) => ({ ...prevValid, password: true }))
+      setErrorMessage((prevErrors) => ({
+        ...prevErrors,
         password: '',
-      })
+      }))
     }
   }
-  const handleConfirmPasswordValidation = () => {
-    setBlurredInput({ ...blurredInput, confirmPassword: true })
-    if (!signupFormData.confirmPassword) {
-      setValidFormData({ ...validFormData, confirmPassword: false })
-      setErrorMessage({
-        ...errorMessage,
-        confirmPassword: 'Please re-enter your password',
-      })
-    } else if (signupFormData.password !== signupFormData.confirmPassword) {
-      setValidFormData({ ...validFormData, confirmPassword: false })
-      setErrorMessage({
-        ...errorMessage,
-        confirmPassword: 'Passwords do not match',
-      })
-    } else {
-      setValidFormData({ ...validFormData, confirmPassword: true })
+
+  const handleConfirmPasswordChange = (e) => {
+    const confirmPassword = e.target.value
+    setSignupFormData((prevFormData) => ({
+      ...prevFormData,
+      confirmPassword,
+    }))
+
+    // Show check mark if the value is correct
+    if (confirmPassword === signupFormData.password) {
+      setValidFormData((prevFormData) => ({
+        ...prevFormData,
+        confirmPassword: true,
+      }))
       setErrorMessage({
         ...errorMessage,
         confirmPassword: '',
@@ -119,14 +114,150 @@ const SignupForm = () => {
     }
   }
 
+  const handleNameChange = (e) => {
+    setSignupFormData((prevFormData) => ({
+      ...prevFormData,
+      name: e.target.value,
+    }))
+    setBlurredInput((prevBlurred) => ({
+      ...prevBlurred,
+      name: false,
+    }))
+  }
+
+  const handleEmailValidation = () => {
+    const email = signupFormData.email.trim()
+    const emailRegExp =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
+
+    setBlurredInput({ ...blurredInput, email: true })
+
+    if (!email) {
+      setValidFormData({ ...validFormData, email: false })
+      setErrorMessage({
+        ...errorMessage,
+        email: 'Please enter your email address',
+      })
+    } else if (!emailRegExp.test(email)) {
+      setValidFormData({ ...validFormData, email: false })
+      setErrorMessage({
+        ...errorMessage,
+        email: 'Please enter a valid email address',
+      })
+    }
+  }
+
+  const handlePasswordValidation = () => {
+    const password = signupFormData.password.trim()
+    const passwordRegExp =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
+
+    setBlurredInput({ ...blurredInput, password: true })
+
+    if (!password) {
+      setValidFormData({ ...validFormData, password: false })
+      setErrorMessage({
+        ...errorMessage,
+        password: 'Please enter your password',
+      })
+    } else if (!passwordRegExp.test(password)) {
+      setValidFormData({ ...validFormData, password: false })
+      setErrorMessage({
+        ...errorMessage,
+        password: 'Please enter a valid password',
+      })
+    }
+  }
+
+  const handleConfirmPasswordValidation = () => {
+    const password = signupFormData.password.trim()
+    const confirmPassword = signupFormData.confirmPassword.trim()
+
+    setBlurredInput({ ...blurredInput, confirmPassword: true })
+
+    if (!confirmPassword) {
+      setValidFormData({ ...validFormData, confirmPassword: false })
+      setErrorMessage({
+        ...errorMessage,
+        confirmPassword: 'Please re-enter your password',
+      })
+    } else if (password !== confirmPassword) {
+      setValidFormData({ ...validFormData, confirmPassword: false })
+      setErrorMessage({
+        ...errorMessage,
+        confirmPassword: 'Passwords do not match',
+      })
+    }
+  }
+
+  const validateForm = () => {
+    // Regex for email and password
+    const emailRegExp =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
+    const passwordRegExp =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
+
+    // Use '!!' to strictly return a boolean true or false
+    const isEmailValid =
+      !!signupFormData.email && emailRegExp.test(signupFormData.email)
+    const isPasswordValid =
+      !!signupFormData.password && passwordRegExp.test(signupFormData.password)
+    const isConfirmPasswordValid =
+      !!signupFormData.confirmPassword &&
+      signupFormData.password === signupFormData.confirmPassword
+
+    if (isEmailValid && isPasswordValid && isConfirmPasswordValid) {
+      return true
+    } else {
+      return false
+    }
+  }
+  // TODO: Clear form fields with Esc and Close button
+  // Handle form submission
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    setIsFormSubmitted(true)
+    const isValid = validateForm()
+    // console.log("🚀 ~ handleFormSubmit ~ isValid:", isValid)
+
+    // Validate input fields first
+    if (isValid) {
+      // Submit form
+
+      // TODO: Send signupFormData to server in post request
+      // TODO: Clear form fields after submission
+      // TODO: useNavigate() to redirect to Login page after signup
+      console.log('signup form data:', signupFormData)
+
+      try {
+        const response = await fetch('http://localhost:8080/api/v1/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(signupFormData),
+        })
+        // console.log("🚀 ~ handleFormSubmit ~ response.ok:", response.ok)
+        if (response.ok) {
+          const data = await response.json()
+          console.log(data)
+          handleCloseModal()
+          setIsFormSubmitted(false)
+        }
+      } catch (error) {
+        console.log('API Error:', error)
+        setIsFormSubmitted(false)
+      }
+    } else {
+      // handleConfirmPasswordValidation()
+      setIsFormSubmitted(false)
+    }
+  }
+
   return (
     <div className={styles.signup}>
       {/* Sign-up form */}
-      <form
-        className={styles.form}
-        noValidate
-        // onSubmit={handleFormValidation}
-      >
+      <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
         {/* Email input */}
         <div className={styles.formControl}>
           <label htmlFor="email" className={styles.formLabel}>
@@ -149,6 +280,7 @@ const SignupForm = () => {
               value={signupFormData.firstName}
               onChange={handleEmailChange}
               onBlur={handleEmailValidation}
+              ref={emailInputRef}
             />
             {validFormData.email && blurredInput.email && (
               <img
@@ -305,9 +437,13 @@ const SignupForm = () => {
         </div>
 
         {/* Sign up button */}
-        <button className={styles.btn} type="submit">
-          Sign Up
-        </button>
+        <Button
+          className="btnSignup"
+          title="Signup"
+          type="submit"
+          disabled={isFormSubmitted}>
+          {isFormSubmitted ? 'Submitting...' : 'Submit'}
+        </Button>
       </form>
     </div>
   )

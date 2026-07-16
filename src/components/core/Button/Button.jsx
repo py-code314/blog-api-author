@@ -1,7 +1,9 @@
 import styles from './Button.module.css'
 
+
 const Button = ({ type = 'button', children, onClick, ...rest }) => {
-  const { id, className, title } = rest
+  const { id, className, title, disabled } = rest
+
   return (
     <button
       id={id}
@@ -9,7 +11,8 @@ const Button = ({ type = 'button', children, onClick, ...rest }) => {
       type={type}
       aria-label={title}
       title={title}
-      onClick={onClick}>
+      onClick={onClick}
+      disabled={disabled}>
       {children}
     </button>
   )
