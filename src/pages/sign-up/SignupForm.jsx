@@ -9,7 +9,7 @@ import errorIcon from '../../assets/icons/icon-error.svg'
 const SignupForm = () => {
   const { isModalOpen, handleCloseModal } = useContext(ModalContext)
   const emailInputRef = useRef(null)
-
+  const isResettingRef = useRef(false)
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
@@ -29,24 +29,27 @@ const SignupForm = () => {
   }
   // State variables
   const [signupFormData, setSignupFormData] = useState(defaultSignupFormData)
-  const [blurredInput, setBlurredInput] = useState({
+  const defaultBlurredInputsValues = {
     email: false,
     password: false,
     confirmPassword: false,
     name: false,
-  })
-  const [errorMessage, setErrorMessage] = useState({
+  }
+  const [blurredInputs, setBlurredInputs] = useState(defaultBlurredInputsValues)
+  const defaultErrorMessages = {
     email: '',
     password: '',
     confirmPassword: '',
     name: '',
-  })
-  const [validFormData, setValidFormData] = useState({
+  }
+  const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
+  const defaultValidFormData = {
     email: false,
     password: false,
     confirmPassword: false,
     name: false,
-  })
+  }
+  const [validFormData, setValidFormData] = useState(defaultValidFormData)
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
   // TODO: Reset form data to initial values when Esc key pressed or Close btn clicked
@@ -68,7 +71,7 @@ const SignupForm = () => {
     // Update state when email matches the regex
     if (emailRegExp.test(email.trim())) {
       setValidFormData((prevValid) => ({ ...prevValid, email: true }))
-      setErrorMessage((prevErrors) => ({
+      setErrorMessages((prevErrors) => ({
         ...prevErrors,
         email: '',
       }))
@@ -87,7 +90,7 @@ const SignupForm = () => {
     // Update state when email matches the regex
     if (passwordRegExp.test(password.trim())) {
       setValidFormData((prevValid) => ({ ...prevValid, password: true }))
-      setErrorMessage((prevErrors) => ({
+      setErrorMessages((prevErrors) => ({
         ...prevErrors,
         password: '',
       }))
@@ -107,8 +110,8 @@ const SignupForm = () => {
         ...prevFormData,
         confirmPassword: true,
       }))
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         confirmPassword: '',
       })
     }
@@ -119,72 +122,79 @@ const SignupForm = () => {
       ...prevFormData,
       name: e.target.value,
     }))
-    setBlurredInput((prevBlurred) => ({
+    setBlurredInputs((prevBlurred) => ({
       ...prevBlurred,
       name: false,
     }))
   }
 
   const handleEmailValidation = () => {
+    if (isResettingRef.current) return
+
     const email = signupFormData.email.trim()
     const emailRegExp =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
 
-    setBlurredInput({ ...blurredInput, email: true })
+    setBlurredInputs({ ...blurredInputs, email: true })
 
     if (!email) {
       setValidFormData({ ...validFormData, email: false })
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         email: 'Please enter your email address',
       })
     } else if (!emailRegExp.test(email)) {
       setValidFormData({ ...validFormData, email: false })
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         email: 'Please enter a valid email address',
       })
     }
   }
 
   const handlePasswordValidation = () => {
+    if (isResettingRef.current) return
+
     const password = signupFormData.password.trim()
     const passwordRegExp =
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
 
-    setBlurredInput({ ...blurredInput, password: true })
+    setBlurredInputs({ ...blurredInputs, password: true })
 
     if (!password) {
       setValidFormData({ ...validFormData, password: false })
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         password: 'Please enter your password',
       })
     } else if (!passwordRegExp.test(password)) {
       setValidFormData({ ...validFormData, password: false })
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         password: 'Please enter a valid password',
       })
     }
   }
 
   const handleConfirmPasswordValidation = () => {
+    if (isResettingRef.current) return
+
     const password = signupFormData.password.trim()
+    // console.log("🚀 ~ handleConfirmPasswordValidation ~ password:", password)
     const confirmPassword = signupFormData.confirmPassword.trim()
 
-    setBlurredInput({ ...blurredInput, confirmPassword: true })
+    setBlurredInputs({ ...blurredInputs, confirmPassword: true })
 
     if (!confirmPassword) {
       setValidFormData({ ...validFormData, confirmPassword: false })
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         confirmPassword: 'Please re-enter your password',
       })
     } else if (password !== confirmPassword) {
       setValidFormData({ ...validFormData, confirmPassword: false })
-      setErrorMessage({
-        ...errorMessage,
+      setErrorMessages({
+        ...errorMessages,
         confirmPassword: 'Passwords do not match',
       })
     }
@@ -222,12 +232,8 @@ const SignupForm = () => {
 
     // Validate input fields first
     if (isValid) {
-      // Submit form
-
-      // TODO: Send signupFormData to server in post request
-      // TODO: Clear form fields after submission
       // TODO: useNavigate() to redirect to Login page after signup
-      console.log('signup form data:', signupFormData)
+      // console.log('signup form data:', signupFormData)
 
       try {
         const response = await fetch('http://localhost:8080/api/v1/signup', {
@@ -241,8 +247,21 @@ const SignupForm = () => {
         if (response.ok) {
           const data = await response.json()
           console.log(data)
+
+          // Prevent re-render on blur event
+          isResettingRef.current = true
+
           handleCloseModal()
           setIsFormSubmitted(false)
+          setSignupFormData(defaultSignupFormData)
+          setBlurredInputs(defaultBlurredInputsValues)
+          setErrorMessages(defaultErrorMessages)
+          setValidFormData(defaultValidFormData)
+
+          // Use setTimeout to delay for fetching and state updates to complete
+          setTimeout(() => {
+            isResettingRef.current = false
+          }, 100)
         }
       } catch (error) {
         console.log('API Error:', error)
@@ -277,12 +296,12 @@ const SignupForm = () => {
               autoComplete="email"
               inputMode="email"
               required
-              value={signupFormData.firstName}
+              value={signupFormData.email}
               onChange={handleEmailChange}
               onBlur={handleEmailValidation}
               ref={emailInputRef}
             />
-            {validFormData.email && blurredInput.email && (
+            {validFormData.email && blurredInputs.email && (
               <img
                 className={styles.formCheckmark}
                 aria-hidden="true"
@@ -293,7 +312,7 @@ const SignupForm = () => {
               />
             )}
           </div>
-          {!validFormData.email && blurredInput.email && (
+          {!validFormData.email && blurredInputs.email && (
             <div className={styles.formError}>
               <img
                 className={styles.formErrorIcon}
@@ -307,7 +326,7 @@ const SignupForm = () => {
                 className={styles.formErrorMessage}
                 aria-live="polite"
                 id="invalid-email">
-                {errorMessage.email}
+                {errorMessages.email}
               </p>
             </div>
           )}
@@ -337,7 +356,7 @@ const SignupForm = () => {
               onChange={handlePasswordChange}
               onBlur={handlePasswordValidation}
             />
-            {validFormData.password && blurredInput.password && (
+            {validFormData.password && blurredInputs.password && (
               <img
                 className={styles.formCheckmark}
                 aria-hidden="true"
@@ -348,7 +367,7 @@ const SignupForm = () => {
               />
             )}
           </div>
-          {!validFormData.password && blurredInput.password && (
+          {!validFormData.password && blurredInputs.password && (
             <div className={styles.formError}>
               <img
                 className={styles.formErrorIcon}
@@ -362,7 +381,7 @@ const SignupForm = () => {
                 className={styles.formErrorMessage}
                 aria-live="polite"
                 id="invalid-password">
-                {errorMessage.password}
+                {errorMessages.password}
               </p>
             </div>
           )}
@@ -387,7 +406,7 @@ const SignupForm = () => {
               onChange={handleConfirmPasswordChange}
               onBlur={handleConfirmPasswordValidation}
             />
-            {validFormData.confirmPassword && blurredInput.confirmPassword && (
+            {validFormData.confirmPassword && blurredInputs.confirmPassword && (
               <img
                 className={styles.formCheckmark}
                 aria-hidden="true"
@@ -398,7 +417,7 @@ const SignupForm = () => {
               />
             )}
           </div>
-          {!validFormData.confirmPassword && blurredInput.confirmPassword && (
+          {!validFormData.confirmPassword && blurredInputs.confirmPassword && (
             <div className={styles.formError}>
               <img
                 className={styles.formErrorIcon}
@@ -412,7 +431,7 @@ const SignupForm = () => {
                 className={styles.formErrorMessage}
                 aria-live="polite"
                 id="invalid-confirmPassword">
-                {errorMessage.confirmPassword}
+                {errorMessages.confirmPassword}
               </p>
             </div>
           )}
