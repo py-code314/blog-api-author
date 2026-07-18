@@ -5,6 +5,7 @@ import NavBar from '../navbar/Navbar'
 const Header = () => {
   return (
     <header className={styles.header}>
+      <title>Scriblr</title>
       {/* Title */}
       <h1 className={styles.title}>Scriblr</h1>
 

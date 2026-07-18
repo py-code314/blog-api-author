@@ -8,7 +8,7 @@ import errorIcon from '../../assets/icons/icon-error.svg'
 const SignupForm = () => {
   const { isModalOpen, handleCloseModal } = useContext(ModalContext)
   const emailInputRef = useRef(null)
-  // const isResettingRef = useRef(false)
+  // const titleRef = useRef(null)
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
@@ -17,6 +17,11 @@ const SignupForm = () => {
         // Focus email input field upon modal is open
         emailInputRef.current.focus()
       }, 0)
+    }
+    if (isModalOpen) {
+      document.title = 'Scriblr | Sign-up'
+    } else {
+      document.title = 'Scriblr'
     }
   }, [isModalOpen])
 
@@ -196,8 +201,8 @@ const SignupForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setIsFormSubmitted(true)
-    const isValid = true
-    // const isValid = validateForm()
+    // const isValid = true
+    const isValid = validateForm()
     console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
@@ -247,12 +252,15 @@ const SignupForm = () => {
                 password: error.msg,
               }))
             } else if (error.path === 'confirmPassword') {
-              setValidFormData((prevValid) => ({ ...prevValid, confirmPassword: false }))
+              setValidFormData((prevValid) => ({
+                ...prevValid,
+                confirmPassword: false,
+              }))
               setErrorMessages((prevErrors) => ({
                 ...prevErrors,
                 confirmPassword: error.msg,
               }))
-            } 
+            }
           })
         }
       } catch (error) {
@@ -267,6 +275,7 @@ const SignupForm = () => {
 
   return (
     <div className={styles.signup}>
+      {/* <title ref={titleRef}></title> */}
       {/* Sign-up form */}
       <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
         {/* Email input */}
