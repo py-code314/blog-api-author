@@ -196,8 +196,9 @@ const SignupForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setIsFormSubmitted(true)
-    const isValid = validateForm()
-    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+    const isValid = true
+    // const isValid = validateForm()
+    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       // TODO: useNavigate() to redirect to Login page after signup
@@ -221,9 +222,42 @@ const SignupForm = () => {
           setSignupFormData(defaultSignupFormData)
           setErrorMessages(defaultErrorMessages)
           setValidFormData(defaultValidFormData)
+        } else {
+          const errorData = await response.json()
+          console.log(errorData)
+          setIsFormSubmitted(false)
+
+          const errors = errorData.errors
+          console.log('🚀 ~ handleFormSubmit ~ errors:', errors)
+
+          errors.forEach((error) => {
+            if (error.path === 'email') {
+              setValidFormData((prevValid) => ({ ...prevValid, email: false }))
+              setErrorMessages((prevErrors) => ({
+                ...prevErrors,
+                email: error.msg,
+              }))
+            } else if (error.path === 'password') {
+              setValidFormData((prevValid) => ({
+                ...prevValid,
+                password: false,
+              }))
+              setErrorMessages((prevErrors) => ({
+                ...prevErrors,
+                password: error.msg,
+              }))
+            } else if (error.path === 'confirmPassword') {
+              setValidFormData((prevValid) => ({ ...prevValid, confirmPassword: false }))
+              setErrorMessages((prevErrors) => ({
+                ...prevErrors,
+                confirmPassword: error.msg,
+              }))
+            } 
+          })
         }
       } catch (error) {
         console.log('API Error:', error)
+        // ? Should I show this error on the page
         setIsFormSubmitted(false)
       }
     } else {
