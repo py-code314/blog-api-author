@@ -18,6 +18,7 @@ const SignupForm = () => {
     setValidFormData,
   } = useContext(SignupFormContext)
   const { handleClose } = useContext(SignupModalContext)
+  const [signupErrorMsg, setSignupErrorMsg] = useState('')
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
@@ -198,6 +199,7 @@ const SignupForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setIsFormSubmitted(true)
+    setSignupErrorMsg('')
     // const isValid = true
     const isValid = validateForm()
 
@@ -260,9 +262,15 @@ const SignupForm = () => {
           })
         }
       } catch (error) {
-        console.log('API Error:', error)
-        // ? Should I show this error on the page
+        console.error('Signup Error:', error)
         setIsFormSubmitted(false)
+
+        if (error.name === 'TypeError') {
+          setSignupErrorMsg('Network error. Please check your connection and try again.')
+        } else {
+          setSignupErrorMsg('An unexpected error occurred. Please try again.')
+        }
+
       }
     } else {
       setIsFormSubmitted(false)
@@ -271,6 +279,14 @@ const SignupForm = () => {
 
   return (
     <div className={styles.signup}>
+      {signupErrorMsg && (
+        <p
+          className={styles.signupError}
+          aria-live="polite"
+          id="signup-error">
+          {signupErrorMsg}
+        </p>
+      )}
       {/* Sign-up form */}
       <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
         {/* Email input */}
