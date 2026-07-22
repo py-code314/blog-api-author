@@ -182,6 +182,7 @@ a {
   --space-300: calc(var(--space-base-unit) * 75);
   --space-400: calc(var(--space-base-unit) * 100);
   --space-500: calc(var(--space-base-unit) * 125);
+  --space-600: calc(var(--space-base-unit) * 150);
   --space-700: calc(var(--space-base-unit) * 175);
   --space-1200: calc(var(--space-base-unit) * 300);
 
@@ -207,6 +208,8 @@ a {
   --radius-round: 50%;
 
   /* Box shadow */
+  --shadow-1: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  
 }
 
 #root {
