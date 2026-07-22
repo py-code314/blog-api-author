@@ -4,11 +4,20 @@ import { ModalContext } from '../../contexts/modal/ModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
+import { SignupFormContext } from '../../contexts/signup/SignupFormContext'
+import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
 
 const SignupForm = () => {
-  const { isModalOpen, handleCloseModal } = useContext(ModalContext)
+  const { isModalOpen } = useContext(ModalContext)
   const emailInputRef = useRef(null)
-  // const titleRef = useRef(null)
+  const {
+    defaultSignupFormData,
+    signupFormData,
+    setSignupFormData,
+    validFormData,
+    setValidFormData,
+  } = useContext(SignupFormContext)
+  const { handleClose } = useContext(SignupModalContext)
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
@@ -18,6 +27,8 @@ const SignupForm = () => {
         emailInputRef.current.focus()
       }, 0)
     }
+
+    // Dynamically change page title
     if (isModalOpen) {
       document.title = 'Scriblr | Sign-up'
     } else {
@@ -26,14 +37,6 @@ const SignupForm = () => {
   }, [isModalOpen])
 
   // State variables
-  const defaultSignupFormData = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-    name: '',
-  }
-  const [signupFormData, setSignupFormData] = useState(defaultSignupFormData)
-
   const defaultErrorMessages = {
     email: '',
     password: '',
@@ -42,17 +45,7 @@ const SignupForm = () => {
   }
   const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
 
-  const defaultValidFormData = {
-    email: null,
-    password: null,
-    confirmPassword: null,
-    name: null,
-  }
-  const [validFormData, setValidFormData] = useState(defaultValidFormData)
-
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-
-  // TODO: Reset form data to initial values when Esc key pressed or Close btn clicked
 
   // Handle input changes
   const handleEmailChange = (e) => {
@@ -65,6 +58,7 @@ const SignupForm = () => {
       email,
     }))
 
+    // Validate input
     const trimmedEmail = email.trim()
     if (!trimmedEmail) {
       setValidFormData((prevValid) => ({ ...prevValid, email: false }))
@@ -97,6 +91,7 @@ const SignupForm = () => {
       password,
     }))
 
+    // Validate input
     const trimmedPassword = password.trim()
     if (!trimmedPassword) {
       setValidFormData((prevValid) => ({ ...prevValid, password: false }))
@@ -126,6 +121,7 @@ const SignupForm = () => {
       confirmPassword,
     }))
 
+    // Validate input
     const trimmedConfirmPassword = confirmPassword.trim()
     if (!trimmedConfirmPassword) {
       setValidFormData((prevValid) => ({
@@ -162,6 +158,7 @@ const SignupForm = () => {
   }
 
   const validateForm = () => {
+    // Update state if input fields are empty
     if (!signupFormData.email.trim()) {
       setValidFormData((prevValid) => ({ ...prevValid, email: false }))
       setErrorMessages((prevErrors) => ({
@@ -196,20 +193,19 @@ const SignupForm = () => {
     }
   }
 
-  // TODO: Clear form fields with Esc and Close button
+  // ? Should I move this function into SignupModal
   // Handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setIsFormSubmitted(true)
     // const isValid = true
     const isValid = validateForm()
-    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       // TODO: useNavigate() to redirect to Login page after signup
-      // console.log('signup form data:', signupFormData)
 
       try {
+        // Send sign-up data to server
         const response = await fetch('http://localhost:8080/api/v1/signup', {
           method: 'POST',
           headers: {
@@ -217,24 +213,24 @@ const SignupForm = () => {
           },
           body: JSON.stringify(signupFormData),
         })
-        // console.log("🚀 ~ handleFormSubmit ~ response.ok:", response.ok)
+
+        // Successful submission
         if (response.ok) {
           const data = await response.json()
           console.log(data)
 
-          handleCloseModal()
+          // Reset state
+          // handleCloseModal()
+          // setValidFormData(defaultValidFormData)
+          handleClose()
           setIsFormSubmitted(false)
           setSignupFormData(defaultSignupFormData)
           setErrorMessages(defaultErrorMessages)
-          setValidFormData(defaultValidFormData)
         } else {
-          const errorData = await response.json()
-          console.log(errorData)
           setIsFormSubmitted(false)
+          const { errors } = await response.json()
 
-          const errors = errorData.errors
-          console.log('🚀 ~ handleFormSubmit ~ errors:', errors)
-
+          // Show server-side validation fail error messages
           errors.forEach((error) => {
             if (error.path === 'email') {
               setValidFormData((prevValid) => ({ ...prevValid, email: false }))
@@ -275,7 +271,6 @@ const SignupForm = () => {
 
   return (
     <div className={styles.signup}>
-      {/* <title ref={titleRef}></title> */}
       {/* Sign-up form */}
       <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
         {/* Email input */}
@@ -299,7 +294,6 @@ const SignupForm = () => {
               required
               value={signupFormData.email}
               onChange={handleEmailChange}
-              // onBlur={handleEmailValidation}
               ref={emailInputRef}
             />
             {validFormData.email && (
@@ -355,7 +349,6 @@ const SignupForm = () => {
               required
               value={signupFormData.password}
               onChange={handlePasswordChange}
-              // onBlur={handlePasswordValidation}
             />
             {validFormData.password && (
               <img
@@ -405,7 +398,6 @@ const SignupForm = () => {
               required
               value={signupFormData.confirmPassword}
               onChange={handleConfirmPasswordChange}
-              // onBlur={handleConfirmPasswordValidation}
             />
             {validFormData.confirmPassword && (
               <img

@@ -9,19 +9,6 @@ import SignupModal from '../../../pages/signup-modal/SignupModal'
 export const NavBar = () => {
   const [isModalOpen, setModalOpen] = useState(false)
 
-  // const defaultSignupFormData = {
-  //   email: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   name: '',
-  // }
-  // const [signupFormData, setSignupFormData] = useState(defaultSignupFormData)
-
-  // const handleSignupFormSubmit = (data) => {
-  //   setSignupFormData(data)
-  //   handleCloseModal()
-  // }
-
   // Update 'isOpen' when modal is closed
   const handleCloseModal = () => {
     setModalOpen(false)
@@ -57,12 +44,8 @@ export const NavBar = () => {
         value={{
           isModalOpen,
           handleCloseModal,
-          // signupFormData,
-          // handleSignupFormSubmit,
         }}>
         <SignupModal />
-        {/* <h1>Sign-up form</h1> */}
-        {/* </SignupModal> */}
       </ModalContext>
     </>
   )
