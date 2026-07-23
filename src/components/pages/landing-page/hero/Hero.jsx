@@ -13,6 +13,7 @@ const Hero = () => {
         audience today.
       </p>
 
+      {/* // TODO: Add functionality to the button */}
       <button className={styles.signUpBtn}>Start Writing</button>
     </section>
   )
