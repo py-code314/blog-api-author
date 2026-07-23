@@ -4,7 +4,7 @@
   cursor: pointer;
 }
 
-.signup {
+.signupBtn {
   composes: btn;
   background-color: var(--clr-black, black);
   color: var(--clr-white, white);
@@ -14,21 +14,32 @@
 }
 
 .btnCloseModal {
+  composes: btn;
   color: var(--clr-black, black);
   border: none;
   background: none;
   position: absolute;
-  top: var(--space-10, 0.625rem);
+  top: var(--space-8, 0.5rem);
   right: var(--space-16, 1rem);
   transition:
     ease color,
     transform 0.3s;
-  cursor: pointer;
   transform-origin: center;
   font-size: var(--fs-32, 2rem);
+  padding-inline: var(--space-8, 0.5rem);
 }
 
 .btnCloseModal:hover {
   color: var(--clr-red, red);
   transform: scale(1.2);
+}
+
+.btnSignup {
+  composes: btn;
+  background-color: var(--clr-accent, steelblue);
+  color: var(--clr-white, white);
+  margin-block-start: var(--space-16, 1rem);
+  padding: var(--space-12, 0.75rem) var(--space-16, 1rem);
+  font-weight: var(--fw-bold, 700);
+  width: 90%;
 }

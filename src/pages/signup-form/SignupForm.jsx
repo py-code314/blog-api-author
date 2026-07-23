@@ -4,7 +4,7 @@ import { ModalContext } from '../../contexts/modal/ModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
-import { SignupFormContext } from '../../contexts/signup/SignupFormContext'
+import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
 
 const SignupForm = () => {
@@ -16,9 +16,21 @@ const SignupForm = () => {
     setSignupFormData,
     validFormData,
     setValidFormData,
+    signupErrorMsg,
+    setSignupErrorMsg,
   } = useContext(SignupFormContext)
   const { handleClose } = useContext(SignupModalContext)
-  const [signupErrorMsg, setSignupErrorMsg] = useState('')
+
+  // State variables
+  const defaultErrorMessages = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+    name: '',
+  }
+  const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
+
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
@@ -36,17 +48,6 @@ const SignupForm = () => {
       document.title = 'Scriblr'
     }
   }, [isModalOpen])
-
-  // State variables
-  const defaultErrorMessages = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-    name: '',
-  }
-  const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
-
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
   // Handle input changes
   const handleEmailChange = (e) => {
@@ -266,11 +267,12 @@ const SignupForm = () => {
         setIsFormSubmitted(false)
 
         if (error.name === 'TypeError') {
-          setSignupErrorMsg('Network error. Please check your connection and try again.')
+          setSignupErrorMsg(
+            'Network error. Please check your connection and try again.',
+          )
         } else {
           setSignupErrorMsg('An unexpected error occurred. Please try again.')
         }
-
       }
     } else {
       setIsFormSubmitted(false)
@@ -280,10 +282,7 @@ const SignupForm = () => {
   return (
     <div className={styles.signup}>
       {signupErrorMsg && (
-        <p
-          className={styles.signupError}
-          aria-live="polite"
-          id="signup-error">
+        <p className={styles.signupError} aria-live="polite" id="signup-error">
           {signupErrorMsg}
         </p>
       )}
@@ -318,8 +317,8 @@ const SignupForm = () => {
                 aria-hidden="true"
                 src={checkMarkIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={40}
+                height={40}
               />
             )}
           </div>
@@ -334,7 +333,7 @@ const SignupForm = () => {
                 height={25}
               />
               <p
-                className={styles.formErrorMessage}
+                className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-email">
                 {errorMessages.email}
@@ -348,7 +347,7 @@ const SignupForm = () => {
           <label className={styles.formLabel} htmlFor="password">
             Password (required)
           </label>
-          <p className={styles.passwordReq}>
+          <p className={styles.formHint}>
             Requires at least 8 characters, one lowercase letter (a - z), one
             uppercase letter (A - Z), one number (0 - 9), and one special
             character (!@#$%^&amp;*)
@@ -372,8 +371,8 @@ const SignupForm = () => {
                 aria-hidden="true"
                 src={checkMarkIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={40}
+                height={40}
               />
             )}
           </div>
@@ -388,7 +387,7 @@ const SignupForm = () => {
                 height={25}
               />
               <p
-                className={styles.formErrorMessage}
+                className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-password">
                 {errorMessages.password}
@@ -421,8 +420,8 @@ const SignupForm = () => {
                 aria-hidden="true"
                 src={checkMarkIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={40}
+                height={40}
               />
             )}
           </div>
@@ -437,7 +436,7 @@ const SignupForm = () => {
                 height={25}
               />
               <p
-                className={styles.formErrorMessage}
+                className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-confirmPassword">
                 {errorMessages.confirmPassword}
@@ -449,7 +448,7 @@ const SignupForm = () => {
         {/* Name input */}
         <div className={styles.formControl}>
           <label htmlFor="name" className={styles.formLabel}>
-            Name (optional)
+            Full Name (optional)
           </label>
 
           <input

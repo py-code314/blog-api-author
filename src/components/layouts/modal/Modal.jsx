@@ -35,15 +35,13 @@ const Modal = ({ children }) => {
       className={styles.modal}
       ref={modalRef}
       onKeyDown={handleEscKeyDown}>
-      <div className={styles.modalWrapper}>
-        <Button
-          className="btnCloseModal"
-          title="Close modal"
-          onClick={handleClose}>
-          <span className={styles.btnClose}>&times;</span>
-        </Button>
-        {children}
-      </div>
+      <Button
+        className="btnCloseModal"
+        title="Close modal"
+        onClick={handleClose}>
+        <span className={styles.btnClose}>&times;</span>
+      </Button>
+      {children}
     </dialog>
   )
 }

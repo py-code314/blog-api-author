@@ -1,8 +1,8 @@
 import styles from './SignupModal.module.css'
 import { useContext, useState } from 'react'
 import Modal from '../../components/layouts/modal/Modal'
-import SignupForm from '../sign-up/SignupForm'
-import { SignupFormContext } from '../../contexts/signup/SignupFormContext'
+import SignupForm from '../signup-form/SignupForm'
+import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { ModalContext } from '../../contexts/modal/ModalContext'
 import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
 
@@ -25,30 +25,35 @@ const SignupModal = () => {
     name: null,
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
+   const [signupErrorMsg, setSignupErrorMsg] = useState('')
 
   // Changes isModalOpen & signupFormData
   const handleClose = () => {
     setSignupFormData(defaultSignupFormData)
     setValidFormData(defaultValidFormData)
+    setSignupErrorMsg('')
     handleCloseModal()
   }
   return (
     <SignupModalContext value={{ handleClose }}>
       <Modal>
-        {/* Subtitle */}
-        <h2 className={styles.subtitle}>Sign Up</h2>
-
-        <SignupFormContext
-          value={{
-            defaultSignupFormData,
-            signupFormData,
-            setSignupFormData,
-            defaultValidFormData,
-            validFormData,
-            setValidFormData,
-          }}>
-          <SignupForm />
-        </SignupFormContext>
+        <div className={styles.modalWrapper}>
+          {/* Subtitle */}
+          <h2 className={styles.subtitle}>Sign Up</h2>
+          <SignupFormContext
+            value={{
+              defaultSignupFormData,
+              signupFormData,
+              setSignupFormData,
+              defaultValidFormData,
+              validFormData,
+              setValidFormData,
+              signupErrorMsg,
+              setSignupErrorMsg,
+            }}>
+            <SignupForm />
+          </SignupFormContext>
+        </div>
       </Modal>
     </SignupModalContext>
   )

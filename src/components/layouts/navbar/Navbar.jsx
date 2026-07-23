@@ -31,7 +31,7 @@ export const NavBar = () => {
           <li className={styles.navItem}>
             <Button
               id="signup"
-              className="signup"
+              className="signupBtn"
               title="Sign up"
               onClick={() => setModalOpen(true)}>
               Sign Up{' '}

@@ -5,13 +5,17 @@
   top: 50%;
   transform: translate(-50%, -50%);
 
-  padding: var(--space-32, 2rem);
-  padding-block-start: var(--space-48, 3rem);
+  /* padding: var(--space-32, 2rem);
+  padding-block-start: var(--space-48, 3rem); */
   background: var(--clr-white, white);
-  max-width: var(--space-600, 37.5rem);
+  width: var(--space-700, 43.75rem);
+  max-width: var(--space-700, 43.75rem);
   border: 2px solid var(--clr-black, black);
   box-shadow: var(--shadow-1, rgba(0, 0, 0, 0.16) 0px 1px 4px);
   animation: fadeIn 1s ease both;
+  padding: var(--space-32, 2rem) var(--space-48, 3rem);
+  font-size: var(--fs-20, 1.25rem);
+  
 }
 
 .modal::backdrop {
@@ -29,8 +33,4 @@
   }
 }
 
-.modalWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-16, 1rem);
-}
+
