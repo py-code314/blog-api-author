@@ -4,6 +4,13 @@
   cursor: pointer;
 }
 
+.loginBtn {
+  composes: btn;
+  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+  border: 1px solid var(--clr-black, black);
+  border-radius: var(--radius-x-large, 1.25rem);
+}
+
 .signupBtn {
   composes: btn;
   background-color: var(--clr-black, black);

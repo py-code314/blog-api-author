@@ -35,7 +35,6 @@ export const NavBar = () => {
         <ul className={styles.navList}>
           <li className={styles.navItem}>Our Story</li>
           <li className={styles.navItem}>Membership</li>
-          // TODO: Add styles to Login button
           {/* Log-in Button */}
           <li className={styles.navItem}>
             <Button
