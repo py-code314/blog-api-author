@@ -1,17 +1,31 @@
 import styles from './Navbar.module.css'
-import { NavLink } from 'react-router'
+// import { NavLink } from 'react-router'
 import { useState } from 'react'
 import { ModalContext } from '../../../contexts/modal/ModalContext'
+import { NavbarContext } from '../../../contexts/navbar/NavbarContext'
 import Button from '../../core/Button/Button'
 import SignupModal from '../../../pages/signup-modal/SignupModal'
+import LoginModal from '../../../pages/login-modal/LoginModal'
 
 /* Display Navbar */
 export const NavBar = () => {
   const [isModalOpen, setModalOpen] = useState(false)
+  const [isSignup, setIsSignup] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
 
   // Update 'isOpen' when modal is closed
   const handleCloseModal = () => {
     setModalOpen(false)
+  }
+
+  const handleSignup = () => {
+    setModalOpen(true)
+    setIsSignup(true)
+  }
+
+  const handleLogin = () => {
+    setModalOpen(true)
+    setIsLogin(true)
   }
 
   return (
@@ -21,19 +35,24 @@ export const NavBar = () => {
         <ul className={styles.navList}>
           <li className={styles.navItem}>Our Story</li>
           <li className={styles.navItem}>Membership</li>
-
-          {/* Log-in link */}
+          // TODO: Add styles to Login button
+          {/* Log-in Button */}
           <li className={styles.navItem}>
-            <NavLink to={`/log-in`}>Log in</NavLink>
+            <Button
+              id="login"
+              className="loginBtn"
+              title="Log in"
+              onClick={handleLogin}>
+              Log in{' '}
+            </Button>
           </li>
-
-          {/* Sign-up link */}
+          {/* Sign-up button */}
           <li className={styles.navItem}>
             <Button
               id="signup"
               className="signupBtn"
               title="Sign up"
-              onClick={() => setModalOpen(true)}>
+              onClick={handleSignup}>
               Sign Up{' '}
             </Button>
           </li>
@@ -45,7 +64,11 @@ export const NavBar = () => {
           isModalOpen,
           handleCloseModal,
         }}>
-        <SignupModal />
+        <NavbarContext value={{ setIsSignup }}>
+          {isSignup && <SignupModal />}
+        </NavbarContext>
+
+        {isLogin && <LoginModal />}
       </ModalContext>
     </>
   )

@@ -5,9 +5,11 @@ import SignupForm from '../signup-form/SignupForm'
 import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { ModalContext } from '../../contexts/modal/ModalContext'
 import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
+import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const SignupModal = () => {
   const { handleCloseModal } = useContext(ModalContext)
+  const {setIsSignup} = useContext(NavbarContext)
 
   // State
   const defaultSignupFormData = {
@@ -33,6 +35,7 @@ const SignupModal = () => {
     setValidFormData(defaultValidFormData)
     setSignupErrorMsg('')
     handleCloseModal()
+    setIsSignup(false)
   }
   return (
     <SignupModalContext value={{ handleClose }}>
