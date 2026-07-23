@@ -63,11 +63,10 @@ export const NavBar = () => {
           isModalOpen,
           handleCloseModal,
         }}>
-        <NavbarContext value={{ setIsSignup }}>
+        <NavbarContext value={{ setIsSignup, setIsLogin }}>
           {isSignup && <SignupModal />}
+          {isLogin && <LoginModal />}
         </NavbarContext>
-
-        {isLogin && <LoginModal />}
       </ModalContext>
     </>
   )
