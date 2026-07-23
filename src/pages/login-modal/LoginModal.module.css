@@ -1,0 +1,8 @@
+.modalWrapper {
+  display: grid;
+  gap: var(--space-16, 1rem);
+}
+
+.subtitle {
+  justify-self: center;
+}

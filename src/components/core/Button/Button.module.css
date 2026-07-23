@@ -41,7 +41,8 @@
   transform: scale(1.2);
 }
 
-.btnSignup {
+.btnSignup,
+.btnLogin {
   composes: btn;
   background-color: var(--clr-accent, steelblue);
   color: var(--clr-white, white);
