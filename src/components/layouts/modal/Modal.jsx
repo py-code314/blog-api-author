@@ -2,12 +2,12 @@ import styles from './Modal.module.css'
 import { useRef, useEffect, useContext } from 'react'
 import { ModalContext } from '../../../contexts/modal/ModalContext'
 import Button from '../../core/Button/Button'
-import { SignupModalContext } from '../../../contexts/signup-modal/SignupModalContext'
+import { AuthModalContext } from '../../../contexts/auth-modal/AuthModalContext'
 
 const Modal = ({ children }) => {
   const modalRef = useRef(null)
   const { isModalOpen } = useContext(ModalContext)
-  const { handleClose } = useContext(SignupModalContext)
+  const { handleClose } = useContext(AuthModalContext)
 
   useEffect(() => {
     // Grab a reference to the modal

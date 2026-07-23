@@ -5,7 +5,7 @@ import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
 import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
-import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
+import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 
 const SignupForm = () => {
   const { isModalOpen } = useContext(ModalContext)
@@ -19,7 +19,7 @@ const SignupForm = () => {
     signupErrorMsg,
     setSignupErrorMsg,
   } = useContext(SignupFormContext)
-  const { handleClose } = useContext(SignupModalContext)
+  const { handleClose } = useContext(AuthModalContext)
 
   // State variables
   const defaultErrorMessages = {

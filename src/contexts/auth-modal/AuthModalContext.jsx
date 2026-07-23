@@ -1,5 +1,5 @@
 import { createContext } from 'react'
 
-export const SignupModalContext = createContext({
+export const AuthModalContext = createContext({
   handleClose: () => {},
 })

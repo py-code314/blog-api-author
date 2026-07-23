@@ -4,12 +4,12 @@ import Modal from '../../components/layouts/modal/Modal'
 import SignupForm from '../signup-form/SignupForm'
 import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { ModalContext } from '../../contexts/modal/ModalContext'
-import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
+import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const SignupModal = () => {
   const { handleCloseModal } = useContext(ModalContext)
-  const {setIsSignup} = useContext(NavbarContext)
+  const { setIsSignup } = useContext(NavbarContext)
 
   // State
   const defaultSignupFormData = {
@@ -27,7 +27,7 @@ const SignupModal = () => {
     name: null,
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
-   const [signupErrorMsg, setSignupErrorMsg] = useState('')
+  const [signupErrorMsg, setSignupErrorMsg] = useState('')
 
   // Changes isModalOpen & signupFormData
   const handleClose = () => {
@@ -38,7 +38,7 @@ const SignupModal = () => {
     setIsSignup(false)
   }
   return (
-    <SignupModalContext value={{ handleClose }}>
+    <AuthModalContext value={{ handleClose }}>
       <Modal>
         <div className={styles.modalWrapper}>
           {/* Subtitle */}
@@ -58,7 +58,7 @@ const SignupModal = () => {
           </SignupFormContext>
         </div>
       </Modal>
-    </SignupModalContext>
+    </AuthModalContext>
   )
 }
 
