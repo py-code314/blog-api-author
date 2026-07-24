@@ -6,7 +6,8 @@ import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
-import { loginUser } from '../../utils/login/loginUser'
+import { loginUser, displayServerErrors } from '../../utils/login/index'
+// import { displayServerErrors } from '../../utils/login/displayServerErrors'
 
 const LoginForm = () => {
   const { isModalOpen } = useContext(ModalContext)
@@ -23,11 +24,11 @@ const LoginForm = () => {
   const { handleClose } = useContext(AuthModalContext)
 
   // State variables
-  const defaultErrorMessages = {
+  const defaultErrorMsgs = {
     email: '',
     password: '',
   }
-  const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
+  const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
@@ -63,19 +64,19 @@ const LoginForm = () => {
     const trimmedEmail = email.trim()
     if (!trimmedEmail) {
       setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         email: 'Please enter your email address',
       }))
     } else if (!emailRegExp.test(trimmedEmail)) {
       setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         email: 'Please enter a valid email address',
       }))
     } else {
       setValidFormData((prevValid) => ({ ...prevValid, email: true }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         email: '',
       }))
@@ -94,19 +95,19 @@ const LoginForm = () => {
     const trimmedPassword = password.trim()
     if (!trimmedPassword) {
       setValidFormData((prevValid) => ({ ...prevValid, password: false }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         password: 'Please enter a password',
       }))
     } else if (trimmedPassword.length < 8) {
       setValidFormData((prevValid) => ({ ...prevValid, password: false }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         password: 'Password must be at least 8 characters in length.',
       }))
     } else {
       setValidFormData((prevValid) => ({ ...prevValid, password: true }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         password: '',
       }))
@@ -117,13 +118,13 @@ const LoginForm = () => {
     // Update state if input fields are empty
     if (!loginFormData.email.trim()) {
       setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         email: 'Please enter your email address',
       }))
     } else if (!loginFormData.password.trim()) {
       setValidFormData((prevValid) => ({ ...prevValid, password: false }))
-      setErrorMessages((prevErrors) => ({
+      setErrorMsgs((prevErrors) => ({
         ...prevErrors,
         password: 'Please enter a password',
       }))
@@ -146,16 +147,8 @@ const LoginForm = () => {
 
       try {
         // Send log-in data to server
-        
-        // const response = await fetch('http://localhost:8080/api/v1/login', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(loginFormData),
-        // })
         const response = await loginUser(loginFormData)
-        console.log("🚀 ~ handleFormSubmit ~ response:", response)
+        console.log('🚀 ~ handleFormSubmit ~ response:', response)
 
         // Successful submission
         if (response.ok) {
@@ -166,7 +159,7 @@ const LoginForm = () => {
           handleClose()
           setIsFormSubmitted(false)
           setLoginFormData(defaultLoginFormData)
-          setErrorMessages(defaultErrorMessages)
+          setErrorMsgs(defaultErrorMsgs)
         } else {
           setIsFormSubmitted(false)
           const data = await response.json()
@@ -176,27 +169,7 @@ const LoginForm = () => {
           // Show server-side validation fail error messages
           {
             !data.validData &&
-              data.errors.forEach((error) => {
-                if (error.path === 'email') {
-                  setValidFormData((prevValid) => ({
-                    ...prevValid,
-                    email: false,
-                  }))
-                  setErrorMessages((prevErrors) => ({
-                    ...prevErrors,
-                    email: error.msg,
-                  }))
-                } else if (error.path === 'password') {
-                  setValidFormData((prevValid) => ({
-                    ...prevValid,
-                    password: false,
-                  }))
-                  setErrorMessages((prevErrors) => ({
-                    ...prevErrors,
-                    password: error.msg,
-                  }))
-                }
-              })
+              (await displayServerErrors(data, setValidFormData, setErrorMsgs))
           }
         }
       } catch (error) {
@@ -270,7 +243,7 @@ const LoginForm = () => {
                 className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-email">
-                {errorMessages.email}
+                {errorMsgs.email}
               </p>
             </div>
           )}
@@ -320,7 +293,7 @@ const LoginForm = () => {
                 className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-password">
-                {errorMessages.password}
+                {errorMsgs.password}
               </p>
             </div>
           )}
