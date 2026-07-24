@@ -6,7 +6,11 @@ import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
-import { loginUser, displayServerErrors } from '../../utils/login/index'
+import {
+  loginUser,
+  displayServerErrors,
+  displayAuthErrors,
+} from '../../utils/login/index'
 // import { displayServerErrors } from '../../utils/login/displayServerErrors'
 
 const LoginForm = () => {
@@ -140,7 +144,7 @@ const LoginForm = () => {
     setLoginErrorMsg('')
     // const isValid = true
     const isValid = validateForm()
-    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       // TODO: useNavigate() to redirect to homepage
@@ -148,7 +152,7 @@ const LoginForm = () => {
       try {
         // Send log-in data to server
         const response = await loginUser(loginFormData)
-        console.log('🚀 ~ handleFormSubmit ~ response:', response)
+        // console.log('🚀 ~ handleFormSubmit ~ response:', response)
 
         // Successful submission
         if (response.ok) {
@@ -164,12 +168,17 @@ const LoginForm = () => {
           setIsFormSubmitted(false)
           const data = await response.json()
           console.log('🚀 ~ handleFormSubmit ~ data:', data)
-          // const { errors } = await response.json()
+          
 
           // Show server-side validation fail error messages
           {
-            !data.validData &&
+            data.validData === false &&
               (await displayServerErrors(data, setValidFormData, setErrorMsgs))
+          }
+          // Show auth fail error messages
+          {
+            data.auth === false &&
+              (await displayAuthErrors(data, setValidFormData, setErrorMsgs))
           }
         }
       } catch (error) {
