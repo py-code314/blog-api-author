@@ -6,6 +6,7 @@ import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
+import { loginUser } from '../../utils/login/loginUser'
 
 const LoginForm = () => {
   const { isModalOpen } = useContext(ModalContext)
@@ -136,8 +137,8 @@ const LoginForm = () => {
     e.preventDefault()
     setIsFormSubmitted(true)
     setLoginErrorMsg('')
-    const isValid = true
-    // const isValid = validateForm()
+    // const isValid = true
+    const isValid = validateForm()
     console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
@@ -145,13 +146,16 @@ const LoginForm = () => {
 
       try {
         // Send log-in data to server
-        const response = await fetch('http://localhost:8080/api/v1/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(loginFormData),
-        })
+        
+        // const response = await fetch('http://localhost:8080/api/v1/login', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(loginFormData),
+        // })
+        const response = await loginUser(loginFormData)
+        console.log("🚀 ~ handleFormSubmit ~ response:", response)
 
         // Successful submission
         if (response.ok) {
