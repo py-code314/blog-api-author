@@ -168,7 +168,6 @@ const LoginForm = () => {
           setIsFormSubmitted(false)
           const data = await response.json()
           console.log('🚀 ~ handleFormSubmit ~ data:', data)
-          
 
           // Show server-side validation fail error messages
           {
@@ -179,6 +178,13 @@ const LoginForm = () => {
           {
             data.auth === false &&
               (await displayAuthErrors(data, setValidFormData, setErrorMsgs))
+          }
+          // Display JWT error message
+          {
+            data.jwt === false &&
+              setLoginErrorMsg(
+                'Something went wrong on our end. Please try signing in again. ',
+              )
           }
         }
       } catch (error) {

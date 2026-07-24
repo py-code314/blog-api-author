@@ -1,7 +1,5 @@
 export async function displayAuthErrors(data, setValidFormData, setErrorMsgs) {
-  console.log('hello')
   const errorMsg = data.errorMsg
-  console.log("🚀 ~ displayAuthErrors ~ errorMsg:", errorMsg)
 
   if (errorMsg.toLowerCase().includes('email')) {
     setValidFormData((prevValid) => ({
