@@ -24,6 +24,7 @@ const LoginForm = () => {
   // State variables
   const defaultErrorMessages = {
     email: '',
+    password: '',
   }
   const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
 
@@ -127,11 +128,7 @@ const LoginForm = () => {
       }))
     }
 
-    if (validFormData.email === true && validFormData.password === true) {
-      return true
-    } else {
-      return false
-    }
+    return !!validFormData.email && !!validFormData.password
   }
 
   // Handle form submission
@@ -139,8 +136,9 @@ const LoginForm = () => {
     e.preventDefault()
     setIsFormSubmitted(true)
     setLoginErrorMsg('')
-    // const isValid = true
-    const isValid = validateForm()
+    const isValid = true
+    // const isValid = validateForm()
+    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       // TODO: useNavigate() to redirect to homepage
@@ -167,27 +165,35 @@ const LoginForm = () => {
           setErrorMessages(defaultErrorMessages)
         } else {
           setIsFormSubmitted(false)
-          const { errors } = await response.json()
+          const data = await response.json()
+          console.log('🚀 ~ handleFormSubmit ~ data:', data)
+          // const { errors } = await response.json()
 
           // Show server-side validation fail error messages
-          errors.forEach((error) => {
-            if (error.path === 'email') {
-              setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-              setErrorMessages((prevErrors) => ({
-                ...prevErrors,
-                email: error.msg,
-              }))
-            } else if (error.path === 'password') {
-              setValidFormData((prevValid) => ({
-                ...prevValid,
-                password: false,
-              }))
-              setErrorMessages((prevErrors) => ({
-                ...prevErrors,
-                password: error.msg,
-              }))
-            }
-          })
+          {
+            !data.validData &&
+              data.errors.forEach((error) => {
+                if (error.path === 'email') {
+                  setValidFormData((prevValid) => ({
+                    ...prevValid,
+                    email: false,
+                  }))
+                  setErrorMessages((prevErrors) => ({
+                    ...prevErrors,
+                    email: error.msg,
+                  }))
+                } else if (error.path === 'password') {
+                  setValidFormData((prevValid) => ({
+                    ...prevValid,
+                    password: false,
+                  }))
+                  setErrorMessages((prevErrors) => ({
+                    ...prevErrors,
+                    password: error.msg,
+                  }))
+                }
+              })
+          }
         }
       } catch (error) {
         console.error('Login Error:', error)

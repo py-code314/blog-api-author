@@ -20,6 +20,7 @@ const LoginModal = () => {
 
   const defaultValidFormData = {
     email: null,
+    password: null
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
   const [loginErrorMsg, setLoginErrorMsg] = useState('')
