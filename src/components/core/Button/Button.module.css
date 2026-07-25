@@ -11,7 +11,8 @@
   border-radius: var(--radius-x-large, 1.25rem);
 }
 
-.signupBtn {
+.signupBtn, 
+.logoutBtn {
   composes: btn;
   background-color: var(--clr-black, black);
   color: var(--clr-white, white);
