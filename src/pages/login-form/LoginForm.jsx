@@ -12,9 +12,8 @@ import {
   displayAuthErrors,
 } from '../../utils/login/index'
 
-
 const LoginForm = () => {
-  const { isModalOpen, setIsLoggedIn } = useContext(ModalContext)
+  const { activeModal, setIsLoggedIn } = useContext(ModalContext)
   const emailInputRef = useRef(null)
   const {
     defaultLoginFormData,
@@ -33,8 +32,8 @@ const LoginForm = () => {
     password: '',
   }
   const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
-
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  const isModalOpen = activeModal === 'login'
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {

@@ -8,22 +8,19 @@ import LoginModal from '../../../pages/login-modal/LoginModal'
 
 /* Display Navbar */
 export const NavBar = () => {
-  const [isModalOpen, setModalOpen] = useState(false)
   const [activeModal, setActiveModal] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // Update 'isOpen' when modal is closed
   const handleCloseModal = () => {
-    setModalOpen(false)
+    setActiveModal(null)
   }
 
   const handleSignup = () => {
-    setModalOpen(true)
     setActiveModal('signup')
   }
 
   const handleLogin = () => {
-    setModalOpen(true)
     setActiveModal('login')
   }
 
@@ -78,16 +75,14 @@ export const NavBar = () => {
 
       <ModalContext
         value={{
-          isModalOpen,
           handleCloseModal,
+          activeModal,
           setActiveModal,
           setIsLoggedIn,
         }}>
         {activeModal === 'signup' && <SignupModal />}
         {activeModal === 'login' && <LoginModal />}
       </ModalContext>
-
-     
     </>
   )
 }

@@ -6,8 +6,9 @@ import { AuthModalContext } from '../../../contexts/auth-modal/AuthModalContext'
 
 const Modal = ({ children }) => {
   const modalRef = useRef(null)
-  const { isModalOpen } = useContext(ModalContext)
+  const { activeModal } = useContext(ModalContext)
   const { handleClose } = useContext(AuthModalContext)
+  const isModalOpen = activeModal === 'signup' || activeModal === 'login'
 
   useEffect(() => {
     // Grab a reference to the modal
@@ -25,7 +26,6 @@ const Modal = ({ children }) => {
   // Update 'isOpen' when Esc key pressed
   const handleEscKeyDown = (e) => {
     if (e.key === 'Escape') {
-      // handleCloseModal()
       handleClose()
     }
   }

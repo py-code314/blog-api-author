@@ -8,7 +8,7 @@ import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 
 const SignupForm = () => {
-  const { isModalOpen } = useContext(ModalContext)
+  const { activeModal } = useContext(ModalContext)
   const emailInputRef = useRef(null)
   const {
     defaultSignupFormData,
@@ -29,8 +29,8 @@ const SignupForm = () => {
     name: '',
   }
   const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
-
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  const isModalOpen = activeModal === 'signup'
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
@@ -224,7 +224,7 @@ const SignupForm = () => {
 
           // TODO: Show login form
           // if (data.success) {
-            
+
           // }
 
           // Reset state
