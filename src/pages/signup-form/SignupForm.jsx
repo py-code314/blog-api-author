@@ -6,9 +6,14 @@ import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
 import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
+import {
+  validateEmailInput,
+  validatePasswordInput,
+  validateConfirmPasswordInput,
+} from '../../utils/signup/index.js'
 
 const SignupForm = () => {
-  const { activeModal, setActiveModal } = useContext(ModalContext)
+  const { activeModal } = useContext(ModalContext)
   const emailInputRef = useRef(null)
   const {
     defaultSignupFormData,
@@ -60,27 +65,7 @@ const SignupForm = () => {
       email,
     }))
 
-    // Validate input
-    const trimmedEmail = email.trim()
-    if (!trimmedEmail) {
-      setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        email: 'Please enter your email address',
-      }))
-    } else if (!emailRegExp.test(trimmedEmail)) {
-      setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        email: 'Please enter a valid email address',
-      }))
-    } else {
-      setValidFormData((prevValid) => ({ ...prevValid, email: true }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        email: '',
-      }))
-    }
+    validateEmailInput(email, setValidFormData, setErrorMessages, emailRegExp)
   }
 
   const handlePasswordChange = (e) => {
@@ -93,63 +78,28 @@ const SignupForm = () => {
       password,
     }))
 
-    // Validate input
-    const trimmedPassword = password.trim()
-    if (!trimmedPassword) {
-      setValidFormData((prevValid) => ({ ...prevValid, password: false }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        password: 'Please enter a password',
-      }))
-    } else if (!passwordRegExp.test(trimmedPassword)) {
-      setValidFormData((prevValid) => ({ ...prevValid, password: false }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        password: 'Please enter a valid password',
-      }))
-    } else {
-      setValidFormData((prevValid) => ({ ...prevValid, password: true }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        password: '',
-      }))
-    }
+    validatePasswordInput(
+      password,
+      setValidFormData,
+      setErrorMessages,
+      passwordRegExp,
+    )
   }
 
   const handleConfirmPasswordChange = (e) => {
     const confirmPassword = e.target.value
+    const password = signupFormData.password
     setSignupFormData((prevFormData) => ({
       ...prevFormData,
       confirmPassword,
     }))
 
-    // Validate input
-    const trimmedConfirmPassword = confirmPassword.trim()
-    if (!trimmedConfirmPassword) {
-      setValidFormData((prevValid) => ({
-        ...prevValid,
-        confirmPassword: false,
-      }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        confirmPassword: 'Please re-enter your password',
-      }))
-    } else if (trimmedConfirmPassword !== signupFormData.password.trim()) {
-      setValidFormData((prevValid) => ({
-        ...prevValid,
-        confirmPassword: false,
-      }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        confirmPassword: 'Passwords do not match',
-      }))
-    } else {
-      setValidFormData((prevValid) => ({ ...prevValid, confirmPassword: true }))
-      setErrorMessages((prevErrors) => ({
-        ...prevErrors,
-        confirmPassword: '',
-      }))
-    }
+    validateConfirmPasswordInput(
+      confirmPassword,
+      setValidFormData,
+      setErrorMessages,
+      password,
+    )
   }
 
   const handleNameChange = (e) => {

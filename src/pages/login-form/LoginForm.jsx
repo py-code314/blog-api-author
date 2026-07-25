@@ -175,6 +175,7 @@ const LoginForm = () => {
           console.log('🚀 ~ handleFormSubmit ~ data:', data)
 
           // Show server-side validation fail error messages
+        // TODO: Remove async and await
           {
             data.validData === false &&
               (await displayServerErrors(data, setValidFormData, setErrorMsgs))
