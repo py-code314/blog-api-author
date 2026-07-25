@@ -1,5 +1,5 @@
-import { displayServerErrors } from './displayServerErrors'
+import { displayLoginServerErrors } from './displayServerErrors'
 import { loginUser } from './loginUser'
 import { displayAuthErrors } from './displayAuthErrors'
 
-export { displayServerErrors, loginUser, displayAuthErrors }
+export { displayLoginServerErrors, loginUser, displayAuthErrors }

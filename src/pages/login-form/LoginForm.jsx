@@ -8,7 +8,7 @@ import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
 import {
   loginUser,
-  displayServerErrors,
+  displayLoginServerErrors,
   displayAuthErrors,
 } from '../../utils/login/index'
 
@@ -178,7 +178,7 @@ const LoginForm = () => {
         // TODO: Remove async and await
           {
             data.validData === false &&
-              (await displayServerErrors(data, setValidFormData, setErrorMsgs))
+              (await displayLoginServerErrors(data, setValidFormData, setErrorMsgs))
           }
           // Show auth fail error messages
           {

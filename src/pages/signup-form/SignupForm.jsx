@@ -12,6 +12,7 @@ import {
   validateConfirmPasswordInput,
   displayEmptyInputErrors,
   registerUser,
+  displaySignupServerErrors
 } from '../../utils/signup/index.js'
 
 const SignupForm = () => {
@@ -131,8 +132,8 @@ const SignupForm = () => {
     e.preventDefault()
     setIsFormSubmitted(true)
     setSignupErrorMsg('')
-    // const isValid = true
-    const isValid = validateForm()
+    const isValid = true
+    // const isValid = validateForm()
 
     if (isValid) {
       // TODO: useNavigate() to redirect to Login page after signup
@@ -146,7 +147,6 @@ const SignupForm = () => {
           const data = await response.json()
           console.log(data)
 
-          // TODO: Show login form
           if (data.success) {
             // Reset state
             handleClose()
@@ -158,34 +158,36 @@ const SignupForm = () => {
           setIsFormSubmitted(false)
           const { errors } = await response.json()
 
+
           // Show server-side validation fail error messages
-          errors.forEach((error) => {
-            if (error.path === 'email') {
-              setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-              setErrorMessages((prevErrors) => ({
-                ...prevErrors,
-                email: error.msg,
-              }))
-            } else if (error.path === 'password') {
-              setValidFormData((prevValid) => ({
-                ...prevValid,
-                password: false,
-              }))
-              setErrorMessages((prevErrors) => ({
-                ...prevErrors,
-                password: error.msg,
-              }))
-            } else if (error.path === 'confirmPassword') {
-              setValidFormData((prevValid) => ({
-                ...prevValid,
-                confirmPassword: false,
-              }))
-              setErrorMessages((prevErrors) => ({
-                ...prevErrors,
-                confirmPassword: error.msg,
-              }))
-            }
-          })
+          displaySignupServerErrors(errors, setValidFormData, setErrorMessages)
+          // errors.forEach((error) => {
+          //   if (error.path === 'email') {
+          //     setValidFormData((prevValid) => ({ ...prevValid, email: false }))
+          //     setErrorMessages((prevErrors) => ({
+          //       ...prevErrors,
+          //       email: error.msg,
+          //     }))
+          //   } else if (error.path === 'password') {
+          //     setValidFormData((prevValid) => ({
+          //       ...prevValid,
+          //       password: false,
+          //     }))
+          //     setErrorMessages((prevErrors) => ({
+          //       ...prevErrors,
+          //       password: error.msg,
+          //     }))
+          //   } else if (error.path === 'confirmPassword') {
+          //     setValidFormData((prevValid) => ({
+          //       ...prevValid,
+          //       confirmPassword: false,
+          //     }))
+          //     setErrorMessages((prevErrors) => ({
+          //       ...prevErrors,
+          //       confirmPassword: error.msg,
+          //     }))
+          //   }
+          // })
         }
       } catch (error) {
         console.error('Signup Error:', error)
