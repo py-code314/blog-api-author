@@ -11,6 +11,7 @@ import {
   validatePasswordInput,
   validateConfirmPasswordInput,
   displayEmptyInputErrors,
+  registerUser,
 } from '../../utils/signup/index.js'
 
 const SignupForm = () => {
@@ -138,13 +139,7 @@ const SignupForm = () => {
 
       try {
         // Send sign-up data to server
-        const response = await fetch('http://localhost:8080/api/v1/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(signupFormData),
-        })
+        const response = await registerUser(signupFormData)
 
         // Successful submission
         if (response.ok) {
