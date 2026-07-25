@@ -11,7 +11,6 @@ import {
   displayServerErrors,
   displayAuthErrors,
 } from '../../utils/login/index'
-// import { displayServerErrors } from '../../utils/login/displayServerErrors'
 
 const LoginForm = () => {
   const { isModalOpen } = useContext(ModalContext)
@@ -158,6 +157,10 @@ const LoginForm = () => {
         if (response.ok) {
           const data = await response.json()
           console.log(data)
+          if (data.success) {
+            localStorage.setItem('jwtToken', data.token)
+          }
+          // TODO: Hide Login and Signup buttons and show Logout button
 
           // Reset state
           handleClose()
