@@ -33,7 +33,7 @@ const SignupModal = () => {
     setValidFormData(defaultValidFormData)
     setSignupErrorMsg('')
     handleCloseModal()
-    setActiveModal(null)
+    setActiveModal('login')
   }
   return (
     <AuthModalContext value={{ handleClose }}>

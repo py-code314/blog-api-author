@@ -8,7 +8,7 @@ import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
 
 const SignupForm = () => {
-  const { activeModal } = useContext(ModalContext)
+  const { activeModal, setActiveModal } = useContext(ModalContext)
   const emailInputRef = useRef(null)
   const {
     defaultSignupFormData,
@@ -223,17 +223,13 @@ const SignupForm = () => {
           console.log(data)
 
           // TODO: Show login form
-          // if (data.success) {
-
-          // }
-
-          // Reset state
-          // handleCloseModal()
-          // setValidFormData(defaultValidFormData)
-          handleClose()
-          setIsFormSubmitted(false)
-          setSignupFormData(defaultSignupFormData)
-          setErrorMessages(defaultErrorMessages)
+          if (data.success) {
+            // Reset state
+            handleClose()
+            setIsFormSubmitted(false)
+            setSignupFormData(defaultSignupFormData)
+            setErrorMessages(defaultErrorMessages)
+          }
         } else {
           setIsFormSubmitted(false)
           const { errors } = await response.json()
