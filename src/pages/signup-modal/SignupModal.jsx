@@ -9,7 +9,7 @@ import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const SignupModal = () => {
   const { handleCloseModal } = useContext(ModalContext)
-  const { setIsSignup } = useContext(NavbarContext)
+  const { setActiveModal } = useContext(NavbarContext)
 
   // State
   const defaultSignupFormData = {
@@ -35,7 +35,7 @@ const SignupModal = () => {
     setValidFormData(defaultValidFormData)
     setSignupErrorMsg('')
     handleCloseModal()
-    setIsSignup(false)
+    setActiveModal(null)
   }
   return (
     <AuthModalContext value={{ handleClose }}>

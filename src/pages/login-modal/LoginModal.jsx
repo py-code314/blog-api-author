@@ -9,7 +9,7 @@ import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const LoginModal = () => {
   const { handleCloseModal } = useContext(ModalContext)
-  const { setIsLogin } = useContext(NavbarContext)
+  const { setActiveModal } = useContext(NavbarContext)
 
   // State
   const defaultLoginFormData = {
@@ -20,7 +20,7 @@ const LoginModal = () => {
 
   const defaultValidFormData = {
     email: null,
-    password: null
+    password: null,
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
   const [loginErrorMsg, setLoginErrorMsg] = useState('')
@@ -31,7 +31,7 @@ const LoginModal = () => {
     setValidFormData(defaultValidFormData)
     setLoginErrorMsg('')
     handleCloseModal()
-    setIsLogin(false)
+    setActiveModal(null)
   }
   return (
     <AuthModalContext value={{ handleClose }}>
