@@ -222,6 +222,11 @@ const SignupForm = () => {
           const data = await response.json()
           console.log(data)
 
+          // TODO: Show login form
+          // if (data.success) {
+            
+          // }
+
           // Reset state
           // handleCloseModal()
           // setValidFormData(defaultValidFormData)

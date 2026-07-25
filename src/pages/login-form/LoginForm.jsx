@@ -11,10 +11,10 @@ import {
   displayServerErrors,
   displayAuthErrors,
 } from '../../utils/login/index'
-import { NavbarContext } from '../../contexts/navbar/NavbarContext'
+
 
 const LoginForm = () => {
-  const { isModalOpen } = useContext(ModalContext)
+  const { isModalOpen, setIsLoggedIn } = useContext(ModalContext)
   const emailInputRef = useRef(null)
   const {
     defaultLoginFormData,
@@ -26,7 +26,6 @@ const LoginForm = () => {
     setLoginErrorMsg,
   } = useContext(LoginFormContext)
   const { handleClose } = useContext(AuthModalContext)
-  const {setIsLoggedIn} = useContext(NavbarContext)
 
   // State variables
   const defaultErrorMsgs = {
@@ -164,6 +163,7 @@ const LoginForm = () => {
             localStorage.setItem('jwtToken', data.token)
           }
 
+          // ? Move these into above if condition
           // Reset state
           handleClose()
           setIsFormSubmitted(false)

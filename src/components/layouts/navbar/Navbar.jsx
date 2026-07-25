@@ -2,7 +2,6 @@ import styles from './Navbar.module.css'
 // import { NavLink } from 'react-router'
 import { useState } from 'react'
 import { ModalContext } from '../../../contexts/modal/ModalContext'
-import { NavbarContext } from '../../../contexts/navbar/NavbarContext'
 import Button from '../../core/Button/Button'
 import SignupModal from '../../../pages/signup-modal/SignupModal'
 import LoginModal from '../../../pages/login-modal/LoginModal'
@@ -81,12 +80,14 @@ export const NavBar = () => {
         value={{
           isModalOpen,
           handleCloseModal,
+          setActiveModal,
+          setIsLoggedIn,
         }}>
-        <NavbarContext value={{ setActiveModal, setIsLoggedIn }}>
-          {activeModal === 'signup' && <SignupModal />}
-          {activeModal === 'login' && <LoginModal />}
-        </NavbarContext>
+        {activeModal === 'signup' && <SignupModal />}
+        {activeModal === 'login' && <LoginModal />}
       </ModalContext>
+
+     
     </>
   )
 }

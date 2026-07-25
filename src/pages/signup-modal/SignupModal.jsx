@@ -5,11 +5,9 @@ import SignupForm from '../signup-form/SignupForm'
 import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
 import { ModalContext } from '../../contexts/modal/ModalContext'
 import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
-import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const SignupModal = () => {
-  const { handleCloseModal } = useContext(ModalContext)
-  const { setActiveModal } = useContext(NavbarContext)
+  const { handleCloseModal, setActiveModal } = useContext(ModalContext)
 
   // State
   const defaultSignupFormData = {

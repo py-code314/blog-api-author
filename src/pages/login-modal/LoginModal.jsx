@@ -5,11 +5,9 @@ import LoginForm from '../login-form/LoginForm'
 import { LoginFormContext } from '../../contexts/login-form/LoginFormContext'
 import { ModalContext } from '../../contexts/modal/ModalContext'
 import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
-import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const LoginModal = () => {
-  const { handleCloseModal } = useContext(ModalContext)
-  const { setActiveModal } = useContext(NavbarContext)
+  const { handleCloseModal, setActiveModal } = useContext(ModalContext)
 
   // State
   const defaultLoginFormData = {
