@@ -159,6 +159,7 @@ const LoginForm = () => {
         if (response.ok) {
           const data = await response.json()
           console.log(data)
+          // Store JWT
           if (data.success) {
             localStorage.setItem('jwtToken', data.token)
           }

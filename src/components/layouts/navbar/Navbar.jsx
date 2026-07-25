@@ -29,7 +29,10 @@ export const NavBar = () => {
   }
 
   const handleLogout = () => {
-    console.log('log out')
+    // console.log('log out')
+    setIsLoggedIn(false)
+    // Clear JWT
+    localStorage.removeItem('jwtToken')
   }
 
   return (
