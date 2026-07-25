@@ -11,6 +11,7 @@ import {
   displayServerErrors,
   displayAuthErrors,
 } from '../../utils/login/index'
+import { NavbarContext } from '../../contexts/navbar/NavbarContext'
 
 const LoginForm = () => {
   const { isModalOpen } = useContext(ModalContext)
@@ -25,6 +26,7 @@ const LoginForm = () => {
     setLoginErrorMsg,
   } = useContext(LoginFormContext)
   const { handleClose } = useContext(AuthModalContext)
+  const {setIsLoggedIn} = useContext(NavbarContext)
 
   // State variables
   const defaultErrorMsgs = {
@@ -160,13 +162,13 @@ const LoginForm = () => {
           if (data.success) {
             localStorage.setItem('jwtToken', data.token)
           }
-          // TODO: Hide Login and Signup buttons and show Logout button
 
           // Reset state
           handleClose()
           setIsFormSubmitted(false)
           setLoginFormData(defaultLoginFormData)
           setErrorMsgs(defaultErrorMsgs)
+          setIsLoggedIn(true)
         } else {
           setIsFormSubmitted(false)
           const data = await response.json()

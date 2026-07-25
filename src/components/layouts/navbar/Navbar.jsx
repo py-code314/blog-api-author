@@ -11,6 +11,7 @@ import LoginModal from '../../../pages/login-modal/LoginModal'
 export const NavBar = () => {
   const [isModalOpen, setModalOpen] = useState(false)
   const [activeModal, setActiveModal] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // Update 'isOpen' when modal is closed
   const handleCloseModal = () => {
@@ -27,6 +28,10 @@ export const NavBar = () => {
     setActiveModal('login')
   }
 
+  const handleLogout = () => {
+    console.log('log out')
+  }
+
   return (
     <>
       <nav className={styles.navbar}>
@@ -34,26 +39,38 @@ export const NavBar = () => {
         <ul className={styles.navList}>
           <li className={styles.navItem}>Our Story</li>
           <li className={styles.navItem}>Membership</li>
-          {/* Log-in Button */}
-          <li className={styles.navItem}>
-            <Button
-              id="login"
-              className="loginBtn"
-              title="Log in"
-              onClick={handleLogin}>
-              Log in{' '}
-            </Button>
-          </li>
-          {/* Sign-up button */}
-          <li className={styles.navItem}>
-            <Button
-              id="signup"
-              className="signupBtn"
-              title="Sign up"
-              onClick={handleSignup}>
-              Sign Up{' '}
-            </Button>
-          </li>
+          {isLoggedIn ? (
+            <li className={styles.navItem}>
+              <Button
+                id="logout"
+                className="logoutBtn"
+                title="Log out"
+                onClick={handleLogout}>
+                Log out{' '}
+              </Button>
+            </li>
+          ) : (
+            <>
+              <li className={styles.navItem}>
+                <Button
+                  id="login"
+                  className="loginBtn"
+                  title="Log in"
+                  onClick={handleLogin}>
+                  Log in{' '}
+                </Button>
+              </li>
+              <li className={styles.navItem}>
+                <Button
+                  id="signup"
+                  className="signupBtn"
+                  title="Sign up"
+                  onClick={handleSignup}>
+                  Sign Up{' '}
+                </Button>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
 
@@ -62,7 +79,7 @@ export const NavBar = () => {
           isModalOpen,
           handleCloseModal,
         }}>
-        <NavbarContext value={{ setActiveModal }}>
+        <NavbarContext value={{ setActiveModal, setIsLoggedIn }}>
           {activeModal === 'signup' && <SignupModal />}
           {activeModal === 'login' && <LoginModal />}
         </NavbarContext>
@@ -70,6 +87,5 @@ export const NavBar = () => {
     </>
   )
 }
-
 
 export default NavBar
