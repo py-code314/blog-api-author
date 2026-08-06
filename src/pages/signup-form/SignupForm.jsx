@@ -1,33 +1,32 @@
 import styles from './SignupForm.module.css'
 import { useRef, useEffect, useContext, useState } from 'react'
-import { ModalContext } from '../../contexts/modal/ModalContext'
+import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext.jsx'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
-import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
-import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
+import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
+
 import {
   validateEmailInput,
   validatePasswordInput,
   validateConfirmPasswordInput,
   displayEmptyInputErrors,
   registerUser,
-  displaySignupServerErrors
+  displaySignupServerErrors,
 } from '../../utils/signup/index.js'
 
 const SignupForm = () => {
-  const { activeModal } = useContext(ModalContext)
+  const { activeModal, setActiveModal } = useContext(AuthUIContext)
   const emailInputRef = useRef(null)
   const {
-    defaultSignupFormData,
+    handleSignupClose,
     signupFormData,
     setSignupFormData,
     validFormData,
     setValidFormData,
     signupErrorMsg,
     setSignupErrorMsg,
-  } = useContext(SignupFormContext)
-  const { handleClose } = useContext(AuthModalContext)
+  } = useContext(SignupModalContext)
 
   // State variables
   const defaultErrorMessages = {
@@ -132,8 +131,8 @@ const SignupForm = () => {
     e.preventDefault()
     setIsFormSubmitted(true)
     setSignupErrorMsg('')
-    const isValid = true
-    // const isValid = validateForm()
+    // const isValid = true
+    const isValid = validateForm()
 
     if (isValid) {
       // TODO: useNavigate() to redirect to Login page after signup
@@ -149,45 +148,18 @@ const SignupForm = () => {
 
           if (data.success) {
             // Reset state
-            handleClose()
+            handleSignupClose()
             setIsFormSubmitted(false)
-            setSignupFormData(defaultSignupFormData)
+            // setSignupFormData(defaultSignupFormData)
             setErrorMessages(defaultErrorMessages)
+            setActiveModal('login')
           }
         } else {
           setIsFormSubmitted(false)
           const { errors } = await response.json()
 
-
           // Show server-side validation fail error messages
           displaySignupServerErrors(errors, setValidFormData, setErrorMessages)
-          // errors.forEach((error) => {
-          //   if (error.path === 'email') {
-          //     setValidFormData((prevValid) => ({ ...prevValid, email: false }))
-          //     setErrorMessages((prevErrors) => ({
-          //       ...prevErrors,
-          //       email: error.msg,
-          //     }))
-          //   } else if (error.path === 'password') {
-          //     setValidFormData((prevValid) => ({
-          //       ...prevValid,
-          //       password: false,
-          //     }))
-          //     setErrorMessages((prevErrors) => ({
-          //       ...prevErrors,
-          //       password: error.msg,
-          //     }))
-          //   } else if (error.path === 'confirmPassword') {
-          //     setValidFormData((prevValid) => ({
-          //       ...prevValid,
-          //       confirmPassword: false,
-          //     }))
-          //     setErrorMessages((prevErrors) => ({
-          //       ...prevErrors,
-          //       confirmPassword: error.msg,
-          //     }))
-          //   }
-          // })
         }
       } catch (error) {
         console.error('Signup Error:', error)

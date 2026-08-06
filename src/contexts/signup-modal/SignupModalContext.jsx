@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 
-// TODO: Change setSignupErrorMsg to () => {}
-export const SignupFormContext = createContext({
+export const SignupModalContext = createContext({
+  handleSignupClose: () => {},
   defaultSignupFormData: {},
   signupFormData: {},
   setSignupFormData: () => {},

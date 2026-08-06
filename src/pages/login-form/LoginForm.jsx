@@ -1,8 +1,7 @@
 import styles from './LoginForm.module.css'
 import { useRef, useEffect, useContext, useState } from 'react'
-import { ModalContext } from '../../contexts/modal/ModalContext'
-import { LoginFormContext } from '../../contexts/login-form/LoginFormContext'
-import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
+import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext'
+import { LoginModalContext } from '../../contexts/login-modal/LoginModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
@@ -13,9 +12,10 @@ import {
 } from '../../utils/login/index'
 
 const LoginForm = () => {
-  const { activeModal, setIsLoggedIn } = useContext(ModalContext)
+  const { activeModal, setIsLoggedIn } = useContext(AuthUIContext)
   const emailInputRef = useRef(null)
   const {
+    handleLoginClose,
     defaultLoginFormData,
     loginFormData,
     setLoginFormData,
@@ -23,8 +23,7 @@ const LoginForm = () => {
     setValidFormData,
     loginErrorMsg,
     setLoginErrorMsg,
-  } = useContext(LoginFormContext)
-  const { handleClose } = useContext(AuthModalContext)
+  } = useContext(LoginModalContext)
 
   // State variables
   const defaultErrorMsgs = {
@@ -164,7 +163,7 @@ const LoginForm = () => {
 
           // ? Move these into above if condition
           // Reset state
-          handleClose()
+          handleLoginClose()
           setIsFormSubmitted(false)
           setLoginFormData(defaultLoginFormData)
           setErrorMsgs(defaultErrorMsgs)
@@ -175,10 +174,14 @@ const LoginForm = () => {
           console.log('🚀 ~ handleFormSubmit ~ data:', data)
 
           // Show server-side validation fail error messages
-        // TODO: Remove async and await
+          // TODO: Remove async and await
           {
             data.validData === false &&
-              (await displayLoginServerErrors(data, setValidFormData, setErrorMsgs))
+              (await displayLoginServerErrors(
+                data,
+                setValidFormData,
+                setErrorMsgs,
+              ))
           }
           // Show auth fail error messages
           {

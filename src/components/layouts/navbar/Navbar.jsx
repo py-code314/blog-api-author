@@ -1,7 +1,7 @@
 import styles from './Navbar.module.css'
 // import { NavLink } from 'react-router'
 import { useState } from 'react'
-import { ModalContext } from '../../../contexts/modal/ModalContext'
+import { AuthUIContext } from '../../../contexts/auth-ui/AuthUIContext'
 import Button from '../../core/Button/Button'
 import SignupModal from '../../../pages/signup-modal/SignupModal'
 import LoginModal from '../../../pages/login-modal/LoginModal'
@@ -11,7 +11,7 @@ export const NavBar = () => {
   const [activeModal, setActiveModal] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  // Update 'isOpen' when modal is closed
+  // Run this when user clicks Esc key or Close button
   const handleCloseModal = () => {
     setActiveModal(null)
   }
@@ -73,7 +73,7 @@ export const NavBar = () => {
         </ul>
       </nav>
 
-      <ModalContext
+      <AuthUIContext
         value={{
           handleCloseModal,
           activeModal,
@@ -82,7 +82,7 @@ export const NavBar = () => {
         }}>
         {activeModal === 'signup' && <SignupModal />}
         {activeModal === 'login' && <LoginModal />}
-      </ModalContext>
+      </AuthUIContext>
     </>
   )
 }

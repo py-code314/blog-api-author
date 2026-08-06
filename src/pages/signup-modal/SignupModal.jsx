@@ -2,12 +2,11 @@ import styles from './SignupModal.module.css'
 import { useContext, useState } from 'react'
 import Modal from '../../components/layouts/modal/Modal'
 import SignupForm from '../signup-form/SignupForm'
-import { SignupFormContext } from '../../contexts/signup-form/SignupFormContext'
-import { ModalContext } from '../../contexts/modal/ModalContext'
-import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
+import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext'
+import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
 
 const SignupModal = () => {
-  const { handleCloseModal, setActiveModal } = useContext(ModalContext)
+  const { handleCloseModal } = useContext(AuthUIContext)
 
   // State
   const defaultSignupFormData = {
@@ -27,36 +26,34 @@ const SignupModal = () => {
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
   const [signupErrorMsg, setSignupErrorMsg] = useState('')
 
-  // Changes isModalOpen & signupFormData
-  const handleClose = () => {
+  const handleSignupClose = () => {
     setSignupFormData(defaultSignupFormData)
     setValidFormData(defaultValidFormData)
     setSignupErrorMsg('')
     handleCloseModal()
-    setActiveModal('login')
+    // setActiveModal('login')
   }
   return (
-    <AuthModalContext value={{ handleClose }}>
+    <SignupModalContext
+      value={{
+        handleSignupClose,
+        defaultSignupFormData,
+        signupFormData,
+        setSignupFormData,
+        defaultValidFormData,
+        validFormData,
+        setValidFormData,
+        signupErrorMsg,
+        setSignupErrorMsg,
+      }}>
       <Modal>
         <div className={styles.modalWrapper}>
           {/* Subtitle */}
           <h2 className={styles.subtitle}>Sign Up</h2>
-          <SignupFormContext
-            value={{
-              defaultSignupFormData,
-              signupFormData,
-              setSignupFormData,
-              defaultValidFormData,
-              validFormData,
-              setValidFormData,
-              signupErrorMsg,
-              setSignupErrorMsg,
-            }}>
-            <SignupForm />
-          </SignupFormContext>
+          <SignupForm />
         </div>
       </Modal>
-    </AuthModalContext>
+    </SignupModalContext>
   )
 }
 

@@ -2,12 +2,11 @@ import styles from './LoginModal.module.css'
 import { useContext, useState } from 'react'
 import Modal from '../../components/layouts/modal/Modal'
 import LoginForm from '../login-form/LoginForm'
-import { LoginFormContext } from '../../contexts/login-form/LoginFormContext'
-import { ModalContext } from '../../contexts/modal/ModalContext'
-import { AuthModalContext } from '../../contexts/auth-modal/AuthModalContext'
+import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext'
+import { LoginModalContext } from '../../contexts/login-modal/LoginModalContext'
 
 const LoginModal = () => {
-  const { handleCloseModal, setActiveModal } = useContext(ModalContext)
+  const { handleCloseModal } = useContext(AuthUIContext)
 
   // State
   const defaultLoginFormData = {
@@ -24,35 +23,34 @@ const LoginModal = () => {
   const [loginErrorMsg, setLoginErrorMsg] = useState('')
 
   // Changes isModalOpen & loginFormData
-  const handleClose = () => {
+  const handleLoginClose = () => {
     setLoginFormData(defaultLoginFormData)
     setValidFormData(defaultValidFormData)
     setLoginErrorMsg('')
     handleCloseModal()
-    setActiveModal(null)
+    // setActiveModal(null)
   }
   return (
-    <AuthModalContext value={{ handleClose }}>
+    <LoginModalContext
+      value={{
+        handleLoginClose,
+        defaultLoginFormData,
+        loginFormData,
+        setLoginFormData,
+        defaultValidFormData,
+        validFormData,
+        setValidFormData,
+        loginErrorMsg,
+        setLoginErrorMsg,
+      }}>
       <Modal>
         <div className={styles.modalWrapper}>
           {/* Subtitle */}
           <h2 className={styles.subtitle}>Log In</h2>
-          <LoginFormContext
-            value={{
-              defaultLoginFormData,
-              loginFormData,
-              setLoginFormData,
-              defaultValidFormData,
-              validFormData,
-              setValidFormData,
-              loginErrorMsg,
-              setLoginErrorMsg,
-            }}>
-            <LoginForm />
-          </LoginFormContext>
+          <LoginForm />
         </div>
       </Modal>
-    </AuthModalContext>
+    </LoginModalContext>
   )
 }
 

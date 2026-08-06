@@ -1,13 +1,15 @@
 import styles from './Modal.module.css'
 import { useRef, useEffect, useContext } from 'react'
-import { ModalContext } from '../../../contexts/modal/ModalContext'
+import { AuthUIContext } from '../../../contexts/auth-ui/AuthUIContext'
+import { SignupModalContext } from '../../../contexts/signup-modal/SignupModalContext'
+import { LoginModalContext } from '../../../contexts/login-modal/LoginModalContext'
 import Button from '../../core/Button/Button'
-import { AuthModalContext } from '../../../contexts/auth-modal/AuthModalContext'
 
 const Modal = ({ children }) => {
   const modalRef = useRef(null)
-  const { activeModal } = useContext(ModalContext)
-  const { handleClose } = useContext(AuthModalContext)
+  const { activeModal } = useContext(AuthUIContext)
+  const { handleSignupClose } = useContext(SignupModalContext)
+  const {handleLoginClose} = useContext(LoginModalContext)
   const isModalOpen = activeModal === 'signup' || activeModal === 'login'
 
   useEffect(() => {
@@ -26,7 +28,19 @@ const Modal = ({ children }) => {
   // Update 'isOpen' when Esc key pressed
   const handleEscKeyDown = (e) => {
     if (e.key === 'Escape') {
-      handleClose()
+      if (activeModal === 'signup') {
+        handleSignupClose()
+      } else if (activeModal === 'login') {
+        handleLoginClose()
+      }
+    }
+  }
+
+  const handleCloseBtn = () => {
+    if (activeModal === 'signup') {
+      handleSignupClose()
+    } else if (activeModal === 'login') {
+      handleLoginClose()
     }
   }
 
@@ -38,7 +52,7 @@ const Modal = ({ children }) => {
       <Button
         className="btnCloseModal"
         title="Close modal"
-        onClick={handleClose}>
+        onClick={handleCloseBtn}>
         <span className={styles.btnClose}>&times;</span>
       </Button>
       {children}
