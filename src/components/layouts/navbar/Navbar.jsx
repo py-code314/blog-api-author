@@ -1,15 +1,18 @@
 import styles from './Navbar.module.css'
 // import { NavLink } from 'react-router'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { AuthUIContext } from '../../../contexts/auth-ui/AuthUIContext'
+import { AuthContext } from '../../../contexts/auth/AuthContext'
 import Button from '../../core/Button/Button'
 import SignupModal from '../../../pages/signup-modal/SignupModal'
 import LoginModal from '../../../pages/login-modal/LoginModal'
 
 /* Display Navbar */
 export const NavBar = () => {
+  // TODO: Move state and handle functions into App.jsx
   const [activeModal, setActiveModal] = useState(null)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // Run this when user clicks Esc key or Close button
   const handleCloseModal = () => {
@@ -78,7 +81,6 @@ export const NavBar = () => {
           handleCloseModal,
           activeModal,
           setActiveModal,
-          setIsLoggedIn,
         }}>
         {activeModal === 'signup' && <SignupModal />}
         {activeModal === 'login' && <LoginModal />}

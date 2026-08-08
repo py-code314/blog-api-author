@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import PageLayout from './components/layouts/page-layout/PageLayout'
 import LandingPage from './pages/landing-page/LandingPage'
+import Homepage from './pages/homepage/Homepage'
+import { AuthContext } from './contexts/auth/AuthContext'
 import './App.css'
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   return (
     <div className="page">
-      <PageLayout isSignedIn={isSignedIn} >
-        {isSignedIn ? <p>Show Dashboard</p> : <LandingPage />}
-      </PageLayout>
+      <AuthContext value={{ isLoggedIn, setIsLoggedIn }}>
+        {isLoggedIn ? <Homepage /> : <LandingPage />}
+      </AuthContext>
     </div>
   )
 }
