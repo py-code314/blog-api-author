@@ -1,6 +1,6 @@
 import styles from './SignupForm.module.css'
 import { useRef, useEffect, useContext, useState } from 'react'
-import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext.jsx'
+import { AuthContext } from '../../contexts/auth/AuthContext.jsx'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
@@ -16,7 +16,7 @@ import {
 } from '../../utils/signup/index.js'
 
 const SignupForm = () => {
-  const { activeModal, setActiveModal } = useContext(AuthUIContext)
+  const { activeModal, setActiveModal } = useContext(AuthContext)
   const emailInputRef = useRef(null)
   const {
     handleSignupClose,

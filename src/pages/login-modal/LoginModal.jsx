@@ -2,11 +2,11 @@ import styles from './LoginModal.module.css'
 import { useContext, useState } from 'react'
 import Modal from '../../components/layouts/modal/Modal'
 import LoginForm from '../login-form/LoginForm'
-import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext'
+import { AuthContext } from '../../contexts/auth/AuthContext'
 import { LoginModalContext } from '../../contexts/login-modal/LoginModalContext'
 
 const LoginModal = () => {
-  const { handleCloseModal } = useContext(AuthUIContext)
+  const { handleCloseModal } = useContext(AuthContext)
 
   // State
   const defaultLoginFormData = {
@@ -28,7 +28,6 @@ const LoginModal = () => {
     setValidFormData(defaultValidFormData)
     setLoginErrorMsg('')
     handleCloseModal()
-    // setActiveModal(null)
   }
   return (
     <LoginModalContext

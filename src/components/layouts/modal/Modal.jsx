@@ -1,13 +1,13 @@
 import styles from './Modal.module.css'
 import { useRef, useEffect, useContext } from 'react'
-import { AuthUIContext } from '../../../contexts/auth-ui/AuthUIContext'
+import { AuthContext } from '../../../contexts/auth/AuthContext'
 import { SignupModalContext } from '../../../contexts/signup-modal/SignupModalContext'
 import { LoginModalContext } from '../../../contexts/login-modal/LoginModalContext'
 import Button from '../../core/Button/Button'
 
 const Modal = ({ children }) => {
   const modalRef = useRef(null)
-  const { activeModal } = useContext(AuthUIContext)
+  const { activeModal } = useContext(AuthContext)
   const { handleSignupClose } = useContext(SignupModalContext)
   const {handleLoginClose} = useContext(LoginModalContext)
   const isModalOpen = activeModal === 'signup' || activeModal === 'login'

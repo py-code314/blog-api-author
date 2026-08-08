@@ -1,6 +1,5 @@
 import styles from './LoginForm.module.css'
 import { useRef, useEffect, useContext, useState } from 'react'
-import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext'
 import { AuthContext } from '../../contexts/auth/AuthContext'
 import { LoginModalContext } from '../../contexts/login-modal/LoginModalContext'
 import Button from '../../components/core/Button/Button'
@@ -13,8 +12,7 @@ import {
 } from '../../utils/login/index'
 
 const LoginForm = () => {
-  const { activeModal } = useContext(AuthUIContext)
-  const {setIsLoggedIn} = useContext(AuthContext)
+  const { setIsLoggedIn, activeModal } = useContext(AuthContext)
   const emailInputRef = useRef(null)
   const {
     handleLoginClose,

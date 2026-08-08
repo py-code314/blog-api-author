@@ -5,10 +5,23 @@ import { AuthContext } from './contexts/auth/AuthContext'
 import './App.css'
 
 function App() {
+  const [activeModal, setActiveModal] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const handleCloseModal = () => {
+    setActiveModal(null)
+  }
+
   return (
     <div className="page">
-      <AuthContext value={{ isLoggedIn, setIsLoggedIn }}>
+      <AuthContext
+        value={{
+          isLoggedIn,
+          setIsLoggedIn,
+          handleCloseModal,
+          activeModal,
+          setActiveModal,
+        }}>
         {isLoggedIn ? <Homepage /> : <LandingPage />}
       </AuthContext>
     </div>

@@ -1,7 +1,6 @@
 import styles from './Navbar.module.css'
 // import { NavLink } from 'react-router'
-import { useContext, useState } from 'react'
-import { AuthUIContext } from '../../../contexts/auth-ui/AuthUIContext'
+import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/auth/AuthContext'
 import Button from '../../core/Button/Button'
 import SignupModal from '../../../pages/signup-modal/SignupModal'
@@ -9,15 +8,8 @@ import LoginModal from '../../../pages/login-modal/LoginModal'
 
 /* Display Navbar */
 export const NavBar = () => {
-  // TODO: Move state and handle functions into App.jsx
-  const [activeModal, setActiveModal] = useState(null)
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext)
-  // const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  // Run this when user clicks Esc key or Close button
-  const handleCloseModal = () => {
-    setActiveModal(null)
-  }
+  const { isLoggedIn, setIsLoggedIn, activeModal, setActiveModal } =
+    useContext(AuthContext)
 
   const handleSignup = () => {
     setActiveModal('signup')
@@ -76,15 +68,8 @@ export const NavBar = () => {
         </ul>
       </nav>
 
-      <AuthUIContext
-        value={{
-          handleCloseModal,
-          activeModal,
-          setActiveModal,
-        }}>
-        {activeModal === 'signup' && <SignupModal />}
-        {activeModal === 'login' && <LoginModal />}
-      </AuthUIContext>
+      {activeModal === 'signup' && <SignupModal />}
+      {activeModal === 'login' && <LoginModal />}
     </>
   )
 }

@@ -2,11 +2,11 @@ import styles from './SignupModal.module.css'
 import { useContext, useState } from 'react'
 import Modal from '../../components/layouts/modal/Modal'
 import SignupForm from '../signup-form/SignupForm'
-import { AuthUIContext } from '../../contexts/auth-ui/AuthUIContext'
+import { AuthContext } from '../../contexts/auth/AuthContext'
 import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
 
 const SignupModal = () => {
-  const { handleCloseModal } = useContext(AuthUIContext)
+  const { handleCloseModal } = useContext(AuthContext)
 
   // State
   const defaultSignupFormData = {
@@ -31,7 +31,6 @@ const SignupModal = () => {
     setValidFormData(defaultValidFormData)
     setSignupErrorMsg('')
     handleCloseModal()
-    // setActiveModal('login')
   }
   return (
     <SignupModalContext
