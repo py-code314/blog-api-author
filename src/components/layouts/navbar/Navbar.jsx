@@ -1,5 +1,5 @@
 import styles from './Navbar.module.css'
-// import { NavLink } from 'react-router'
+import { NavLink } from 'react-router'
 import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/auth/AuthContext'
 import Button from '../../core/Button/Button'
@@ -31,20 +31,29 @@ export const NavBar = () => {
       <nav className={styles.navbar}>
         {/* Navigation links */}
         <ul className={styles.navList}>
-          <li className={styles.navItem}>Our Story</li>
-          <li className={styles.navItem}>Membership</li>
           {isLoggedIn ? (
-            <li className={styles.navItem}>
-              <Button
-                id="logout"
-                className="logoutBtn"
-                title="Log out"
-                onClick={handleLogout}>
-                Log out{' '}
-              </Button>
-            </li>
+            <>
+              <li className={styles.navItem}>
+                <NavLink
+                  className={styles.navLink}
+                  to={`/new-post`}>
+                  + Post
+                </NavLink>
+              </li>
+              <li className={styles.navItem}>
+                <Button
+                  id="logout"
+                  className="logoutBtn"
+                  title="Log out"
+                  onClick={handleLogout}>
+                  Log out{' '}
+                </Button>
+              </li>
+            </>
           ) : (
             <>
+              <li className={styles.navItem}>Our Story</li>
+              <li className={styles.navItem}>Membership</li>
               <li className={styles.navItem}>
                 <Button
                   id="login"

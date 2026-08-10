@@ -1,0 +1,13 @@
+.homepage {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-16, 1rem) var(--space-128, 8rem);
+  background-color: var(--clr-gray-3);
+}
+
+.main {
+  flex: 1;
+  /* display: flex;
+  align-items: center; */
+}

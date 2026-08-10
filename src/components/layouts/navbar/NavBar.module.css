@@ -3,9 +3,9 @@
 }
 .navList {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  /* gap: var(--space-32, 2rem); */
+  gap: var(--space-32, 2rem);
 }
 
 .navItem {
@@ -19,4 +19,10 @@
   border-radius: var(--radius-large, 1.25rem);
 } */
 
+.navLink {
+  /* display: block; */
+  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+  border: 1px solid var(--clr-black, black);
+  border-radius: var(--radius-x-large, 1.25rem);
+}
 

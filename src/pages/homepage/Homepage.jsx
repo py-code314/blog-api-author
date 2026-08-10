@@ -1,10 +1,20 @@
-// import styles from './Homepage.module.css'
+import styles from './Homepage.module.css'
+import Header from '../../components/layouts/header/Header'
+// import Hero from '../../components/pages/landing-page/hero/Hero'
+import Footer from '../../components/layouts/footer/Footer'
 
 
 const Homepage = () => {
   return (
     <>
-     Homepage
+      <div className={styles.homepage}>
+        <Header />
+        <main className={styles.main}>
+          {/* <Hero /> */}
+          {/* <Dashboard/> */}
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }
