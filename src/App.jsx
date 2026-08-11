@@ -7,6 +7,7 @@ import './App.css'
 function App() {
   const [activeModal, setActiveModal] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState({})
 
   const handleCloseModal = () => {
     setActiveModal(null)
@@ -21,6 +22,8 @@ function App() {
           handleCloseModal,
           activeModal,
           setActiveModal,
+          user,
+          setUser,
         }}>
         {isLoggedIn ? <Homepage /> : <LandingPage />}
       </AuthContext>

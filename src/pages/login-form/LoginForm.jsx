@@ -12,7 +12,7 @@ import {
 } from '../../utils/login/index'
 
 const LoginForm = () => {
-  const { setIsLoggedIn, activeModal } = useContext(AuthContext)
+  const { setIsLoggedIn, activeModal, setUser } = useContext(AuthContext)
   const emailInputRef = useRef(null)
   const {
     handleLoginClose,
@@ -159,15 +159,23 @@ const LoginForm = () => {
           // Store JWT
           if (data.success) {
             localStorage.setItem('jwtToken', data.token)
+            setUser(data.user)
+            console.log("🚀 ~ handleFormSubmit ~ data.user:", data.user)
+
+            handleLoginClose()
+            setIsFormSubmitted(false)
+            setLoginFormData(defaultLoginFormData)
+            setErrorMsgs(defaultErrorMsgs)
+            setIsLoggedIn(true)
           }
 
           // ? Move these into above if condition
           // Reset state
-          handleLoginClose()
-          setIsFormSubmitted(false)
-          setLoginFormData(defaultLoginFormData)
-          setErrorMsgs(defaultErrorMsgs)
-          setIsLoggedIn(true)
+          // handleLoginClose()
+          // setIsFormSubmitted(false)
+          // setLoginFormData(defaultLoginFormData)
+          // setErrorMsgs(defaultErrorMsgs)
+          // setIsLoggedIn(true)
         } else {
           setIsFormSubmitted(false)
           const data = await response.json()

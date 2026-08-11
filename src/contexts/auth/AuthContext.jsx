@@ -5,5 +5,7 @@ export const AuthContext = createContext({
   setIsLoggedIn: () => {},
   handleCloseModal: () => {},
   activeModal: null,
-  setActiveModal: () => {},
+  setActiveModal: () => { },
+  user: {},
+  setUser: () => {}
 })

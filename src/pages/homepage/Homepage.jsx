@@ -1,6 +1,7 @@
 import styles from './Homepage.module.css'
 import Header from '../../components/layouts/header/Header'
 // import Hero from '../../components/pages/landing-page/hero/Hero'
+import Dashboard from '../dashboard/Dashboard';
 import Footer from '../../components/layouts/footer/Footer'
 
 
@@ -11,7 +12,7 @@ const Homepage = () => {
         <Header />
         <main className={styles.main}>
           {/* <Hero /> */}
-          {/* <Dashboard/> */}
+          <Dashboard/>
         </main>
         <Footer />
       </div>
