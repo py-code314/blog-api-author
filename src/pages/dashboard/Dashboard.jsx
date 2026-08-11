@@ -7,7 +7,7 @@ const Dashboard = ({ children }) => {
   
   return ( 
     <>
-      <h2 className={styles.subtitle}>Welcome { user.name }</h2>
+      <h2 className={styles.subtitle}>Welcome { user.name || user.email }</h2>
     {children}
     </>
    );
