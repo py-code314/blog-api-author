@@ -10,6 +10,7 @@ import {
   validateEmailInput,
   validatePasswordInput,
   validateConfirmPasswordInput,
+  validateNameInput,
   displayEmptyInputErrors,
   registerUser,
   displaySignupServerErrors,
@@ -105,10 +106,13 @@ const SignupForm = () => {
   }
 
   const handleNameChange = (e) => {
+    const name = e.target.value
     setSignupFormData((prevFormData) => ({
       ...prevFormData,
-      name: e.target.value,
+      name,
     }))
+
+    validateNameInput(name, setValidFormData, setErrorMessages)
   }
 
   const validateForm = () => {
@@ -350,16 +354,46 @@ const SignupForm = () => {
             Full Name (optional)
           </label>
 
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Eric Cartman"
-            className={styles.formInput}
-            autoComplete="name"
-            value={signupFormData.firstName}
-            onChange={handleNameChange}
-          />
+          <div className={styles.formValid}>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Eric Cartman"
+              className={styles.formInput}
+              autoComplete="name"
+              value={signupFormData.name}
+              onChange={handleNameChange}
+            />
+            {validFormData.name && (
+              <img
+                className={styles.formCheckmark}
+                aria-hidden="true"
+                src={checkMarkIcon}
+                alt=""
+                width={40}
+                height={40}
+              />
+            )}
+          </div>
+          {validFormData.name === false && (
+            <div className={styles.formError}>
+              <img
+                className={styles.formErrorIcon}
+                aria-hidden="true"
+                src={errorIcon}
+                alt=""
+                width={25}
+                height={25}
+              />
+              <p
+                className={styles.formErrorMsg}
+                aria-live="polite"
+                id="invalid-name">
+                {errorMessages.name}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Sign up button */}
