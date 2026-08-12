@@ -1,16 +1,19 @@
 import styles from './Dashboard.module.css'
-import { AuthContext } from '../../contexts/auth/AuthContext';
-import { useContext } from 'react';
+import { AuthContext } from '../../contexts/auth/AuthContext'
+import { useContext } from 'react'
+import Profile from '../../components/pages/homepage/profile/Profile'
 
-const Dashboard = ({ children }) => {
+const Dashboard = () => {
   const { user } = useContext(AuthContext)
-  
-  return ( 
+
+  return (
     <>
-      <h2 className={styles.subtitle}>Welcome { user.name || user.email }</h2>
-    {children}
+      <div className={styles.dashboard}>
+        <h2 className={styles.subtitle}>Welcome {user.name || user.email}</h2>
+        <Profile />
+      </div>
     </>
-   );
+  )
 }
- 
-export default Dashboard;
+
+export default Dashboard

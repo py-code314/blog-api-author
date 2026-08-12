@@ -150,17 +150,14 @@ const LoginForm = () => {
       try {
         // Send log-in data to server
         const response = await loginUser(loginFormData)
-        // console.log('🚀 ~ handleFormSubmit ~ response:', response)
 
         // Successful submission
         if (response.ok) {
           const data = await response.json()
-          console.log(data)
           // Store JWT
           if (data.success) {
             localStorage.setItem('jwtToken', data.token)
             setUser(data.user)
-            console.log("🚀 ~ handleFormSubmit ~ data.user:", data.user)
 
             handleLoginClose()
             setIsFormSubmitted(false)
@@ -168,18 +165,9 @@ const LoginForm = () => {
             setErrorMsgs(defaultErrorMsgs)
             setIsLoggedIn(true)
           }
-
-          // ? Move these into above if condition
-          // Reset state
-          // handleLoginClose()
-          // setIsFormSubmitted(false)
-          // setLoginFormData(defaultLoginFormData)
-          // setErrorMsgs(defaultErrorMsgs)
-          // setIsLoggedIn(true)
         } else {
           setIsFormSubmitted(false)
           const data = await response.json()
-          console.log('🚀 ~ handleFormSubmit ~ data:', data)
 
           // Show server-side validation fail error messages
           // TODO: Remove async and await
