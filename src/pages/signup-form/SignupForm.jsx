@@ -117,11 +117,17 @@ const SignupForm = () => {
 
   const validateForm = () => {
     displayEmptyInputErrors(signupFormData, setValidFormData, setErrorMessages)
+    // const name = signupFormData.name.trim()
+    // if (name) {
+    //   validateNameInput(name, setValidFormData, setErrorMessages)
+    // }
 
     if (
       validFormData.email === true &&
       validFormData.password === true &&
       validFormData.confirmPassword === true
+      // &&
+      // validFormData.name !== false
     ) {
       return true
     } else {
@@ -139,8 +145,6 @@ const SignupForm = () => {
     const isValid = validateForm()
 
     if (isValid) {
-      // TODO: useNavigate() to redirect to Login page after signup
-
       try {
         // Send sign-up data to server
         const response = await registerUser(signupFormData)
