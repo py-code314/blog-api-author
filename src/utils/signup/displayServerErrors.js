@@ -24,6 +24,15 @@ export function displaySignupServerErrors(errors, setValidFormData, setErrorMess
         ...prevErrors,
         confirmPassword: error.msg,
       }))
+    } else if (error.path === 'name') {
+      setValidFormData((prevValid) => ({
+        ...prevValid,
+        name: false,
+      }))
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        name: error.msg,
+      }))
     }
   })
 }
