@@ -117,17 +117,12 @@ const SignupForm = () => {
 
   const validateForm = () => {
     displayEmptyInputErrors(signupFormData, setValidFormData, setErrorMessages)
-    // const name = signupFormData.name.trim()
-    // if (name) {
-    //   validateNameInput(name, setValidFormData, setErrorMessages)
-    // }
 
     if (
       validFormData.email === true &&
       validFormData.password === true &&
-      validFormData.confirmPassword === true
-      // &&
-      // validFormData.name !== false
+      validFormData.confirmPassword === true &&
+      validFormData.name !== false
     ) {
       return true
     } else {
