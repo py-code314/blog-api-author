@@ -9,7 +9,6 @@ const Profile = () => {
     'http://localhost:8080/api/v1/profiles/me',
   )
 
-  // TODO: Test this later
   // Show loading spinner while fetching the data
   if (isLoading)
     return (
@@ -32,14 +31,18 @@ const Profile = () => {
           />
         </div>
         <div className={styles.errorWrapper}>
-          <div className={styles.errorImage}>
-            <img src={errorIcon} alt="" width={70} height={70} />
-          </div>
+          <img
+            className={styles.errorImage}
+            src={errorIcon}
+            alt=""
+            width={40}
+            height={40}
+          />
 
-          <div className={styles.errorContent}>
-            <p>Looks like our servers temporarily forgot who you are!</p>
-            <p>Please try again later.</p>
-          </div>
+          <p className={styles.errorContent}>
+            Looks like our servers temporarily forgot who you are! Please try
+            again later.
+          </p>
         </div>
       </div>
     )

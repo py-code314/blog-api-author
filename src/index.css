@@ -177,6 +177,7 @@ a {
   --space-96: calc(var(--space-base-unit) * 24);
   --space-128: calc(var(--space-base-unit) * 32);
   --space-144: calc(var(--space-base-unit) * 36);
+  --space-160: calc(var(--space-base-unit) * 40);
   --space-200: calc(var(--space-base-unit) * 50);
   --space-280: calc(var(--space-base-unit) * 70);
   --space-300: calc(var(--space-base-unit) * 75);

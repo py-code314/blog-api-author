@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   padding: var(--space-16, 1rem) var(--space-128, 8rem);
-  background-color: var(--clr-light-golden-yellow, lightgoldenrodyellow);
+  background-color: var(--clr-gray-2, lightgray);
+  /* background-color: var(--clr-light-golden-yellow, lightgoldenrodyellow); */
 }
 
 .main {
