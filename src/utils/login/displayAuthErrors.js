@@ -1,4 +1,4 @@
-export async function displayAuthErrors(data, setValidFormData, setErrorMsgs) {
+export function displayAuthErrors(data, setValidFormData, setErrorMsgs) {
   const errorMsg = data.errorMsg
 
   if (errorMsg.toLowerCase().includes('email')) {

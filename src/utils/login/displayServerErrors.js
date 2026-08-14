@@ -1,4 +1,4 @@
-export async function displayLoginServerErrors(data, setValidFormData, setErrorMsgs) {
+export function displayLoginServerErrors(data, setValidFormData, setErrorMsgs) {
   data.errors.forEach((error) => {
     if (error.path === 'email') {
       setValidFormData((prevValid) => ({

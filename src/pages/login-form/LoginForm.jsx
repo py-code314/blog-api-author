@@ -170,19 +170,14 @@ const LoginForm = () => {
           const data = await response.json()
 
           // Show server-side validation fail error messages
-          // TODO: Remove async and await
           {
             data.validData === false &&
-              (await displayLoginServerErrors(
-                data,
-                setValidFormData,
-                setErrorMsgs,
-              ))
+              displayLoginServerErrors(data, setValidFormData, setErrorMsgs)
           }
           // Show auth fail error messages
           {
             data.auth === false &&
-              (await displayAuthErrors(data, setValidFormData, setErrorMsgs))
+              displayAuthErrors(data, setValidFormData, setErrorMsgs)
           }
           // Display JWT error message
           {
