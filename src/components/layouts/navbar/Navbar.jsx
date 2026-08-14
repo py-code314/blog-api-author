@@ -8,7 +8,7 @@ import LoginModal from '../../../pages/login-modal/LoginModal'
 
 /* Display Navbar */
 export const NavBar = () => {
-  const { isLoggedIn, setIsLoggedIn, activeModal, setActiveModal } =
+  const { token, setToken, activeModal, setActiveModal } =
     useContext(AuthContext)
 
   const handleSignup = () => {
@@ -20,8 +20,8 @@ export const NavBar = () => {
   }
 
   const handleLogout = () => {
-    // console.log('log out')
-    setIsLoggedIn(false)
+    setToken(null)
+
     // Clear JWT
     localStorage.removeItem('jwtToken')
   }
@@ -31,12 +31,10 @@ export const NavBar = () => {
       <nav className={styles.navbar}>
         {/* Navigation links */}
         <ul className={styles.navList}>
-          {isLoggedIn ? (
+          {token ? (
             <>
               <li className={styles.navItem}>
-                <NavLink
-                  className={styles.navLink}
-                  to={`/new-post`}>
+                <NavLink className={styles.navLink} to={`/new-post`}>
                   + Post
                 </NavLink>
               </li>

@@ -12,7 +12,7 @@ import {
 } from '../../utils/login/index'
 
 const LoginForm = () => {
-  const { setIsLoggedIn, activeModal, setUser } = useContext(AuthContext)
+  const { setToken, saveToken, activeModal, setUser } = useContext(AuthContext)
   const emailInputRef = useRef(null)
   const {
     handleLoginClose,
@@ -145,8 +145,6 @@ const LoginForm = () => {
     // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
-      // TODO: useNavigate() to redirect to homepage
-
       try {
         // Send log-in data to server
         const response = await loginUser(loginFormData)
@@ -156,14 +154,16 @@ const LoginForm = () => {
           const data = await response.json()
           // Store JWT
           if (data.success) {
-            localStorage.setItem('jwtToken', data.token)
             setUser(data.user)
 
             handleLoginClose()
             setIsFormSubmitted(false)
             setLoginFormData(defaultLoginFormData)
             setErrorMsgs(defaultErrorMsgs)
-            setIsLoggedIn(true)
+            setToken(data.token)
+            saveToken(data.token)
+
+            // TODO: useNavigate() to redirect to homepage
           }
         } else {
           setIsFormSubmitted(false)
