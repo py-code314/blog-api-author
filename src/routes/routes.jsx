@@ -1,23 +1,18 @@
-
 import App from '../App'
-import Homepage from '../pages/homepage/Homepage'
-import LandingPage from '../pages/landing-page/LandingPage'
+// import Dashboard from '../pages/dashboard/Dashboard'
+// import Homepage from '../pages/homepage/Homepage'
+// import LandingPage from '../pages/landing-page/LandingPage'
+import NewPost from '../pages/new-post/NewPost'
 
 /* Array of routes */
 const routes = [
   {
     path: '/',
     element: <App />,
-    children: [
-      {
-        path: '/',
-        element: <LandingPage />,
-      },
-      {
-        path: '/',
-        element: <Homepage />,
-      },
-    ],
+  },
+  {
+    path: 'new-post',
+    element: <NewPost />,
   },
 ]
 

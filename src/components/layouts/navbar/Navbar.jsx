@@ -7,7 +7,7 @@ import SignupModal from '../../../pages/signup-modal/SignupModal'
 import LoginModal from '../../../pages/login-modal/LoginModal'
 
 /* Display Navbar */
-export const NavBar = () => {
+const NavBar = () => {
   const { token, setToken, activeModal, setActiveModal } =
     useContext(AuthContext)
 
