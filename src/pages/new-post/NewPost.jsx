@@ -1,8 +1,12 @@
+/* -------------------- Styles -------------------- */
 import styles from './NewPost.module.css'
+/* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect } from 'react'
 import { useData } from '../../hooks/useData'
+/* -------------------- Icons -------------------- */
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
+/* -------------------- Functions -------------------- */
 import {
   validateTitleInput,
   validateContentInput,
@@ -10,12 +14,22 @@ import {
 
 const NewPost = () => {
   const titleRef = useRef(null)
-  // Get own profile data
+
+  // Get all categories
   const {
-    data,
+    data: categoriesData,
     isLoading: loadingCategories,
-    error,
+    error: categoriesError,
   } = useData('http://localhost:8080/api/v1/categories/all')
+
+  // Get all tags
+  const {
+    data: tagsData,
+    isLoading: loadingTags,
+    error: tagsError,
+    
+  } = useData('http://localhost:8080/api/v1/tags/all')
+
 
   // State variables
   const defaultPostData = {
@@ -78,6 +92,17 @@ const NewPost = () => {
     setPostData((prevPostData) => ({
       ...prevPostData,
       categories: values,
+    }))
+  }
+
+  const handleTags = (e) => {
+    const options = [...e.target.selectedOptions]
+    const values = options.map((option) => option.value)
+
+    // Update categories with category ids
+    setPostData((prevPostData) => ({
+      ...prevPostData,
+      tags: values,
     }))
   }
 
@@ -188,7 +213,7 @@ const NewPost = () => {
           <div className={styles.loaderWrapper}>
             <div className={styles.loader}></div>
           </div>
-        ) : error ? (
+        ) : categoriesError ? (
           <p>🚨 Error retrieving categories. Please try again later.</p>
         ) : (
           <div className={styles.formControl}>
@@ -202,14 +227,44 @@ const NewPost = () => {
             <select
               name="categories"
               id="categories"
-              value={postData.category}
+              value={postData.categories}
               onChange={handleCategories}
               multiple={true}
               size={1}>
-              {data.categories &&
-                data.categories.map((category) => (
+              {categoriesData.categories &&
+                categoriesData.categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        )}
+
+        {/* Post tags  */}
+        {loadingTags ? (
+          <div className={styles.loaderWrapper}>
+            <div className={styles.loader}></div>
+          </div>
+        ) : tagsError ? (
+          <p>🚨 Error retrieving tags. Please try again later.</p>
+        ) : (
+          <div className={styles.formControl}>
+            <label htmlFor="tags" className={styles.formLabel}>
+              Add Tags:
+            </label>
+
+            <select
+              name="tags"
+              id="tags"
+              value={postData.tags}
+              onChange={handleTags}
+              multiple={true}
+              size={1}>
+              {tagsData.tags &&
+                tagsData.tags.map((tag) => (
+                  <option key={tag.id} value={tag.id}>
+                    {tag.name}
                   </option>
                 ))}
             </select>
