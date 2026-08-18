@@ -11,11 +11,11 @@ import {
 const NewPost = () => {
   const titleRef = useRef(null)
   // Get own profile data
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/categories/all',
-  )
-  console.log('🚀 ~ NewPost ~ error:', error)
-  console.log('🚀 ~ NewPost ~ data:', data)
+  const {
+    data,
+    isLoading: loadingCategories,
+    error,
+  } = useData('http://localhost:8080/api/v1/categories/all')
 
   // State variables
   const defaultPostData = {
@@ -70,17 +70,19 @@ const NewPost = () => {
     validateContentInput(content, setValidFormData, setErrorMessages)
   }
 
+  const handleCategories = (e) => {
+    const options = [...e.target.selectedOptions]
+    const values = options.map((option) => option.value)
+
+    // Update categories with category ids
+    setPostData((prevPostData) => ({
+      ...prevPostData,
+      categories: values,
+    }))
+  }
+
   const handleFormSubmit = () => {}
 
-  // Show loading spinner while fetching the data
-  if (isLoading)
-    return (
-      <div className={styles.loaderWrapper}>
-        <div className={styles.loader}></div>
-      </div>
-    )
-  const { categories } = data
-  console.log('🚀 ~ NewPost ~ categories:', categories)
   return (
     <>
       <title>Scriblr | New Post</title>
@@ -134,7 +136,6 @@ const NewPost = () => {
             </div>
           )}
         </div>
-
         {/* Post content  */}
         <div className={styles.formControl}>
           <label htmlFor="content" className={styles.formLabel}>
@@ -181,6 +182,39 @@ const NewPost = () => {
             </div>
           )}
         </div>
+
+        {/* Post categories  */}
+        {loadingCategories ? (
+          <div className={styles.loaderWrapper}>
+            <div className={styles.loader}></div>
+          </div>
+        ) : error ? (
+          <p>🚨 Error retrieving categories. Please try again later.</p>
+        ) : (
+          <div className={styles.formControl}>
+            <label htmlFor="categories" className={styles.formLabel}>
+              Choose Categories:
+            </label>
+            <p className={styles.formHint}>
+              (You can choose multiple categories)
+            </p>
+
+            <select
+              name="categories"
+              id="categories"
+              value={postData.category}
+              onChange={handleCategories}
+              multiple={true}
+              size={1}>
+              {data.categories &&
+                data.categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+        )}
 
         {/* Sign up button */}
         {/* <Button
