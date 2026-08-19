@@ -27,9 +27,7 @@ const NewPost = () => {
     data: tagsData,
     isLoading: loadingTags,
     error: tagsError,
-    
   } = useData('http://localhost:8080/api/v1/tags/all')
-
 
   // State variables
   const defaultPostData = {
@@ -37,6 +35,7 @@ const NewPost = () => {
     content: '',
     categories: [],
     tags: [],
+    published: true,
   }
   const [postData, setPostData] = useState(defaultPostData)
 
@@ -45,6 +44,7 @@ const NewPost = () => {
     content: null,
     categories: null,
     tags: null,
+    published: null,
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
 
@@ -53,6 +53,7 @@ const NewPost = () => {
     content: '',
     categories: '',
     tags: '',
+    published: '',
   }
   const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
 
@@ -106,13 +107,23 @@ const NewPost = () => {
     }))
   }
 
+  const handlePublishedStatus = (e) => {
+    const value = e.target.value
+    const published = value === 'yes' ? true : false
+
+    setPostData((prevPostData) => ({
+      ...prevPostData,
+      published,
+    }))
+  }
+
   const handleFormSubmit = () => {}
 
   return (
     <>
       <title>Scriblr | New Post</title>
       {/* Keep h2 outside the form for Accessibility */}
-      <h2>Create New Blog Post</h2>
+      <h2>Create New Post</h2>
       <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
         {/* Post title  */}
         <div className={styles.formControl}>
@@ -218,11 +229,8 @@ const NewPost = () => {
         ) : (
           <div className={styles.formControl}>
             <label htmlFor="categories" className={styles.formLabel}>
-              Choose Categories:
+              Select Categories:
             </label>
-            <p className={styles.formHint}>
-              (You can choose multiple categories)
-            </p>
 
             <select
               name="categories"
@@ -270,6 +278,35 @@ const NewPost = () => {
             </select>
           </div>
         )}
+
+        {/* Published status */}
+        <div className={styles.formControl}>
+          <p>Do you want to publish the post now?</p>
+
+          <div>
+            <input
+              type="radio"
+              id="yes"
+              name="published"
+              value="yes"
+              checked={postData.published === true}
+              onChange={handlePublishedStatus}
+            />
+            <label htmlFor="yes">Yes, Publish Now</label>
+          </div>
+
+          <div>
+            <input
+              type="radio"
+              id="no"
+              name="published"
+              value="no"
+              checked={postData.published === false}
+              onChange={handlePublishedStatus}
+            />
+            <label htmlFor="no">No, Save as Draft</label>
+          </div>
+        </div>
 
         {/* Sign up button */}
         {/* <Button
