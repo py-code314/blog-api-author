@@ -11,6 +11,8 @@ import {
   validateTitleInput,
   validateContentInput,
 } from '../../utils/new-post/index.js'
+/* -------------------- Components -------------------- */
+import Button from '../../components/core/Button/Button.jsx'
 
 const NewPost = () => {
   const titleRef = useRef(null)
@@ -107,7 +109,7 @@ const NewPost = () => {
     }))
   }
 
-  const handlePublishedStatus = (e) => {
+  const handlePublishStatus = (e) => {
     const value = e.target.value
     const published = value === 'yes' ? true : false
 
@@ -290,7 +292,7 @@ const NewPost = () => {
               name="published"
               value="yes"
               checked={postData.published === true}
-              onChange={handlePublishedStatus}
+              onChange={handlePublishStatus}
             />
             <label htmlFor="yes">Yes, Publish Now</label>
           </div>
@@ -302,20 +304,20 @@ const NewPost = () => {
               name="published"
               value="no"
               checked={postData.published === false}
-              onChange={handlePublishedStatus}
+              onChange={handlePublishStatus}
             />
             <label htmlFor="no">No, Save as Draft</label>
           </div>
         </div>
 
-        {/* Sign up button */}
-        {/* <Button
-          className="btnSignup"
-          title="Signup"
+        {/* Publish/Save button */}
+        <Button
+          className="publishBtn"
+          title="Publish/Save"
           type="submit"
-          disabled={isFormSubmitted}>
-          {isFormSubmitted ? 'Submitting...' : 'Submit'}
-        </Button> */}
+         >
+          {postData.published ? 'Publish' : 'Save'}
+        </Button>
       </form>
     </>
   )
