@@ -10,6 +10,7 @@ import errorIcon from '../../assets/icons/icon-error.svg'
 import {
   validateTitleInput,
   validateContentInput,
+  displayEmptyInputErrors,
 } from '../../utils/new-post/index.js'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
@@ -31,6 +32,7 @@ const NewPost = () => {
     error: tagsError,
   } = useData('http://localhost:8080/api/v1/tags/all')
 
+
   // State variables
   const defaultPostData = {
     title: '',
@@ -50,14 +52,15 @@ const NewPost = () => {
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
 
-  const defaultErrorMessages = {
+  const defaultErrorMsgs = {
     title: '',
     content: '',
     categories: '',
     tags: '',
     published: '',
   }
-  const [errorMessages, setErrorMessages] = useState(defaultErrorMessages)
+  const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
+  // const [newPostErrorMsg, setNewPostErrorMsg] = useState('')
 
   useEffect(() => {
     if (titleRef.current) {
@@ -73,7 +76,7 @@ const NewPost = () => {
       title,
     }))
 
-    validateTitleInput(title, setValidFormData, setErrorMessages)
+    validateTitleInput(title, setValidFormData, setErrorMsgs)
   }
 
   const handleContentChange = (e) => {
@@ -84,7 +87,7 @@ const NewPost = () => {
       content,
     }))
 
-    validateContentInput(content, setValidFormData, setErrorMessages)
+    validateContentInput(content, setValidFormData, setErrorMsgs)
   }
 
   const handleCategories = (e) => {
@@ -119,7 +122,25 @@ const NewPost = () => {
     }))
   }
 
-  const handleFormSubmit = () => {}
+  const validateForm = () => {
+    displayEmptyInputErrors(postData, setValidFormData, setErrorMsgs)
+
+    if (validFormData.title === true && validFormData.content === true) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    // setNewPostErrorMsg('')
+    // const isValid = true
+    const isValid = validateForm()
+    console.log("🚀 ~ handleFormSubmit ~ isValid:", isValid)
+
+    
+  }
 
   return (
     <>
@@ -169,7 +190,7 @@ const NewPost = () => {
                 className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-title">
-                {errorMessages.title}
+                {errorMsgs.title}
               </p>
             </div>
           )}
@@ -215,7 +236,7 @@ const NewPost = () => {
                 className={styles.formErrorMsg}
                 aria-live="polite"
                 id="invalid-content">
-                {errorMessages.content}
+                {errorMsgs.content}
               </p>
             </div>
           )}
@@ -311,11 +332,7 @@ const NewPost = () => {
         </div>
 
         {/* Publish/Save button */}
-        <Button
-          className="publishBtn"
-          title="Publish/Save"
-          type="submit"
-         >
+        <Button className="publishBtn" title="Publish/Save" type="submit">
           {postData.published ? 'Publish' : 'Save'}
         </Button>
       </form>
