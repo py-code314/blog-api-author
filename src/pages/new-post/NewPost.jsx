@@ -4,6 +4,7 @@ import styles from './NewPost.module.css'
 import { useState, useRef, useEffect } from 'react'
 import { useData } from '../../hooks/useData'
 import { useSubmitForm } from '../../hooks/useSubmitForm.js'
+import { useNavigate } from 'react-router'
 /* -------------------- Icons -------------------- */
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
@@ -19,6 +20,7 @@ import Button from '../../components/core/Button/Button.jsx'
 
 const NewPost = () => {
   const titleRef = useRef(null)
+  let navigate = useNavigate()
 
   // Get all categories
   const {
@@ -37,8 +39,8 @@ const NewPost = () => {
   const [fetchData, status, data] = useSubmitForm(
     'http://localhost:8080/api/v1/posts/new',
   )
-  console.log('🚀 ~ NewPost ~ data:', data)
-  console.log('🚀 ~ NewPost ~ status:', status)
+  // console.log('🚀 ~ NewPost ~ data:', data)
+  // console.log('🚀 ~ NewPost ~ status:', status)
 
   // State variables
   const defaultPostData = {
@@ -67,7 +69,6 @@ const NewPost = () => {
     published: '',
   }
   const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
-  // const [newPostErrorMsg, setNewPostErrorMsg] = useState('')
 
   useEffect(() => {
     if (titleRef.current) {
@@ -75,7 +76,11 @@ const NewPost = () => {
     }
   }, [])
 
-  useEffect(() => {}, [status, data])
+  useEffect(() => {
+    if (data?.success) {
+      navigate('/all-posts')
+    }
+  }, [status, data, navigate])
 
   const handleTitleChange = (e) => {
     const title = e.target.value
@@ -130,8 +135,6 @@ const NewPost = () => {
       ...prevPostData,
       published,
     }))
-
-    // ? Add validation on client side
   }
 
   const validateForm = () => {
@@ -146,22 +149,18 @@ const NewPost = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // setNewPostErrorMsg('')
-    const isValid = true
-    // const isValid = validateForm()
-    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+    // const isValid = true
+    const isValid = validateForm()
+    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
-      // await fetchData(postData)
       const result = await fetchData(postData)
-      console.log('🚀 ~ handleFormSubmit ~ result:', result)
+      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
-        // console.log('reset form')
         setPostData(defaultPostData)
         setValidFormData(defaultValidFormData)
         setErrorMsgs(defaultErrorMsgs)
-        // TODO: Navigate to another page
       } else if (!result.validData) {
         displayServerErrors(result.errors, setValidFormData, setErrorMsgs)
       }

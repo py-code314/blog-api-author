@@ -3,6 +3,7 @@ import App from '../App'
 // import Homepage from '../pages/homepage/Homepage'
 // import LandingPage from '../pages/landing-page/LandingPage'
 import NewPost from '../pages/new-post/NewPost'
+import AllPosts from '../pages/posts/posts'
 
 /* Array of routes */
 const routes = [
@@ -13,6 +14,10 @@ const routes = [
   {
     path: 'new-post',
     element: <NewPost />,
+  },
+  {
+    path: 'all-posts',
+    element: <AllPosts />,
   },
 ]
 

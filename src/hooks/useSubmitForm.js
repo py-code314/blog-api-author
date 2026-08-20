@@ -30,6 +30,7 @@ export const useSubmitForm = (url) => {
       setStatus('fetched')
       return responseData
     } catch (error) {
+      console.error
       setData(error)
       setStatus('failed')
       return null
