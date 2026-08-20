@@ -148,7 +148,15 @@ const NewPost = () => {
     console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
-      await fetchData(postData)
+      // await fetchData(postData)
+      const result = await fetchData(postData)
+
+      if (result?.success) {
+        // console.log('reset form')
+        setPostData(defaultPostData)
+        setValidFormData(defaultValidFormData)
+        setErrorMsgs(defaultErrorMsgs)
+      }
     }
   }
 
