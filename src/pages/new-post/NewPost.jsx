@@ -67,7 +67,6 @@ const NewPost = () => {
   }
   const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
   // const [newPostErrorMsg, setNewPostErrorMsg] = useState('')
-  
 
   useEffect(() => {
     if (titleRef.current) {
@@ -75,9 +74,7 @@ const NewPost = () => {
     }
   }, [])
 
-  useEffect(() => {
-    
-  }, [status, data])
+  useEffect(() => {}, [status, data])
 
   const handleTitleChange = (e) => {
     const title = e.target.value
@@ -346,7 +343,13 @@ const NewPost = () => {
 
         {/* Publish/Save button */}
         <Button className="publishBtn" title="Publish/Save" type="submit">
-          {postData.published ? 'Publish' : 'Save'}
+          {status === 'fetching'
+            ? postData.published
+              ? 'Publishing'
+              : 'Saving'
+            : postData.published
+              ? 'Publish'
+              : 'Save'}
         </Button>
       </form>
     </>
