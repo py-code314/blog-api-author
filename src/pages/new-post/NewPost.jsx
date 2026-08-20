@@ -12,6 +12,7 @@ import {
   validateTitleInput,
   validateContentInput,
   displayEmptyInputErrors,
+  displayServerErrors,
 } from '../../utils/new-post/index.js'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
@@ -122,12 +123,15 @@ const NewPost = () => {
 
   const handlePublishStatus = (e) => {
     const value = e.target.value
-    const published = value === 'yes' ? true : false
+    const published = value === 'yes' ? true : value === 'no' ? false : null
+    // const published = value === 'yes' ? true : false
 
     setPostData((prevPostData) => ({
       ...prevPostData,
       published,
     }))
+
+    // ? Add validation on client side
   }
 
   const validateForm = () => {
@@ -143,19 +147,23 @@ const NewPost = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     // setNewPostErrorMsg('')
-    // const isValid = true
-    const isValid = validateForm()
+    const isValid = true
+    // const isValid = validateForm()
     console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       // await fetchData(postData)
       const result = await fetchData(postData)
+      console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
-      if (result?.success) {
+      if (result.success) {
         // console.log('reset form')
         setPostData(defaultPostData)
         setValidFormData(defaultValidFormData)
         setErrorMsgs(defaultErrorMsgs)
+        // TODO: Navigate to another page
+      } else if (!result.validData) {
+        displayServerErrors(result.errors, setValidFormData, setErrorMsgs)
       }
     }
   }
@@ -273,20 +281,50 @@ const NewPost = () => {
               Select Categories:
             </label>
 
-            <select
-              name="categories"
-              id="categories"
-              value={postData.categories}
-              onChange={handleCategories}
-              multiple={true}
-              size={1}>
-              {categoriesData.categories &&
-                categoriesData.categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.name}
-                  </option>
-                ))}
-            </select>
+            <div className={styles.formValid}>
+              <select
+                name="categories"
+                id="categories"
+                value={postData.categories}
+                onChange={handleCategories}
+                multiple={true}
+                size={1}>
+                {categoriesData.categories &&
+                  categoriesData.categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+              </select>
+              {validFormData.categories && (
+                <img
+                  className={styles.formCheckmark}
+                  aria-hidden="true"
+                  src={checkMarkIcon}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
+              )}
+            </div>
+            {validFormData.categories === false && (
+              <div className={styles.formError}>
+                <img
+                  className={styles.formErrorIcon}
+                  aria-hidden="true"
+                  src={errorIcon}
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+                <p
+                  className={styles.formErrorMsg}
+                  aria-live="polite"
+                  id="invalid-categories">
+                  {errorMsgs.categories}
+                </p>
+              </div>
+            )}
           </div>
         )}
 
@@ -303,20 +341,50 @@ const NewPost = () => {
               Add Tags:
             </label>
 
-            <select
-              name="tags"
-              id="tags"
-              value={postData.tags}
-              onChange={handleTags}
-              multiple={true}
-              size={1}>
-              {tagsData.tags &&
-                tagsData.tags.map((tag) => (
-                  <option key={tag.id} value={tag.id}>
-                    {tag.name}
-                  </option>
-                ))}
-            </select>
+            <div className={styles.formValid}>
+              <select
+                name="tags"
+                id="tags"
+                value={postData.tags}
+                onChange={handleTags}
+                multiple={true}
+                size={1}>
+                {tagsData.tags &&
+                  tagsData.tags.map((tag) => (
+                    <option key={tag.id} value={tag.id}>
+                      {tag.name}
+                    </option>
+                  ))}
+              </select>
+              {validFormData.tags && (
+                <img
+                  className={styles.formCheckmark}
+                  aria-hidden="true"
+                  src={checkMarkIcon}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
+              )}
+            </div>
+            {validFormData.tags === false && (
+              <div className={styles.formError}>
+                <img
+                  className={styles.formErrorIcon}
+                  aria-hidden="true"
+                  src={errorIcon}
+                  alt=""
+                  width={25}
+                  height={25}
+                />
+                <p
+                  className={styles.formErrorMsg}
+                  aria-live="polite"
+                  id="invalid-tags">
+                  {errorMsgs.tags}
+                </p>
+              </div>
+            )}
           </div>
         )}
 
@@ -324,29 +392,58 @@ const NewPost = () => {
         <div className={styles.formControl}>
           <p>Do you want to publish the post now?</p>
 
-          <div>
-            <input
-              type="radio"
-              id="yes"
-              name="published"
-              value="yes"
-              checked={postData.published === true}
-              onChange={handlePublishStatus}
-            />
-            <label htmlFor="yes">Yes, Publish Now</label>
+          <div className={styles.formValid}>
+            <div>
+              <input
+                type="radio"
+                id="yes"
+                name="published"
+                value="yes"
+                checked={postData.published === true}
+                onChange={handlePublishStatus}
+              />
+              <label htmlFor="yes">Yes, Publish Now</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="no"
+                name="published"
+                value="no"
+                checked={postData.published === false}
+                onChange={handlePublishStatus}
+              />
+              <label htmlFor="no">No, Save as Draft</label>
+            </div>
+            {validFormData.published && (
+              <img
+                className={styles.formCheckmark}
+                aria-hidden="true"
+                src={checkMarkIcon}
+                alt=""
+                width={40}
+                height={40}
+              />
+            )}
           </div>
-
-          <div>
-            <input
-              type="radio"
-              id="no"
-              name="published"
-              value="no"
-              checked={postData.published === false}
-              onChange={handlePublishStatus}
-            />
-            <label htmlFor="no">No, Save as Draft</label>
-          </div>
+          {validFormData.published === false && (
+            <div className={styles.formError}>
+              <img
+                className={styles.formErrorIcon}
+                aria-hidden="true"
+                src={errorIcon}
+                alt=""
+                width={25}
+                height={25}
+              />
+              <p
+                className={styles.formErrorMsg}
+                aria-live="polite"
+                id="invalid-published">
+                {errorMsgs.published}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Publish/Save button */}

@@ -20,9 +20,9 @@ export const useSubmitForm = (url) => {
         body: JSON.stringify(formData),
       })
 
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`)
-      }
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error: Status ${response.status}`)
+      // }
 
       const responseData = await response.json()
 
