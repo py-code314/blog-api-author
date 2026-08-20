@@ -10,12 +10,14 @@ export const useData = (url) => {
   useEffect(() => {
     // Abort controller
     const controller = new AbortController()
-    const authToken = localStorage.getItem('jwtToken')
+    // const authToken = localStorage.getItem('jwtToken')
 
     // Fetch data
     const fetchData = async () => {
       setIsLoading(true)
       setError(false)
+
+      const authToken = localStorage.getItem('jwtToken')
 
       try {
         const response = await fetch(

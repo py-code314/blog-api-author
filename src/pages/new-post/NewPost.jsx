@@ -3,6 +3,7 @@ import styles from './NewPost.module.css'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect } from 'react'
 import { useData } from '../../hooks/useData'
+import { useSubmitForm } from '../../hooks/useSubmitForm.js'
 /* -------------------- Icons -------------------- */
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
 import errorIcon from '../../assets/icons/icon-error.svg'
@@ -32,6 +33,11 @@ const NewPost = () => {
     error: tagsError,
   } = useData('http://localhost:8080/api/v1/tags/all')
 
+  const [fetchData, status, data] = useSubmitForm(
+    'http://localhost:8080/api/v1/posts/new',
+  )
+  console.log('🚀 ~ NewPost ~ data:', data)
+  console.log('🚀 ~ NewPost ~ status:', status)
 
   // State variables
   const defaultPostData = {
@@ -61,12 +67,17 @@ const NewPost = () => {
   }
   const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
   // const [newPostErrorMsg, setNewPostErrorMsg] = useState('')
+  
 
   useEffect(() => {
     if (titleRef.current) {
       titleRef.current.focus()
     }
   }, [])
+
+  useEffect(() => {
+    
+  }, [status, data])
 
   const handleTitleChange = (e) => {
     const title = e.target.value
@@ -137,9 +148,11 @@ const NewPost = () => {
     // setNewPostErrorMsg('')
     // const isValid = true
     const isValid = validateForm()
-    console.log("🚀 ~ handleFormSubmit ~ isValid:", isValid)
+    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
-    
+    if (isValid) {
+      await fetchData(postData)
+    }
   }
 
   return (
