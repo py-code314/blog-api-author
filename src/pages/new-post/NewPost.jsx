@@ -11,12 +11,15 @@ import errorIcon from '../../assets/icons/icon-error.svg'
 /* -------------------- Functions -------------------- */
 import {
   validateTitleInput,
-  validateContentInput,
+  // validateContentInput,
   displayEmptyInputErrors,
   displayServerErrors,
 } from '../../utils/new-post/index.js'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
+/* -------------------- Components -------------------- */
+import { NewPostContext } from '../../contexts/new-post/NewPost.jsx'
+import TextEditor from '../../components/forms/text-editor/TextEditor.jsx'
 
 const NewPost = () => {
   const titleRef = useRef(null)
@@ -93,16 +96,16 @@ const NewPost = () => {
     validateTitleInput(title, setValidFormData, setErrorMsgs)
   }
 
-  const handleContentChange = (e) => {
-    const content = e.target.value
+  // const handleContentChange = (e) => {
+  //   const content = e.target.value
 
-    setPostData((prevPostData) => ({
-      ...prevPostData,
-      content,
-    }))
+  //   setPostData((prevPostData) => ({
+  //     ...prevPostData,
+  //     content,
+  //   }))
 
-    validateContentInput(content, setValidFormData, setErrorMsgs)
-  }
+  //   validateContentInput(content, setValidFormData, setErrorMsgs)
+  // }
 
   const handleCategories = (e) => {
     const options = [...e.target.selectedOptions]
@@ -151,7 +154,7 @@ const NewPost = () => {
     e.preventDefault()
     // const isValid = true
     const isValid = validateForm()
-    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       const result = await fetchData(postData)
@@ -220,6 +223,7 @@ const NewPost = () => {
             </div>
           )}
         </div>
+
         {/* Post content  */}
         <div className={styles.formControl}>
           <label htmlFor="content" className={styles.formLabel}>
@@ -227,15 +231,16 @@ const NewPost = () => {
           </label>
 
           <div className={styles.formValid}>
-            <textarea
-              name="content"
-              id="content"
-              className={styles.formInput}
-              rows={10}
-              cols={50}
-              required
-              value={postData.content}
-              onChange={handleContentChange}></textarea>
+            <NewPostContext
+              value={{
+                postData,
+                setPostData,
+                setValidFormData,
+                setErrorMsgs,
+              }}>
+              <TextEditor />
+            </NewPostContext>
+
             {validFormData.content && (
               <img
                 className={styles.formCheckmark}
