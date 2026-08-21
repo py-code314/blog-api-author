@@ -1,7 +1,6 @@
+/* -------------------- Components -------------------- */
 import App from '../App'
-// import Dashboard from '../pages/dashboard/Dashboard'
-// import Homepage from '../pages/homepage/Homepage'
-// import LandingPage from '../pages/landing-page/LandingPage'
+import Dashboard from '../pages/dashboard/Dashboard'
 import NewPost from '../pages/new-post/NewPost'
 import AllPosts from '../pages/posts/posts'
 
@@ -10,14 +9,11 @@ const routes = [
   {
     path: '/',
     element: <App />,
-  },
-  {
-    path: 'new-post',
-    element: <NewPost />,
-  },
-  {
-    path: 'all-posts',
-    element: <AllPosts />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: 'new-post', element: <NewPost /> },
+      { path: 'all-posts', element: <AllPosts /> },
+    ],
   },
 ]
 

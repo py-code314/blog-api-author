@@ -96,17 +96,6 @@ const NewPost = () => {
     validateTitleInput(title, setValidFormData, setErrorMsgs)
   }
 
-  // const handleContentChange = (e) => {
-  //   const content = e.target.value
-
-  //   setPostData((prevPostData) => ({
-  //     ...prevPostData,
-  //     content,
-  //   }))
-
-  //   validateContentInput(content, setValidFormData, setErrorMsgs)
-  // }
-
   const handleCategories = (e) => {
     const options = [...e.target.selectedOptions]
     const values = options.map((option) => option.value)

@@ -1,9 +1,9 @@
+/* -------------------- Styles -------------------- */
 import styles from './Homepage.module.css'
+/* -------------------- Components -------------------- */
 import Header from '../../components/layouts/header/Header'
-// import Hero from '../../components/pages/landing-page/hero/Hero'
-import Dashboard from '../dashboard/Dashboard';
 import Footer from '../../components/layouts/footer/Footer'
-
+import { Outlet } from 'react-router'
 
 const Homepage = () => {
   return (
@@ -11,8 +11,7 @@ const Homepage = () => {
       <div className={styles.homepage}>
         <Header />
         <main className={styles.main}>
-          {/* <Hero /> */}
-          <Dashboard/>
+          <Outlet />
         </main>
         <Footer />
       </div>
