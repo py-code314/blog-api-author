@@ -259,7 +259,6 @@ const NewPost = () => {
             )}
           </div>
 
-          {/* // TODO: Style spinner & error */}
           {/* Categories  */}
           {loadingCategories ? (
             <div className={styles.loaderWrapper}>
