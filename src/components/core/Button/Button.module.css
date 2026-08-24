@@ -52,3 +52,10 @@
   font-weight: var(--fw-bold, 700);
   width: 90%;
 }
+
+.publishBtn {
+  composes: btn, btnSignup;
+  justify-self: start;
+  width: fit-content;
+  border-radius: var(--radius-small, 0.3125rem);
+}

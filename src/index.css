@@ -171,6 +171,7 @@ a {
   --space-20: calc(var(--space-base-unit) * 5);
   --space-24: calc(var(--space-base-unit) * 6);
   --space-32: calc(var(--space-base-unit) * 8);
+  --space-40: calc(var(--space-base-unit) * 10);
   --space-48: calc(var(--space-base-unit) * 12);
   --space-56: calc(var(--space-base-unit) * 14);
   --space-64: calc(var(--space-base-unit) * 16);
@@ -198,6 +199,7 @@ a {
   --clr-red: #ff0000;
   --clr-golden-yellow: #fafad2;
   --clr-accent: #317C82;
+  --clr-pretty-turquoise: #9fe6eb;
   --clr-light-golden-yellow: #f0f0b2;
 
   /* Border

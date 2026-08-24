@@ -1,0 +1,6 @@
+.formInput {
+  width: 90%;
+  display: block;
+  border: 1px solid var(--clr-black, black);
+  border-radius: var(--radius-small, 0.3125rem);
+}
