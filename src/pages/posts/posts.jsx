@@ -37,12 +37,11 @@ const AllPosts = () => {
 
           <div className={styles.errorContent}>
             <p>Error retrieving posts. Please try again later.</p>
-
-            <Link className={styles.homeLink} to={'/'}>
-              Back to Home
-            </Link>
           </div>
         </div>
+        <Link className={styles.homeLink} to={'/'}>
+          Back to Home
+        </Link>
       </div>
     )
   return (
@@ -56,9 +55,10 @@ const AllPosts = () => {
             data.posts.map((post) => (
               <li className={styles.post} key={post.id}>
                 <h3>{post.title}</h3>
-                {/* // TODO: Limit content to two lines */}
                 <div className={styles.content}>{parse(post.content)}</div>
-                <Link className={styles.detailsLink} to={`/posts/${post.id}`}>View details →</Link>
+                <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
+                  View details →
+                </Link>
               </li>
             ))}
         </ul>
