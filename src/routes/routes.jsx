@@ -12,7 +12,7 @@ const routes = [
     children: [
       { index: true, element: <Dashboard /> },
       { path: 'new-post', element: <NewPost /> },
-      { path: 'all-posts', element: <AllPosts /> },
+      { path: 'posts', element: <AllPosts /> },
     ],
   },
 ]
