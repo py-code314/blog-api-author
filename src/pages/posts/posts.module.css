@@ -1,3 +1,41 @@
+.posts {
+  display: grid;
+  gap: var(--space-16);
+  padding: var(--space-16);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-32);
+}
+
+.post {
+  border: 1px solid var(--clr-black);
+  border-radius: var(--radius-small);
+  padding: var(--space-16);
+  display: grid;
+  gap: var(--space-16);
+}
+
+.content {
+  /* width: 200px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /* line-height: 16px; */
+  /* max-height: 32px; For 2 lines */
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.detailsLink {
+  background-color: var(--clr-accent);
+  color: var(--clr-white);
+  padding: var(--space-8) var(--space-16);
+  justify-self: start;
+  border-radius: var(--radius-small);
+}
 
 /* Loader animation */
 .loader {

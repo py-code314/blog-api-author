@@ -81,7 +81,7 @@ const NewPost = () => {
 
   useEffect(() => {
     if (data?.success) {
-      navigate('/all-posts')
+      navigate('/posts')
     }
   }, [status, data, navigate])
 

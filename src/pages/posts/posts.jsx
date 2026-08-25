@@ -26,7 +26,7 @@ const AllPosts = () => {
   // Show error message upon failure to fetch the data
   if (error)
     return (
-      <div className={styles.allPosts}>
+      <div className={styles.posts}>
         <title>Scriblr | All Posts</title>
         <h2 className={styles.subTitle}>All Posts</h2>
 
@@ -47,7 +47,7 @@ const AllPosts = () => {
     )
   return (
     <>
-      <div className={styles.allPosts}>
+      <div className={styles.posts}>
         <title>Scriblr | All Posts</title>
         <h2 className={styles.subTitle}>All Posts</h2>
 
@@ -57,8 +57,8 @@ const AllPosts = () => {
               <li className={styles.post} key={post.id}>
                 <h3>{post.title}</h3>
                 {/* // TODO: Limit content to two lines */}
-                <div>{parse(post.content)}</div>
-                <Link to={`/posts/${post.id}`}>View details →</Link>
+                <div className={styles.content}>{parse(post.content)}</div>
+                <Link className={styles.detailsLink} to={`/posts/${post.id}`}>View details →</Link>
               </li>
             ))}
         </ul>
