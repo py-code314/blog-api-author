@@ -2,7 +2,8 @@
 import App from '../App'
 import Dashboard from '../pages/dashboard/Dashboard'
 import NewPost from '../pages/new-post/NewPost'
-import AllPosts from '../pages/posts/posts'
+import AllPosts from '../pages/posts/Posts'
+import Post from '../pages/post/Post'
 
 /* Array of routes */
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
       { index: true, element: <Dashboard /> },
       { path: 'new-post', element: <NewPost /> },
       { path: 'posts', element: <AllPosts /> },
+      { path: 'posts/:id', element: <Post /> },
     ],
   },
 ]

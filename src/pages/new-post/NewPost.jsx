@@ -143,7 +143,7 @@ const NewPost = () => {
     e.preventDefault()
     // const isValid = true
     const isValid = validateForm()
-    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       const result = await fetchData(postData)

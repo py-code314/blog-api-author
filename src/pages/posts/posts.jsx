@@ -1,5 +1,5 @@
 /* -------------------- Styles -------------------- */
-import styles from './posts.module.css'
+import styles from './Posts.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData'
 /* -------------------- Components -------------------- */
