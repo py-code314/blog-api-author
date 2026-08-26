@@ -2,8 +2,10 @@
 import styles from './Post.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData'
+import { useNavigate } from 'react-router'
 /* -------------------- Components -------------------- */
 import { Link, useParams } from 'react-router'
+import Button from '../../components/core/Button/Button'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
@@ -11,6 +13,7 @@ import parse from 'html-react-parser'
 
 const Post = () => {
   const { id } = useParams()
+  let navigate = useNavigate()
 
   // Get a single post data
   const { data, isLoading, error } = useData(
@@ -62,6 +65,10 @@ const Post = () => {
   let postTags = tags.map((tag) => tag.name)
   postTags = postTags.join(', ')
 
+  const handlePostEdit = (id) => {
+    navigate(`/posts/${id}/edit`)
+  }
+
   return (
     <>
       <div className={styles.post}>
@@ -70,6 +77,14 @@ const Post = () => {
         <Link className={styles.postsLink} to={'/posts'}>
           Back to All Posts
         </Link>
+
+        {/* Edit button */}
+        <Button
+          className="editBtn"
+          title="Edit post"
+          onClick={() => handlePostEdit(post.id)}>
+          Edit
+        </Button>
 
         <h2 className={styles.subTitle}>{title}</h2>
         <p>

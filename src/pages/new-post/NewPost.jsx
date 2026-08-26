@@ -15,10 +15,10 @@ import {
   displayEmptyInputErrors,
   displayServerErrors,
 } from '../../utils/new-post/index.js'
+/* -------------------- Context -------------------- */
+import { NewPostContext } from '../../contexts/new-post/NewPost.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
-/* -------------------- Components -------------------- */
-import { NewPostContext } from '../../contexts/new-post/NewPost.jsx'
 import TextEditor from '../../components/forms/text-editor/TextEditor.jsx'
 
 const NewPost = () => {
