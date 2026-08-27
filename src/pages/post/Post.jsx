@@ -2,15 +2,18 @@
 import styles from './Post.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
+import { useState } from 'react'
 /* -------------------- Components -------------------- */
-import { Link, useParams } from 'react-router'
+import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
+import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
-// import { useState } from 'react'
+/* -------------------- Context -------------------- */
+import { ErrorContext } from '../../contexts/error/ErrorContext'
 
 const Post = () => {
   const { id } = useParams()
@@ -20,6 +23,8 @@ const Post = () => {
   const { data, isLoading, error } = useData(
     `http://localhost:8080/api/v1/posts/${id}`,
   )
+
+  const [deleteError, setDeleteError] = useState(null)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -72,6 +77,7 @@ const Post = () => {
 
   const handleDeletePost = async (id) => {
     const authToken = localStorage.getItem('jwtToken')
+    setDeleteError(null)
 
     try {
       const response = await fetch(
@@ -84,17 +90,29 @@ const Post = () => {
         },
       )
 
+      // throw new Error()
       const result = await response.json()
-      console.log('🚀 ~ handleDeletePost ~ result:', result)
+      // console.log('🚀 ~ handleDeletePost ~ result:', result)
       if (result.success) {
         navigate('/posts')
       } else {
-        // TODO:
-        // Show error msg
+        setDeleteError({
+          code: result.errorCode,
+          title: result.errorTitle,
+          msg: result.errorMessage,
+        })
       }
     } catch (error) {
       console.error(error)
+      setDeleteError({
+        code: 'NET_ERR',
+        title: 'Network Error',
+        msg: 'Failed to connect to the server. Please try again.',
+      })
     }
+  }
+  const handleDismiss = () => {
+    setDeleteError(null)
   }
 
   return (
@@ -121,6 +139,16 @@ const Post = () => {
           onClick={() => handleDeletePost(post.id)}>
           Delete
         </Button>
+
+        {deleteError && (
+          <ErrorContext
+            value={{
+              deleteError,
+              handleDismiss,
+            }}>
+            <ErrorMessage />
+          </ErrorContext>
+        )}
 
         <h2 className={styles.subTitle}>{title}</h2>
         <p>

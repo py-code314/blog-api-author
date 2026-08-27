@@ -1,0 +1,39 @@
+/* -------------------- Styles -------------------- */
+import styles from './ErrorMessage.module.css'
+/* -------------------- Images -------------------- */
+import errorIcon from '../../../../assets/icons/icon-error-2.svg'
+/* -------------------- Context -------------------- */
+import { ErrorContext } from '../../../../contexts/error/ErrorContext'
+/* -------------------- Hooks -------------------- */
+import { useContext } from 'react'
+import Button from '../../../core/Button/Button'
+
+const ErrorMessage = () => {
+  const { deleteError, handleDismiss } = useContext(ErrorContext)
+  const {code, title, msg} = deleteError
+  return (
+    <>
+      <div className={styles.errorWrapper}>
+        <div>
+          <img src={errorIcon} alt="" width={40} height={40} />
+          <p>{code}</p>
+          <p>{title}</p>
+        </div>
+
+        <div className={styles.errorContent}>
+          <p>{msg}</p>
+        </div>
+
+        {/* Dismiss button */}
+        <Button
+          className="dismissBtn"
+          title="Dismiss message"
+          onClick={handleDismiss}>
+          Dismiss
+        </Button>
+      </div>
+    </>
+  )
+}
+
+export default ErrorMessage
