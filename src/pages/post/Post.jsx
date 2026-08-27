@@ -10,6 +10,7 @@ import Button from '../../components/core/Button/Button'
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
+// import { useState } from 'react'
 
 const Post = () => {
   const { id } = useParams()
@@ -65,8 +66,35 @@ const Post = () => {
   let postTags = tags.map((tag) => tag.name)
   postTags = postTags.join(', ')
 
-  const handlePostEdit = (id) => {
+  const handleEditPost = (id) => {
     navigate(`/posts/${id}/edit`)
+  }
+
+  const handleDeletePost = async (id) => {
+    const authToken = localStorage.getItem('jwtToken')
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/posts/${id}/delete`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        },
+      )
+
+      const result = await response.json()
+      console.log('🚀 ~ handleDeletePost ~ result:', result)
+      if (result.success) {
+        navigate('/posts')
+      } else {
+        // TODO:
+        // Show error msg
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -82,8 +110,16 @@ const Post = () => {
         <Button
           className="editBtn"
           title="Edit post"
-          onClick={() => handlePostEdit(post.id)}>
+          onClick={() => handleEditPost(post.id)}>
           Edit
+        </Button>
+
+        {/* Delete button */}
+        <Button
+          className="deleteBtn"
+          title="Delete post"
+          onClick={() => handleDeletePost(post.id)}>
+          Delete
         </Button>
 
         <h2 className={styles.subTitle}>{title}</h2>
