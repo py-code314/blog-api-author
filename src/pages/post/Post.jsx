@@ -90,7 +90,7 @@ const Post = () => {
         },
       )
 
-      // throw new Error()
+      // const response = new Error()
       const result = await response.json()
       // console.log('🚀 ~ handleDeletePost ~ result:', result)
       if (result.success) {

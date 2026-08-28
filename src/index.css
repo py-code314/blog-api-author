@@ -201,8 +201,10 @@ a {
   --clr-red: #ff0000;
   --clr-golden-yellow: #fafad2;
   --clr-accent: #317C82;
+  --clr-accent-secondary: #f56169;
   --clr-pretty-turquoise: #9fe6eb;
   --clr-light-golden-yellow: #f0f0b2;
+  
 
   /* Border
   ========== */

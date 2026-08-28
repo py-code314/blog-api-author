@@ -69,3 +69,11 @@
   padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
   border-radius: var(--radius-small, 0.3125rem);
 }
+
+.dismissBtn {
+  composes: editBtn;
+  justify-self: end;
+  background-color: var(--clr-accent-secondary, steelblue);
+  color: var(--clr-black, black);
+  font-weight: var(--fw-bold);
+}

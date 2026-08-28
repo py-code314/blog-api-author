@@ -14,10 +14,12 @@ const ErrorMessage = () => {
   return (
     <>
       <div className={styles.errorWrapper}>
-        <div>
+        <div className={styles.header}>
           <img src={errorIcon} alt="" width={40} height={40} />
-          <p>{code}</p>
-          <p>{title}</p>
+          <div className={styles.titleWrapper}>
+            <p>{code}</p>
+            <p>{title}</p>
+          </div>
         </div>
 
         <div className={styles.errorContent}>
