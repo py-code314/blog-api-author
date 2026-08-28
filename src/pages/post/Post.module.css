@@ -1,0 +1,95 @@
+.post {
+  display: grid;
+  gap: var(--space-16, 1rem);
+  padding: var(--space-32, 2rem);
+}
+
+.postsLink {
+  background-color: var(--clr-accent, steelblue);
+  color: var(--clr-white, white);
+  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+  justify-self: start;
+  border-radius: var(--radius-small, 0.3125rem);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block-end: 1px solid var(--clr-black, black);
+  padding-block: var(--space-16, 1rem);
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 1rem);
+}
+
+.details,
+.content {
+  border-block-end: 1px solid var(--clr-black, black);
+  padding-block-end: var(--space-16, 1rem);
+}
+
+.loaderWrapper {
+  padding: var(--space-32, 2rem);
+}
+
+/* Loader animation */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  -webkit-mask: conic-gradient(from 15deg, #0000, #000);
+  mask: conic-gradient(from 15deg, #0000, #000);
+  animation: spinner 1s infinite steps(12);
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  background:
+    radial-gradient(closest-side at 50% 12.5%, #f03355 96%, #0000) 50% 0/20% 80%
+      repeat-y,
+    radial-gradient(closest-side at 12.5% 50%, #f03355 96%, #0000) 0 50%/80% 20%
+      repeat-x;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  grid-area: 1/1;
+  transform: rotate(30deg);
+}
+
+.loader:after {
+  transform: rotate(60deg);
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.errorWrapper {
+  display: grid;
+  gap: var(--space-16, 1rem);
+  padding-block-start: var(--space-16, 1rem);
+}
+
+.errorImage {
+  width: var(--space-60, 3.75rem);
+  height: var(--space-60, 3.75rem);
+}
+
+.errorIcon {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.errorContent {
+  font-size: var(--fs-18, 1.125rem);
+}

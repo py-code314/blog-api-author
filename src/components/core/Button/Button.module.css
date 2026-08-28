@@ -12,7 +12,8 @@
 }
 
 .signupBtn, 
-.logoutBtn {
+.logoutBtn
+ {
   composes: btn;
   background-color: var(--clr-black, black);
   color: var(--clr-white, white);
@@ -57,5 +58,14 @@
   composes: btn, btnSignup;
   justify-self: start;
   width: fit-content;
+  border-radius: var(--radius-small, 0.3125rem);
+}
+
+.editBtn,
+.deleteBtn {
+  composes: btn;
+  background-color: var(--clr-accent, steelblue);
+  color: var(--clr-white, white);
+  padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
   border-radius: var(--radius-small, 0.3125rem);
 }

@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
 import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
-/* -------------------- Icons -------------------- */
+/* -------------------- Images -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
@@ -46,7 +46,7 @@ const Post = () => {
 
         <div className={styles.errorWrapper}>
           <div className={styles.errorImage}>
-            <img src={errorIcon} alt="" width={70} height={70} />
+            <img src={errorIcon} alt="" width={60} height={60} />
           </div>
 
           <div className={styles.errorContent}>
@@ -124,22 +124,6 @@ const Post = () => {
           Back to All Posts
         </Link>
 
-        {/* Edit button */}
-        <Button
-          className="editBtn"
-          title="Edit post"
-          onClick={() => handleEditPost(post.id)}>
-          Edit
-        </Button>
-
-        {/* Delete button */}
-        <Button
-          className="deleteBtn"
-          title="Delete post"
-          onClick={() => handleDeletePost(post.id)}>
-          Delete
-        </Button>
-
         {deleteError && (
           <ErrorContext
             value={{
@@ -150,20 +134,40 @@ const Post = () => {
           </ErrorContext>
         )}
 
-        <h2 className={styles.subTitle}>{title}</h2>
-        <p>
-          <strong>Created on:</strong> {dateCreated}
-        </p>
-        <p>
-          <strong>Updated on:</strong> {dateUpdated}
-        </p>
-        <p>
-          <strong>Categories:</strong> {postCategories}
-        </p>
-        <p>
-          <strong>Status:</strong> {status}
-        </p>
-        <div>{parse(content)}</div>
+        <div className={styles.header}>
+          <h2 className={styles.subTitle}>{title}</h2>
+          <div className={styles.btns}>
+            {/* Edit button */}
+            <Button
+              className="editBtn"
+              title="Edit post"
+              onClick={() => handleEditPost(post.id)}>
+              Edit
+            </Button>
+            {/* Delete button */}
+            <Button
+              className="deleteBtn"
+              title="Delete post"
+              onClick={() => handleDeletePost(post.id)}>
+              Delete
+            </Button>
+          </div>
+        </div>
+        <div className={styles.details}>
+          <p>
+            <strong>Created on:</strong> {dateCreated}
+          </p>
+          <p>
+            <strong>Updated on:</strong> {dateUpdated}
+          </p>
+          <p>
+            <strong>Categories:</strong> {postCategories}
+          </p>
+          <p>
+            <strong>Status:</strong> {status}
+          </p>
+        </div>
+        <div className={styles.content}>{parse(content)}</div>
         <p>
           <strong>Tags:</strong> {postTags}
         </p>
