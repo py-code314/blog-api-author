@@ -12,8 +12,9 @@ import parse from 'html-react-parser'
 const AllPosts = () => {
   // Get all posts
   const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/posts/',
+    'http://localhost:8080/api/v1/posts/me',
   )
+  // console.log("🚀 ~ AllPosts ~ data:", data)
 
   // Show loading spinner while fetching the data
   if (isLoading)
