@@ -16,7 +16,7 @@ import {
   displayServerErrors,
 } from '../../utils/new-post/index.js'
 /* -------------------- Context -------------------- */
-import { NewPostContext } from '../../contexts/new-post/NewPost.jsx'
+import { PostContext } from '../../contexts/post/PostContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
 import TextEditor from '../../components/forms/text-editor/TextEditor.jsx'
@@ -219,7 +219,7 @@ const NewPost = () => {
               Post Content (required)
             </label>
             <div className={styles.formValid}>
-              <NewPostContext
+              <PostContext
                 value={{
                   postData,
                   setPostData,
@@ -227,7 +227,7 @@ const NewPost = () => {
                   setErrorMsgs,
                 }}>
                 <TextEditor />
-              </NewPostContext>
+              </PostContext>
               {validFormData.content && (
                 <img
                   className={styles.formCheckmark}

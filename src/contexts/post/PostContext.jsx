@@ -1,6 +1,7 @@
 import { createContext } from 'react'
 
-export const NewPostContext = createContext({
+export const PostContext = createContext({
+  content: '',
   postData: {},
   setPostData: () => {},
   validFormData: {},

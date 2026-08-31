@@ -5,14 +5,14 @@ import { useContext, useRef } from 'react'
 /* -------------------- Components -------------------- */
 import { Editor } from '@tinymce/tinymce-react'
 /* -------------------- Context -------------------- */
-import { NewPostContext } from '../../../contexts/new-post/NewPost'
+import { PostContext } from '../../../contexts/post/PostContext'
 /* -------------------- Functions -------------------- */
 import { validateContentInput } from '../../../utils/new-post'
 
 const TextEditor = () => {
   const editorRef = useRef(null)
-  const { postData, setPostData, setValidFormData, setErrorMsgs } =
-    useContext(NewPostContext)
+  const { content, postData, setPostData, setValidFormData, setErrorMsgs } =
+    useContext(PostContext)
   const apiKey = import.meta.env.VITE_TINY_MCE_API_KEY
 
   // eslint-disable-next-line no-unused-vars
@@ -69,7 +69,7 @@ const TextEditor = () => {
             content_style:
               'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
           }}
-          value={postData.content}
+          value={postData.content || content}
           onEditorChange={handleEditorChange}
         />
       </div>
