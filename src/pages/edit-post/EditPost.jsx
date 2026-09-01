@@ -24,8 +24,12 @@ const EditPost = () => {
   // Show loading spinner while fetching the data
   if (isLoading)
     return (
-      <div className={styles.loaderWrapper}>
-        <div className={styles.loader}>Loading...</div>
+      <div className={styles.editPost}>
+        <title>Scriblr | Edit Post</title>
+
+        <div className={styles.loaderWrapper}>
+          <div className={styles.loader}>Loading...</div>
+        </div>
       </div>
     )
 
