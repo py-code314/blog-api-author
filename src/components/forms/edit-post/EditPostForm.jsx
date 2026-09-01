@@ -1,8 +1,8 @@
 /* -------------------- Styles -------------------- */
-import styles from './PostForm.module.css'
+import styles from './EditPostForm.module.css'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
-import { useData } from '../../../hooks/useData'
+import { useData } from '../../../hooks/useData.js'
 import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
 import { useNavigate, useParams } from 'react-router'
 /* -------------------- Images -------------------- */
@@ -12,8 +12,8 @@ import errorIcon from '../../../assets/icons/icon-error.svg'
 import { PostContext } from '../../../contexts/post/PostContext.jsx'
 import { PostFormContext } from '../../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
-import Button from '../../../components/core/Button/Button.jsx'
-import TextEditor from '../../../components/forms/text-editor/TextEditor.jsx'
+import Button from '../../core/Button/Button.jsx'
+import TextEditor from '../text-editor/TextEditor.jsx'
 /* -------------------- Functions -------------------- */
 import {
   validateTitleInput,

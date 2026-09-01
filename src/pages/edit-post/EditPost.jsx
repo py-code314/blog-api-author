@@ -5,12 +5,11 @@ import { useData } from '../../hooks/useData.js'
 import { useParams } from 'react-router'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
+import EditPostForm from '../../components/forms/edit-post/EditPostForm.jsx'
 /* -------------------- Images -------------------- */
 import errorIcon2 from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Context -------------------- */
 import { PostContext } from '../../contexts/post/PostContext.jsx'
-/* -------------------- Functions -------------------- */
-import PostForm from '../../components/forms/post-form/PostForm.jsx'
 
 const EditPost = () => {
   const { id } = useParams()
@@ -64,12 +63,12 @@ const EditPost = () => {
             Cancel Edit
           </Link>
         </div>
-        
+
         <PostContext
           value={{
             currentPostData,
           }}>
-          <PostForm />
+          <EditPostForm />
         </PostContext>
       </div>
     </>
