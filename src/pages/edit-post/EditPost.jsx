@@ -59,6 +59,7 @@ const EditPost = () => {
         <title>Scriblr | Edit Post</title>
         {/* Keep h2 outside the form for Accessibility */}
         <h2 className={styles.subTitle}>Edit Post</h2>
+        {/* // TODO: Add link to cancel edit which goes back to post */}
         <PostContext
           value={{
             currentPostData,

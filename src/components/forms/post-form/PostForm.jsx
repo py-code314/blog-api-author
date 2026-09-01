@@ -24,6 +24,7 @@ import {
 const PostForm = () => {
   const { id } = useParams()
   const titleRef = useRef(null)
+  const navigate = useNavigate()
 
   const { currentPostData } = useContext(PostContext)
 
@@ -42,7 +43,7 @@ const PostForm = () => {
   } = useData('http://localhost:8080/api/v1/tags/all')
 
   const [fetchData, status, data] = useSubmitForm(
-    ` http://localhost:8080/api/v1/posts/${id}/update`,
+    `http://localhost:8080/api/v1/posts/${id}/update`,
   )
 
   useEffect(() => {
@@ -50,6 +51,12 @@ const PostForm = () => {
       titleRef.current.focus()
     }
   }, [])
+
+  useEffect(() => {
+    if (data?.success) {
+      navigate(`/posts/${id}`)
+    }
+  }, [status, data, navigate, id])
 
   const { post } = currentPostData
   const { categories, title, content, published, tags } = post
@@ -148,7 +155,13 @@ const PostForm = () => {
       // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
-        setPostData(defaultPostData)
+        setPostData({
+          title: '',
+          content: '',
+          categories: [],
+          tags: [],
+          published: true,
+        })
         setValidFormData(defaultValidFormData)
         setErrorMsgs(defaultErrorMsgs)
       } else if (!result.validData) {
@@ -156,8 +169,6 @@ const PostForm = () => {
       }
     }
   }
-
-  // TODO: Redirect to post after successful editing
 
   return (
     <>
