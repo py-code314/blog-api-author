@@ -11,15 +11,26 @@
   border-radius: var(--radius-x-large, 1.25rem);
 }
 
-.signupBtn, 
-.logoutBtn
- {
+.signupBtn,
+.logoutBtn {
   composes: btn;
   background-color: var(--clr-black, black);
   color: var(--clr-white, white);
   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   border: 1px solid var(--clr-black, black);
   border-radius: var(--radius-x-large, 1.25rem);
+}
+
+.startBtn {
+  composes: btn;
+  background-color: var(--clr-black, black);
+  padding: var(--space-12) var(--space-24);
+  color: var(--clr-white, white);
+  border-radius: var(--radius-x-large, 1.25rem);
+  margin-block-start: var(--space-16, 1rem);
+  font-size: var(--fs-18);
+  align-self: start;
+  letter-spacing: 0.1em;
 }
 
 .btnCloseModal {
