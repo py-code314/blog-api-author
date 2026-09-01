@@ -58,11 +58,12 @@ const EditPost = () => {
       <div className={styles.editPost}>
         <title>Scriblr | Edit Post</title>
         {/* Keep h2 outside the form for Accessibility */}
-        <h2 className={styles.subTitle}>Edit Post</h2>
-
-        <Link className={styles.postLink} to={`/posts/${id}`}>
-          Cancel Edit
-        </Link>
+        <div className={styles.header}>
+          <h2 className={styles.subTitle}>Edit Post</h2>
+          <Link className={styles.cancelLink} to={`/posts/${id}`}>
+            Cancel Edit
+          </Link>
+        </div>
         
         <PostContext
           value={{

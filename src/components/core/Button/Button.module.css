@@ -73,7 +73,7 @@
 .dismissBtn {
   composes: editBtn;
   justify-self: end;
-  background-color: var(--clr-accent-secondary, steelblue);
+  background-color: var(--clr-accent-secondary, orangered);
   color: var(--clr-black, black);
   font-weight: var(--fw-bold);
 }
