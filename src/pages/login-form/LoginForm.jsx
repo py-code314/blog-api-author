@@ -148,8 +148,6 @@ const LoginForm = () => {
             setErrorMsgs(defaultErrorMsgs)
             setToken(data.token)
             saveToken(data.token)
-
-            // TODO: useNavigate() to redirect to homepage
           }
         } else {
           setIsFormSubmitted(false)

@@ -4,7 +4,6 @@ export function validateForm(
   setValidFormData,
   setErrorMsgs,
 ) {
-  // TODO: Move this code into a separate function
   // Update state if input fields are empty
   if (!loginFormData.email.trim()) {
     setValidFormData((prevValid) => ({ ...prevValid, email: false }))
