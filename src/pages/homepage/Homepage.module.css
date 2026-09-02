@@ -9,13 +9,13 @@
   min-height: 100svh;
   margin: auto;
   display: grid;
-  gap: var(--space-16);
+  gap: var(--space-16, 1rem);
   grid-template-areas:
     'header  header'
     'sidebar  main'
     'footer  footer';
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: var(--space-200, 12.5rem) 1fr;
 }
 
 .main {

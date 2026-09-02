@@ -16,44 +16,48 @@ const Sidebar = () => {
     <>
       <aside className={styles.sidebar}>
         {/* Navigation links */}
-        <nav>
+        <nav className={styles.navbar}>
           <ul className={styles.navList}>
             <li className={styles.navItem}>
-              <Link className={styles.navLink} to={'/new-post'}>
-                <img src={createIcon} alt="" width={20} height={20} />
+              <Link
+                className={`${styles.navLink} ${styles.createLink}`}
+                to={'/new-post'}>
+                <img src={createIcon} alt="" width={30} height={30} />
                 Create Post
               </Link>
             </li>
             <li className={styles.navItem}>
-              <Link className={styles.navLink} to={'/posts'}>
+              <Link
+                className={`${styles.navLink} ${styles.paddedLink}`}
+                to={'/posts'}>
                 <img src={blogsIcon} alt="" width={20} height={20} />
                 Posts
               </Link>
             </li>
             <li className={styles.navItem}>
               <Link className={styles.navLink}>
-                <img src={categoriesIcon} alt="" width={20} height={20} />
+                <img src={categoriesIcon} alt="" width={25} height={25} />
                 Categories
               </Link>
             </li>
             <li className={styles.navItem}>
-              <Link className={styles.navLink}>
-                <img src={tagsIcon} alt="" width={20} height={20} />
+              <Link className={`${styles.navLink} ${styles.paddedLink}`}>
+                <img src={tagsIcon} alt="" width={25} height={25} />
                 Tags
               </Link>
             </li>
           </ul>
           <ul className={styles.navList}>
-            <li className={styles.navItem}>
-              <img src={profileIcon} alt="" width={20} height={20} />
+            <li className={`${styles.navItem} ${styles.navLink}`}>
+              <img src={profileIcon} alt="" width={30} height={30} />
               Profile
             </li>
-            <li className={styles.navItem}>
-              <img src={settingsIcon} alt="" width={20} height={20} />
+            <li className={`${styles.navItem} ${styles.navLink}`}>
+              <img src={settingsIcon} alt="" width={30} height={30} />
               Settings
             </li>
-            <li className={styles.navItem}>
-              <img src={helpIcon} alt="" width={20} height={20} />
+            <li className={`${styles.navItem} ${styles.navLink}`}>
+              <img src={helpIcon} alt="" width={30} height={30} />
               Help
             </li>
           </ul>
