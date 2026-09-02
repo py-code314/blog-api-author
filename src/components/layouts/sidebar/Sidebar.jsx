@@ -35,7 +35,7 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className={styles.navItem}>
-              <Link className={styles.navLink}>
+              <Link className={styles.navLink} to={'/categories'}>
                 <img src={categoriesIcon} alt="" width={25} height={25} />
                 Categories
               </Link>
