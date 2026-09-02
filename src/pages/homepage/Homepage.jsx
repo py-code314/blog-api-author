@@ -10,12 +10,14 @@ const Homepage = () => {
   return (
     <>
       <div className={styles.homepage}>
-        <Header />
-        <Sidebar/>
-        <main className={styles.main}>
-          <Outlet />
-        </main>
-        <Footer />
+        <div className={styles.homepageWrapper}>
+          <Header className={styles.header} />
+          <Sidebar className={styles.sidebar} />
+          <main className={styles.main}>
+            <Outlet />
+          </main>
+          <Footer className={styles.footer} />
+        </div>
       </div>
     </>
   )

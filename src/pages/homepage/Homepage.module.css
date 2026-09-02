@@ -1,14 +1,23 @@
 .homepage {
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-16, 1rem) var(--space-128, 8rem);
   background-color: var(--clr-gray-2, lightgray);
-  /* background-color: var(--clr-light-golden-yellow, lightgoldenrodyellow); */
+}
+
+.homepageWrapper {
+  padding: var(--space-16, 1rem) 0;
+  max-width: 80%;
+  min-height: 100svh;
+  margin: auto;
+  display: grid;
+  gap: var(--space-16);
+  grid-template-areas:
+    'header  header'
+    'sidebar  main'
+    'footer  footer';
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 200px 1fr;
 }
 
 .main {
-  flex: 1;
-  /* display: flex;
-  align-items: center; */
+  grid-area: main;
 }
