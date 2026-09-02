@@ -21,7 +21,7 @@ const Post = () => {
 
   // Get a single post data
   const { data, isLoading, error } = useData(
-    `http://localhost:8080/api/v1/posts/${id}`,
+    `http://localhost:8080/api/v1/posts/me/${id}`,
   )
 
   const [deleteError, setDeleteError] = useState(null)
