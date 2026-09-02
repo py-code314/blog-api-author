@@ -1,0 +1,107 @@
+.categories {
+  display: grid;
+  gap: var(--space-16, 1rem);
+  padding: var(--space-16, 1rem);
+}
+
+.addLink,
+.homeLink{
+  background-color: var(--clr-accent, steelblue);
+  color: var(--clr-white, white);
+  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+  justify-self: start;
+  border-radius: var(--radius-small, 0.3125rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 0.5rem);
+}
+
+.plusIcon,
+.backIcon {
+  font-weight: var(--fw-bold, 700);
+  font-size: var(--fs-20, 1.25rem);
+}
+
+.categoryList {
+  display: grid;
+  gap: var(--space-32, 2rem);
+  padding-block: var(--space-16, 1rem);
+}
+
+.category {
+  border-radius: var(--radius-small, 0.3125rem);
+  padding: var(--space-12, 0.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-2, rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px);
+}
+
+.name {
+  font-size: var(--fs-18, 1.125rem);
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 1rem);
+}
+
+.editLink {
+  background-color: var(--clr-accent, steelblue);
+  color: var(--clr-white, white);
+  padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
+  border-radius: var(--radius-small, 0.3125rem);
+}
+
+
+
+.loaderWrapper {
+  padding: var(--space-32, 2rem);
+}
+
+/* Loader animation */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  -webkit-mask: conic-gradient(from 15deg, #0000, #000);
+  mask: conic-gradient(from 15deg, #0000, #000);
+  animation: spinner 1s infinite steps(12);
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  background:
+    radial-gradient(closest-side at 50% 12.5%, #f03355 96%, #0000) 50% 0/20% 80%
+      repeat-y,
+    radial-gradient(closest-side at 12.5% 50%, #f03355 96%, #0000) 0 50%/80% 20%
+      repeat-x;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  grid-area: 1/1;
+  transform: rotate(30deg);
+}
+
+.loader:after {
+  transform: rotate(60deg);
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.errorWrapper {
+  display: grid;
+  gap: var(--space-16, 1rem);
+}
+
+.errorContent {
+  font-size: var(--fs-18, 1.125rem);
+}

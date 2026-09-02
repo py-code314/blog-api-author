@@ -40,7 +40,7 @@ const Categories = () => {
           </div>
         </div>
         <Link className={styles.homeLink} to={'/'}>
-          Back to Home
+          <span className={styles.backIcon}>←</span>Back to Home
         </Link>
       </div>
     )
@@ -54,18 +54,18 @@ const Categories = () => {
         <h2 className={styles.subTitle}>Categories</h2>
 
         <Link className={styles.addLink} to={'/new-category'}>
-          Add Category
+          <span className={styles.plusIcon}>+</span> Add Category
         </Link>
 
-        <ol className={styles.list}>
+        <ul className={styles.categoryList}>
           {data.categories.length > 0 &&
             data.categories.map((category) => (
               <li className={styles.category} key={category.id}>
-                <p>{category.name}</p>
-                <div className={styles.btns}>
-                  {/* Edit button */}
+                <p className={styles.name}>{category.name}</p>
+                <div className={styles.actionGroup}>
+                  {/* Edit link */}
                   <Link
-                    className="editLink"
+                    className={styles.editLink}
                     to={`/categories/${category.id}/edit`}>
                     Edit
                   </Link>
@@ -79,7 +79,7 @@ const Categories = () => {
                 </div>
               </li>
             ))}
-        </ol>
+        </ul>
       </div>
     </>
   )
