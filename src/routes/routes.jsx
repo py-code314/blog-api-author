@@ -6,6 +6,7 @@ import AllPosts from '../pages/posts/Posts'
 import Post from '../pages/post/Post'
 import EditPost from '../pages/edit-post/EditPost'
 import Categories from '../pages/categories/Categories'
+import EditCategory from '../pages/edit-category/EditCategory'
 
 /* Array of routes */
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
       { path: 'posts/:id', element: <Post /> },
       { path: 'posts/:id/edit', element: <EditPost /> },
       { path: 'categories', element: <Categories /> },
+      { path: 'categories/:id/edit', element: <EditCategory /> },
     ],
   },
 ]

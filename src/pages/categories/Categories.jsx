@@ -2,7 +2,7 @@
 import styles from './Categories.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData'
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate } from 'react-router'
 import { useState } from 'react'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
