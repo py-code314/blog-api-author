@@ -2,18 +2,28 @@
 import styles from './Categories.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData'
+import { useNavigate, useParams } from 'react-router'
+import { useState } from 'react'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
+import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
+/* -------------------- Context -------------------- */
+import { ErrorContext } from '../../contexts/error/ErrorContext'
 
 const Categories = () => {
+  const navigate = useNavigate()
+
   // Get all categories
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/categories/all',
   )
   // console.log('🚀 ~ Categories ~ data:', data)
+
+  const [deleteError, setDeleteError] = useState(null)
+  const [categoryId, setCategoryId] = useState(null)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -45,7 +55,47 @@ const Categories = () => {
       </div>
     )
 
-  const handleDeleteCategory = () => {}
+  const handleDeleteCategory = async (id) => {
+    const authToken = localStorage.getItem('jwtToken')
+    setDeleteError(null)
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/v1/categories/${id}/delete`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        },
+      )
+
+      const result = await response.json()
+      // console.log('🚀 ~ handleDeletePost ~ result:', result)
+      if (result.success) {
+        navigate('/categories')
+      } else {
+        setDeleteError({
+          code: result.errorCode,
+          title: result.errorTitle,
+          msg: result.errorMessage,
+        })
+        setCategoryId(id)
+      }
+    } catch (error) {
+      console.error(error)
+      setDeleteError({
+        code: 'NET_ERR',
+        title: 'Network Error',
+        msg: 'Failed to connect to the server. Please try again.',
+      })
+    }
+  }
+
+  const handleDismiss = () => {
+    setDeleteError(null)
+    setCategoryId(null)
+  }
 
   return (
     <>
@@ -60,24 +110,35 @@ const Categories = () => {
         <ul className={styles.categoryList}>
           {data.categories.length > 0 &&
             data.categories.map((category) => (
-              <li className={styles.category} key={category.id}>
-                <p className={styles.name}>{category.name}</p>
-                <div className={styles.actionGroup}>
-                  {/* Edit link */}
-                  <Link
-                    className={styles.editLink}
-                    to={`/categories/${category.id}/edit`}>
-                    Edit
-                  </Link>
-                  {/* Delete button */}
-                  <Button
-                    className="deleteBtn"
-                    title="Delete category"
-                    onClick={() => handleDeleteCategory(category.id)}>
-                    Delete
-                  </Button>
-                </div>
-              </li>
+              <div key={category.id} className={styles.categoryWrapper}>
+                <li className={styles.category}>
+                  <p className={styles.name}>{category.name}</p>
+                  <div className={styles.actionGroup}>
+                    {/* Edit link */}
+                    <Link
+                      className={styles.editLink}
+                      to={`/categories/${category.id}/edit`}>
+                      Edit
+                    </Link>
+                    {/* Delete button */}
+                    <Button
+                      className="deleteBtn"
+                      title="Delete category"
+                      onClick={() => handleDeleteCategory(category.id)}>
+                      Delete
+                    </Button>
+                  </div>
+                </li>
+                {category.id === categoryId && deleteError && (
+                  <ErrorContext
+                    value={{
+                      deleteError,
+                      handleDismiss,
+                    }}>
+                    <ErrorMessage />
+                  </ErrorContext>
+                )}
+              </div>
             ))}
         </ul>
       </div>

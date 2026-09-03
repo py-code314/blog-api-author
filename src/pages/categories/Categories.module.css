@@ -28,6 +28,11 @@
   padding-block: var(--space-16, 1rem);
 }
 
+.categoryWrapper {
+  display: grid;
+  gap: var(--space-12, 0.75rem);
+}
+
 .category {
   border-radius: var(--radius-small, 0.3125rem);
   padding: var(--space-12, 0.75rem);
