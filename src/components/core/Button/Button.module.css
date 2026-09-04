@@ -65,7 +65,8 @@
   width: 90%;
 }
 
-.publishBtn {
+.publishBtn,
+.addBtn {
   composes: btn, btnSignup;
   justify-self: start;
   width: fit-content;

@@ -1,3 +1,5 @@
+/* TODO: Update Sidebar styles */
+/* TODO: Add different styles to active links */
 .sidebar {
   grid-area: sidebar;
   border-right: 1px solid var(--clr-black, black);

@@ -9,6 +9,7 @@ import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
 import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
 import EditCategory from '../edit-category/EditCategory'
+import AddCategoryForm from '../../components/forms/add-category/AddCategoryForm'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Context -------------------- */
@@ -18,8 +19,10 @@ import { CategoryContext } from '../../contexts/category/CategoryContext'
 const Categories = () => {
   const navigate = useNavigate()
 
+  // State variables
   const [deleteError, setDeleteError] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
+  const [isNew, setIsNew] = useState(false)
   const [isEdit, setIsEdit] = useState(false)
 
   // Pass isEdit as argument to run useData second time to get updated values of category names
@@ -58,7 +61,12 @@ const Categories = () => {
       </div>
     )
 
+  const handleAddCategory = () => {
+    setIsNew(true)
+  }
+
   const handleDeleteCategory = async (id) => {
+    // Author should be logged in to delete a category
     const authToken = localStorage.getItem('jwtToken')
     setDeleteError(null)
 
@@ -78,6 +86,7 @@ const Categories = () => {
       if (result.success) {
         navigate('/categories')
       } else {
+        // Show error msgs from server under that particular category
         setDeleteError({
           code: result.errorCode,
           title: result.errorTitle,
@@ -87,6 +96,7 @@ const Categories = () => {
       }
     } catch (error) {
       console.error(error)
+      // Catch and show error msgs other than those from server
       setDeleteError({
         code: 'NET_ERR',
         title: 'Network Error',
@@ -95,6 +105,7 @@ const Categories = () => {
     }
   }
 
+  // Handle Dismiss button inside the error msg
   const handleDismiss = () => {
     setDeleteError(null)
     setCategoryId(null)
@@ -112,14 +123,29 @@ const Categories = () => {
         <h2 className={styles.subTitle}>Categories</h2>
 
         {/* // TODO: Display add form in place */}
-        <Link className={styles.addLink} to={'/new-category'}>
-          <span className={styles.plusIcon}>+</span> Add Category
-        </Link>
+        {/* Add button */}
+        <Button
+          className="addBtn"
+          title="Add category"
+          onClick={handleAddCategory}>
+          Add Category
+        </Button>
+
+        {/* Display 'add category form' conditionally */}
+        {isNew && (
+          <CategoryContext
+            value={{
+              setIsNew,
+            }}>
+            <AddCategoryForm />
+          </CategoryContext>
+        )}
 
         <ul className={styles.categoryList}>
           {data.categories.length > 0 &&
             data.categories.map((category) => (
               <div key={category.id} className={styles.categoryWrapper}>
+                {/* Display 'edit category form' conditionally and only for that particular category  */}
                 {isEdit && category.id === categoryId ? (
                   <CategoryContext
                     value={{
@@ -129,7 +155,6 @@ const Categories = () => {
                     <EditCategory />
                   </CategoryContext>
                 ) : (
-                  // <EditCategory categoryId={categoryId} setIsEdit={setIsEdit} />
                   <li className={styles.category}>
                     <p className={styles.name}>{category.name}</p>
                     <div className={styles.actionGroup}>
@@ -141,6 +166,9 @@ const Categories = () => {
                         Edit
                       </Button>
                       {/* Delete button */}
+                      {/* // TODO FIX: Page not refreshing after deleting a
+                      category. Updates results are shown only after refreshing
+                      the page manually */}
                       <Button
                         className="deleteBtn"
                         title="Delete category"
@@ -151,6 +179,7 @@ const Categories = () => {
                   </li>
                 )}
 
+                {/* Show error msg if deleting a category fails. Display it conditionally and only under that particular category  */}
                 {category.id === categoryId && deleteError && (
                   <ErrorContext
                     value={{
