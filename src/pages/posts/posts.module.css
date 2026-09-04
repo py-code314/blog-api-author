@@ -28,7 +28,7 @@
 
 .detailsLink,
 .homeLink {
-  background-color: var(--clr-accent, steelblue);
+  background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   justify-self: start;

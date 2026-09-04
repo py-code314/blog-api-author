@@ -1,6 +1,5 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditCategoryForm.module.css'
-// TODO: Add styles
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
 import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
@@ -72,7 +71,7 @@ const EditCategoryForm = ({ categoryData }) => {
 
     if (isValid) {
       const result = await fetchData({ name })
-      console.log('🚀 ~ handleFormSubmit ~ result:', result)
+      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
         setName('')
@@ -97,6 +96,7 @@ const EditCategoryForm = ({ categoryData }) => {
           <label htmlFor="name" className={styles.formLabel}>
             Name (required)
           </label>
+
           <div className={styles.formValid}>
             <input
               type="text"
@@ -114,8 +114,8 @@ const EditCategoryForm = ({ categoryData }) => {
                 aria-hidden="true"
                 src={checkMarkIcon}
                 alt=""
-                width={40}
-                height={40}
+                width={30}
+                height={30}
               />
             )}
           </div>
@@ -126,8 +126,8 @@ const EditCategoryForm = ({ categoryData }) => {
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}
@@ -140,12 +140,14 @@ const EditCategoryForm = ({ categoryData }) => {
         </div>
 
         {/* Save button */}
-        <Button className="saveBtn" title="Save" type="submit">
-          Save
-        </Button>
-        <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
-          Cancel
-        </Button>
+        <div className={styles.btns}>
+          <Button className="saveBtn" title="Save" type="submit">
+            Save
+          </Button>
+          <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </div>
       </form>
     </>
   )

@@ -57,7 +57,7 @@
 .btnSignup,
 .btnLogin {
   composes: btn;
-  background-color: var(--clr-accent, steelblue);
+  background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
   margin-block-start: var(--space-16, 1rem);
   padding: var(--space-12, 0.75rem) var(--space-16, 1rem);
@@ -73,18 +73,24 @@
 }
 
 .editBtn,
-.deleteBtn {
+.saveBtn {
   composes: btn;
-  background-color: var(--clr-accent, steelblue);
+  background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
   padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
   border-radius: var(--radius-small, 0.3125rem);
+  font-weight: var(--fw-bold);
+}
+
+.deleteBtn,
+.cancelBtn {
+  composes: editBtn;
+  background-color: var(--clr-accent-secondary, firebrick);
 }
 
 .dismissBtn {
   composes: editBtn;
   justify-self: end;
-  background-color: var(--clr-accent-secondary, orangered);
-  color: var(--clr-black, black);
+  background-color: var(--clr-accent-secondary, firebrick);
   font-weight: var(--fw-bold);
 }

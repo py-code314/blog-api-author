@@ -100,7 +100,7 @@
 }
 
 .formInputRadio {
-  accent-color: var(--clr-accent, steelblue);
+  accent-color: var(--clr-accent, teal);
 }
 
 /* Loader animation */
