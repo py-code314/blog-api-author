@@ -28,7 +28,7 @@ const Categories = () => {
   // Pass isEdit as argument to run useData second time to get updated values of category names
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/categories/all',
-    { isEdit },
+    { isEdit, isNew },
   )
 
   // Show loading spinner while fetching the data

@@ -86,6 +86,9 @@ const EditCategoryForm = ({ categoryData }) => {
 
   const handleCancel = () => {
     setIsEdit(false)
+    setName('')
+    setValidName(null)
+    setErrorMsg('')
   }
 
   return (
