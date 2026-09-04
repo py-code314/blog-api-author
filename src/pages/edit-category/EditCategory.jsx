@@ -13,7 +13,7 @@ import { CategoryContext } from '../../contexts/category/CategoryContext.jsx'
 
 const EditCategory = () => {
   const { categoryId, setIsEdit } = useContext(CategoryContext)
-  
+
   // Get a single category
   const { data, isLoading, error } = useData(
     `http://localhost:8080/api/v1/categories/${categoryId}`,
@@ -36,7 +36,7 @@ const EditCategory = () => {
   // Show error message upon failure to fetch the data
   if (error)
     return (
-      <div className={styles.editCategory}>
+      <div className={styles.error}>
         <div className={styles.errorWrapper}>
           <div className={styles.errorImage}>
             <img src={errorIcon3} alt="" width={30} height={30} />

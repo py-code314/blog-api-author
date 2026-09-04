@@ -73,13 +73,21 @@
 }
 
 .editBtn,
-.saveBtn {
+.saveBtn
+{
   composes: btn;
   background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
   padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
   border-radius: var(--radius-small, 0.3125rem);
   font-weight: var(--fw-bold);
+}
+
+.backBtn {
+  composes: editBtn;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 0.25rem);
 }
 
 .deleteBtn,
