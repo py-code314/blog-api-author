@@ -24,19 +24,18 @@ const AddCategoryForm = () => {
   const nameRef = useRef(null)
   const navigate = useNavigate()
 
-  // const { category } = categoryData
-  // const { id, name: categoryName } = category
-
   const [fetchData, data] = useSubmitForm(
     `http://localhost:8080/api/v1/categories/new`,
   )
 
+  // Focus input on page load
   useEffect(() => {
     if (nameRef.current) {
       nameRef.current.focus()
     }
   }, [])
 
+  // Redirect to categories after successful submission
   useEffect(() => {
     if (data?.success) {
       navigate(`/categories`)
@@ -84,6 +83,7 @@ const AddCategoryForm = () => {
     }
   }
 
+  // Reset state variables if user cancels action
   const handleCancel = () => {
     setIsNew(false)
     setName('')
@@ -111,6 +111,7 @@ const AddCategoryForm = () => {
               onChange={handleNameChange}
               ref={nameRef}
             />
+            {/* Valid input  */}
             {validName && (
               <img
                 className={styles.formCheckmark}
@@ -122,6 +123,7 @@ const AddCategoryForm = () => {
               />
             )}
           </div>
+          {/* Error message  */}
           {validName === false && (
             <div className={styles.formError}>
               <img
@@ -142,11 +144,12 @@ const AddCategoryForm = () => {
           )}
         </div>
 
-        {/* Save button */}
         <div className={styles.btns}>
+          {/* Save button */}
           <Button className="saveBtn" title="Save" type="submit">
             Save
           </Button>
+          {/* Cancel button  */}
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
             Cancel
           </Button>

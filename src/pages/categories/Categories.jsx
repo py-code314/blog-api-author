@@ -20,12 +20,16 @@ const Categories = () => {
   const navigate = useNavigate()
 
   // State variables
+  // To add error msg
   const [deleteError, setDeleteError] = useState(null)
+  // To display error msg or edit form only for that particular category
   const [categoryId, setCategoryId] = useState(null)
+  // To display 'add new category form'
   const [isNew, setIsNew] = useState(false)
+  // To display 'edit category form'
   const [isEdit, setIsEdit] = useState(false)
 
-  // Pass isEdit as argument to run useData second time to get updated values of category names
+  // Pass isEdit and isNew as arguments to run useData second time to get updated values of categories from db
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/categories/all',
     { isEdit, isNew },
@@ -122,7 +126,6 @@ const Categories = () => {
         <title>Scriblr | Categories</title>
         <h2 className={styles.subTitle}>Categories</h2>
 
-        {/* // TODO: Display add form in place */}
         {/* Add button */}
         <Button
           className="addBtn"
