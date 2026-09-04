@@ -111,6 +111,7 @@ const Categories = () => {
         <title>Scriblr | Categories</title>
         <h2 className={styles.subTitle}>Categories</h2>
 
+        {/* // TODO: Display add form in place */}
         <Link className={styles.addLink} to={'/new-category'}>
           <span className={styles.plusIcon}>+</span> Add Category
         </Link>
@@ -120,7 +121,6 @@ const Categories = () => {
             data.categories.map((category) => (
               <div key={category.id} className={styles.categoryWrapper}>
                 {isEdit && category.id === categoryId ? (
-                  // TODO: Create context
                   <CategoryContext
                     value={{
                       categoryId,

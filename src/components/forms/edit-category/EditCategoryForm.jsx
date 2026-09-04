@@ -1,5 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditCategoryForm.module.css'
+// TODO: Add styles
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
 import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
@@ -9,6 +10,7 @@ import checkMarkIcon from '../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../assets/icons/icon-error.svg'
 /* -------------------- Components -------------------- */
 import Button from '../../core/Button/Button.jsx'
+
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
@@ -70,6 +72,7 @@ const EditCategoryForm = ({ categoryData }) => {
 
     if (isValid) {
       const result = await fetchData({ name })
+      console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
         setName('')
@@ -80,6 +83,10 @@ const EditCategoryForm = ({ categoryData }) => {
         displayServerError(result.errors, setValidName, setErrorMsg)
       }
     }
+  }
+
+  const handleCancel = () => {
+    setIsEdit(false)
   }
 
   return (
@@ -135,6 +142,9 @@ const EditCategoryForm = ({ categoryData }) => {
         {/* Save button */}
         <Button className="saveBtn" title="Save" type="submit">
           Save
+        </Button>
+        <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
+          Cancel
         </Button>
       </form>
     </>
