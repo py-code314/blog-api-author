@@ -13,19 +13,20 @@ import EditCategory from '../edit-category/EditCategory'
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Context -------------------- */
 import { ErrorContext } from '../../contexts/error/ErrorContext'
+import { CategoryContext } from '../../contexts/category/CategoryContext'
 
 const Categories = () => {
   const navigate = useNavigate()
 
-  // Get all categories
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/categories/all',
-  )
-  // console.log('🚀 ~ Categories ~ data:', data)
-
   const [deleteError, setDeleteError] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [isEdit, setIsEdit] = useState(false)
+
+  // Pass isEdit as argument to run useData second time to get updated values of category names
+  const { data, isLoading, error } = useData(
+    'http://localhost:8080/api/v1/categories/all',
+    { isEdit },
+  )
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -119,8 +120,16 @@ const Categories = () => {
             data.categories.map((category) => (
               <div key={category.id} className={styles.categoryWrapper}>
                 {isEdit && category.id === categoryId ? (
-                  <EditCategory categoryId={categoryId} setIsEdit={setIsEdit} />
+                  // TODO: Create context
+                  <CategoryContext
+                    value={{
+                      categoryId,
+                      setIsEdit,
+                    }}>
+                    <EditCategory />
+                  </CategoryContext>
                 ) : (
+                  // <EditCategory categoryId={categoryId} setIsEdit={setIsEdit} />
                   <li className={styles.category}>
                     <p className={styles.name}>{category.name}</p>
                     <div className={styles.actionGroup}>

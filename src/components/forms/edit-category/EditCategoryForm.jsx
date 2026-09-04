@@ -1,7 +1,7 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditCategoryForm.module.css'
 /* -------------------- Hooks -------------------- */
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
 /* -------------------- Images -------------------- */
@@ -10,16 +10,23 @@ import errorIcon from '../../../assets/icons/icon-error.svg'
 /* -------------------- Components -------------------- */
 import Button from '../../core/Button/Button.jsx'
 /* -------------------- Functions -------------------- */
-import { validateNameInput } from '../../../utils/category/index.js'
+import {
+  validateNameInput,
+  displayEmptyInputError,
+  displayServerError,
+} from '../../../utils/category/index.js'
+/* -------------------- Context -------------------- */
+import { CategoryContext } from '../../../contexts/category/CategoryContext.jsx'
 
 const EditCategoryForm = ({ categoryData }) => {
-  // console.log("🚀 ~ EditCategoryForm ~ categoryData:", categoryData)
-  const { category } = categoryData
-  const { id, name: categoryName } = category
+  const { setIsEdit } = useContext(CategoryContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
 
-  const [fetchData, status, data] = useSubmitForm(
+  const { category } = categoryData
+  const { id, name: categoryName } = category
+
+  const [fetchData, data] = useSubmitForm(
     `http://localhost:8080/api/v1/categories/${id}/update`,
   )
 
@@ -46,42 +53,34 @@ const EditCategoryForm = ({ categoryData }) => {
     validateNameInput(name, setValidName, setErrorMsg)
   }
 
-  // const validateForm = () => {
-  //   displayEmptyInputErrors(name, setValidName, setErrorMsg)
+  const validateForm = () => {
+    displayEmptyInputError(name, setValidName, setErrorMsg)
 
-  //   if (validName.title === true && validName.content === true) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
+    if (validName === true) {
+      return true
+    } else {
+      return false
+    }
+  }
 
-  // const handleFormSubmit = async (e) => {
-  //   e.preventDefault()
-  //   // const isValid = true
-  //   const isValid = validateForm()
-  //   // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    // const isValid = true
+    const isValid = validateForm()
 
-  //   if (isValid) {
-  //     const result = await fetchData(name)
-  //     // console.log('🚀 ~ handleFormSubmit ~ result:', result)
+    if (isValid) {
+      const result = await fetchData({ name })
 
-  //     if (result.success) {
-  //       setName({
-  //         title: '',
-  //         content: '',
-  //         categories: [],
-  //         tags: [],
-  //         published: true,
-  //       })
-  //       setValidName(defaultValidFormData)
-  //       setErrorMsg(defaultErrorMsgs)
-  //     } else if (!result.validData) {
-  //       displayServerErrors(result.errors, setValidName, setErrorMsg)
-  //     }
-  //   }
-  // }
-  const handleFormSubmit = () => {}
+      if (result.success) {
+        setName('')
+        setValidName(null)
+        setErrorMsg('')
+        setIsEdit(false)
+      } else if (!result.validData) {
+        displayServerError(result.errors, setValidName, setErrorMsg)
+      }
+    }
+  }
 
   return (
     <>

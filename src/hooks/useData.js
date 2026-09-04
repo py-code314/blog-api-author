@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 
 /* Hook to fetch data from a given URL */
-export const useData = (url) => {
+export const useData = (url, options = {}) => {
+  const { isEdit = false } = options
+
   // State variables
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -10,7 +12,6 @@ export const useData = (url) => {
   useEffect(() => {
     // Abort controller
     const controller = new AbortController()
-    // const authToken = localStorage.getItem('jwtToken')
 
     // Fetch data
     const fetchData = async () => {
@@ -36,6 +37,7 @@ export const useData = (url) => {
         }
 
         let data = await response.json()
+        // console.log('🚀 ~ fetchData ~ data:', data)
 
         setData(data)
         setError(false)
@@ -56,7 +58,7 @@ export const useData = (url) => {
     fetchData()
 
     return () => controller.abort()
-  }, [url])
+  }, [url, isEdit])
 
   return { data, isLoading, error }
 }

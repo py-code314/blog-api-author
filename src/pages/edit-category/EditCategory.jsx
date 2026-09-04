@@ -2,13 +2,18 @@
 import styles from './EditCategory.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData.js'
+import { useContext } from 'react'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
 import EditCategoryForm from '../../components/forms/edit-category/EditCategoryForm.jsx'
 /* -------------------- Images -------------------- */
 import errorIcon3 from '../../assets/icons/icon-error-3.svg'
+/* -------------------- Context -------------------- */
+import { CategoryContext } from '../../contexts/category/CategoryContext.jsx'
 
-const EditCategory = ({ categoryId, setIsEdit }) => {
+const EditCategory = () => {
+  const { categoryId, setIsEdit } = useContext(CategoryContext)
+  
   // Get a single category
   const { data, isLoading, error } = useData(
     `http://localhost:8080/api/v1/categories/${categoryId}`,
