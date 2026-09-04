@@ -147,7 +147,7 @@ const AddCategoryForm = () => {
         <div className={styles.btns}>
           {/* Save button */}
           <Button className="saveBtn" title="Save" type="submit">
-            Save
+            Submit
           </Button>
           {/* Cancel button  */}
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
