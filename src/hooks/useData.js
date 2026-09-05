@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 /* Hook to fetch data from a given URL */
 export const useData = (url, options = {}) => {
-  const { isEdit = false, isNew = false } = options
+  const { isEdit = false, isNew = false, isDelete = false } = options
 
   // State variables
   const [data, setData] = useState(null)
@@ -58,7 +58,7 @@ export const useData = (url, options = {}) => {
     fetchData()
 
     return () => controller.abort()
-  }, [url, isEdit, isNew])
+  }, [url, isEdit, isNew, isDelete])
 
   return { data, isLoading, error }
 }

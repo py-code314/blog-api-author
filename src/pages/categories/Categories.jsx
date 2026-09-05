@@ -2,7 +2,6 @@
 import styles from './Categories.module.css'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../hooks/useData'
-import { useNavigate } from 'react-router'
 import { useState } from 'react'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
@@ -17,8 +16,6 @@ import { ErrorContext } from '../../contexts/error/ErrorContext'
 import { CategoryContext } from '../../contexts/category/CategoryContext'
 
 const Categories = () => {
-  const navigate = useNavigate()
-
   // State variables
   // To add error msg
   const [deleteError, setDeleteError] = useState(null)
@@ -28,11 +25,13 @@ const Categories = () => {
   const [isNew, setIsNew] = useState(false)
   // To display 'edit category form'
   const [isEdit, setIsEdit] = useState(false)
+  // To re-render categories after deleting a category
+  const [isDelete, setIsDelete] = useState(false)
 
   // Pass isEdit and isNew as arguments to run useData second time to get updated values of categories from db
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/categories/all',
-    { isEdit, isNew },
+    { isEdit, isNew, isDelete },
   )
 
   // Show loading spinner while fetching the data
@@ -73,6 +72,8 @@ const Categories = () => {
     // Author should be logged in to delete a category
     const authToken = localStorage.getItem('jwtToken')
     setDeleteError(null)
+    setCategoryId(null)
+    setIsDelete(false)
 
     try {
       const response = await fetch(
@@ -88,7 +89,9 @@ const Categories = () => {
       const result = await response.json()
       // console.log('🚀 ~ handleDeletePost ~ result:', result)
       if (result.success) {
-        navigate('/categories')
+        setIsDelete(true)
+        setDeleteError(null)
+        setCategoryId(null)
       } else {
         // Show error msgs from server under that particular category
         setDeleteError({
@@ -97,6 +100,7 @@ const Categories = () => {
           msg: result.errorMessage,
         })
         setCategoryId(id)
+        setIsDelete(false)
       }
     } catch (error) {
       console.error(error)
@@ -106,6 +110,8 @@ const Categories = () => {
         title: 'Network Error',
         msg: 'Failed to connect to the server. Please try again.',
       })
+      setCategoryId(id)
+      setIsDelete(false)
     }
   }
 
