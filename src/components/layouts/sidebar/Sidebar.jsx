@@ -1,7 +1,7 @@
 /* -------------------- Styles -------------------- */
 import styles from './Sidebar.module.css'
 /* -------------------- Components -------------------- */
-import { Link } from 'react-router'
+import { NavLink } from 'react-router'
 /* -------------------- Images -------------------- */
 import createIcon from '../../../assets/icons/icon-create.svg'
 import blogsIcon from '../../../assets/icons/icon-blogs.svg'
@@ -19,32 +19,36 @@ const Sidebar = () => {
         <nav className={styles.navbar}>
           <ul className={styles.navList}>
             <li className={styles.navItem}>
-              <Link
+              {/* Add post link  */}
+              <NavLink
                 className={`${styles.navLink} ${styles.createLink}`}
                 to={'/new-post'}>
-                <img src={createIcon} alt="" width={30} height={30} />
+                <img src={createIcon} alt="" width={32} height={32} />
                 Create Post
-              </Link>
+              </NavLink>
             </li>
+            {/* Posts link  */}
             <li className={styles.navItem}>
-              <Link
+              <NavLink
                 className={`${styles.navLink} ${styles.paddedLink}`}
                 to={'/posts'}>
-                <img src={blogsIcon} alt="" width={20} height={20} />
+                <img src={blogsIcon} alt="" width={30} height={30} />
                 Posts
-              </Link>
+              </NavLink>
             </li>
             <li className={styles.navItem}>
-              <Link className={styles.navLink} to={'/categories'}>
-                <img src={categoriesIcon} alt="" width={25} height={25} />
+              {/* Categories link  */}
+              <NavLink className={styles.navLink} to={'/categories'}>
+                <img src={categoriesIcon} alt="" width={30} height={30} />
                 Categories
-              </Link>
+              </NavLink>
             </li>
             <li className={styles.navItem}>
-              <Link className={`${styles.navLink} ${styles.paddedLink}`}>
-                <img src={tagsIcon} alt="" width={25} height={25} />
+              {/* Tags link  */}
+              <NavLink className={`${styles.navLink} ${styles.paddedLink}`}>
+                <img src={tagsIcon} alt="" width={30} height={30} />
                 Tags
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <ul className={styles.navList}>
