@@ -175,9 +175,6 @@ const Categories = () => {
                         Edit
                       </Button>
                       {/* Delete button */}
-                      {/* // TODO FIX: Page not refreshing after deleting a
-                      category. Updates results are shown only after refreshing
-                      the page manually */}
                       <Button
                         className="deleteBtn"
                         title="Delete category"
