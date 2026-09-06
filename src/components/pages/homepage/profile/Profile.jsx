@@ -47,35 +47,37 @@ const Profile = () => {
       </div>
     )
 
-  // console.log('🚀 ~ Profile ~ data, isLoading, error :', data, isLoading, error)
   const { profile } = data
   const { bio, user } = profile
 
   return (
     <>
       <div className={styles.profile}>
-        <div className={styles.imageContainer}>
-          <img
-            className={styles.profileIcon}
-            src={profileIcon}
-            alt=""
-            width={128}
-            height={128}
-          />
-        </div>
-        <div className={styles.details}>
-          <p>
-            <strong>Name: </strong>
-            {user.name}
-          </p>
-          <p>
-            <strong>Email: </strong>
-            {user.email}
-          </p>
-          <p>
-            <strong>Bio: </strong>
-            {bio}
-          </p>
+        <h2 className={styles.subtitle}>Welcome {user.name || user.email}</h2>
+        <div className={styles.profileWrapper}>
+          <div className={styles.imageContainer}>
+            <img
+              className={styles.profileIcon}
+              src={profileIcon}
+              alt=""
+              width={128}
+              height={128}
+            />
+          </div>
+          <div className={styles.details}>
+            <p>
+              <strong>Name: </strong>
+              {user.name}
+            </p>
+            <p>
+              <strong>Email: </strong>
+              {user.email}
+            </p>
+            <p>
+              <strong>Bio: </strong>
+              {bio}
+            </p>
+          </div>
         </div>
       </div>
     </>
