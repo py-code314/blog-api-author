@@ -11,11 +11,11 @@ import errorIcon from '../../../../assets/icons/icon-error.svg'
 import Button from '../../../core/Button/Button.jsx'
 
 /* -------------------- Functions -------------------- */
-// import {
-//   validateNameInput,
-//   displayEmptyInputError,
-//   displayServerError,
-// } from '../../../../utils/tag/index.js'
+import {
+  validateNameInput,
+  displayEmptyInputError,
+  displayServerError,
+} from '../../../../utils/category-tag/index.js'
 /* -------------------- Context -------------------- */
 import { TagContext } from '../../../../contexts/tag/TagContext'
 
@@ -50,11 +50,11 @@ const AddTagForm = () => {
   const handleNameChange = (e) => {
     const name = e.target.value
     setName(name)
-    // validateNameInput(name, setValidName, setErrorMsg)
+    validateNameInput(name, setValidName, setErrorMsg)
   }
 
   const validateForm = () => {
-    // displayEmptyInputError(name, setValidName, setErrorMsg)
+    displayEmptyInputError(name, setValidName, setErrorMsg)
 
     if (validName === true) {
       return true
@@ -78,7 +78,7 @@ const AddTagForm = () => {
         setErrorMsg('')
         setIsNew(false)
       } else if (!result.validData) {
-        // displayServerError(result.errors, setValidName, setErrorMsg)
+        displayServerError(result.errors, setValidName, setErrorMsg)
       }
     }
   }

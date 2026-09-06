@@ -15,7 +15,7 @@ import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
-} from '../../../utils/category/index.js'
+} from '../../../utils/category-tag/index.js'
 /* -------------------- Context -------------------- */
 import { CategoryContext } from '../../../contexts/category/CategoryContext.jsx'
 
