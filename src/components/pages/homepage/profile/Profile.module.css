@@ -1,4 +1,8 @@
 .profile {
+  display: grid;
+  gap: var(--space-16, 1rem);
+}
+.profileWrapper {
   border: 1px solid var(--clr-black, black);
   padding: var(--space-16, 1rem);
   display: flex;
