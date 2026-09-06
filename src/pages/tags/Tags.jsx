@@ -8,7 +8,7 @@ import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
 import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
 // import EditTag from '../edit-tag/EditTag'
-// import AddTagForm from '../../components/forms/add-tag/AddTagForm'
+import AddTagForm from '../../components/forms/tag/add-tag/AddTagForm'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Context -------------------- */
@@ -138,14 +138,14 @@ const Tags = () => {
         </Button>
 
         {/* Display 'add tag form' conditionally */}
-        {/* {isNew && (
+        {isNew && (
           <TagContext
             value={{
               setIsNew,
             }}>
             <AddTagForm />
           </TagContext>
-        )} */}
+        )}
 
         <ul className={styles.tagList}>
           {data.tags.length > 0 &&
