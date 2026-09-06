@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
 import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
-// import EditTag from '../edit-tag/EditTag'
+import EditTag from '../edit-tag/EditTag'
 import AddTagForm from '../../components/forms/tag/add-tag/AddTagForm'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
@@ -158,7 +158,7 @@ const Tags = () => {
                       tagId,
                       setIsEdit,
                     }}>
-                    {/* <EditTag /> */}
+                    <EditTag />
                   </TagContext>
                 ) : (
                   <li className={styles.tag}>
