@@ -159,6 +159,14 @@ const NewPost = () => {
     }
   }
 
+  // Reset state variables if user cancels action
+  const handleCancel = () => {
+    setPostData(defaultPostData)
+    setValidFormData(defaultValidFormData)
+    setErrorMsgs(defaultErrorMsgs)
+    navigate('/posts')
+  }
+
   return (
     <>
       <div className={styles.newPost}>
@@ -458,7 +466,9 @@ const NewPost = () => {
                 ? 'Publish'
                 : 'Save'}
           </Button>
-          {/* // TODO: Add Cancel button  */}
+          <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
+            Cancel
+          </Button>
         </form>
       </div>
     </>
