@@ -18,50 +18,125 @@ const Sidebar = () => {
         {/* Navigation links */}
         <nav className={styles.navbar}>
           <ul className={styles.navList}>
+
             <li className={styles.navItem}>
               {/* Add post link  */}
               <NavLink
-                className={`${styles.navLink} ${styles.createLink}`}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ''}`
+                }
                 to={'/new-post'}>
-                <img src={createIcon} alt="" width={32} height={32} />
-                Create Post
+                {({ isActive }) => (
+                  <>
+                    <img
+                      className={`${isActive ? styles.activeIcon : ''}`}
+                      src={createIcon}
+                      alt=""
+                      width={32}
+                      height={32}
+                    />
+                    <span>Create Post</span>
+                  </>
+                )}
               </NavLink>
             </li>
-            {/* Posts link  */}
+
             <li className={styles.navItem}>
+            {/* Posts link  */}
               <NavLink
-                className={`${styles.navLink} ${styles.paddedLink}`}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ''}`
+                }
                 to={'/posts'}>
-                <img src={blogsIcon} alt="" width={30} height={30} />
-                Posts
+                {({ isActive }) => (
+                  <>
+                    <img
+                      className={`${isActive ? styles.activeIcon : ''}`}
+                      src={blogsIcon}
+                      alt=""
+                      width={32}
+                      height={32}
+                    />
+                    <span>Posts</span>
+                  </>
+                )}
               </NavLink>
             </li>
+
             <li className={styles.navItem}>
               {/* Categories link  */}
-              <NavLink className={styles.navLink} to={'/categories'}>
-                <img src={categoriesIcon} alt="" width={30} height={30} />
-                Categories
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ''}`
+                }
+                to={'/categories'}>
+                {({ isActive }) => (
+                  <>
+                    <img
+                      className={`${isActive ? styles.activeIcon : ''}`}
+                      src={categoriesIcon}
+                      alt=""
+                      width={32}
+                      height={32}
+                    />
+                    <span>Categories</span>
+                  </>
+                )}
               </NavLink>
             </li>
+            
             <li className={styles.navItem}>
               {/* Tags link  */}
-              <NavLink className={`${styles.navLink} ${styles.paddedLink}`}>
-                <img src={tagsIcon} alt="" width={30} height={30} />
-                Tags
+              <NavLink
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ''}`
+                }
+                to={'/tags'}>
+                {({ isActive }) => (
+                  <>
+                    <img
+                      className={`${isActive ? styles.activeIcon : ''}`}
+                      src={tagsIcon}
+                      alt=""
+                      width={32}
+                      height={32}
+                    />
+                    <span>Tags</span>
+                  </>
+                )}
               </NavLink>
             </li>
           </ul>
+          
           <ul className={styles.navList}>
-            <li className={`${styles.navItem} ${styles.navLink}`}>
-              <img src={profileIcon} alt="" width={30} height={30} />
+            <li className={`${styles.navItem} ${styles.inactiveLink}`}>
+              <img
+                className={styles.helpIcon}
+                src={profileIcon}
+                alt=""
+                width={30}
+                height={30}
+              />
               Profile
             </li>
-            <li className={`${styles.navItem} ${styles.navLink}`}>
-              <img src={settingsIcon} alt="" width={30} height={30} />
+            <li className={`${styles.navItem} ${styles.inactiveLink}`}>
+              <img
+                className={styles.helpIcon}
+                src={settingsIcon}
+                alt=""
+                width={30}
+                height={30}
+              />
               Settings
             </li>
-            <li className={`${styles.navItem} ${styles.navLink}`}>
-              <img src={helpIcon} alt="" width={30} height={30} />
+            <li className={`${styles.navItem} ${styles.inactiveLink}`}>
+              <img
+                className={styles.helpIcon}
+                src={helpIcon}
+                alt=""
+                width={30}
+                height={30}
+              />
               Help
             </li>
           </ul>
