@@ -456,19 +456,22 @@ const NewPost = () => {
             )}
           </div>
 
-          {/* Publish/Save button */}
-          <Button className="publishBtn" title="Publish/Save" type="submit">
-            {status === 'fetching'
-              ? postData.published
-                ? 'Publishing'
-                : 'Saving'
-              : postData.published
-                ? 'Publish'
-                : 'Save'}
-          </Button>
-          <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
-            Cancel
-          </Button>
+          <div className={styles.btns}>
+            {/* Publish/Save button */}
+            <Button className="publishBtn" title="Publish/Save" type="submit">
+              {status === 'fetching'
+                ? postData.published
+                  ? 'Publishing'
+                  : 'Saving'
+                : postData.published
+                  ? 'Publish'
+                  : 'Save'}
+            </Button>
+            {/* Cancel button  */}
+            <Button className="abortBtn" title="Cancel" onClick={handleCancel}>
+              Cancel
+            </Button>
+          </div>
         </form>
       </div>
     </>

@@ -103,6 +103,12 @@
   accent-color: var(--clr-accent, teal);
 }
 
+.btns {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 1rem);
+}
+
 /* Loader animation */
 .loader {
   width: 50px;

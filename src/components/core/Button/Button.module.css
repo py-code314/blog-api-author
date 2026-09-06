@@ -67,15 +67,19 @@
 
 .publishBtn,
 .addBtn {
-  composes: btn, btnSignup;
+  composes: btnSignup;
   justify-self: start;
   width: fit-content;
   border-radius: var(--radius-small, 0.3125rem);
 }
 
+.abortBtn {
+  composes: publishBtn;
+  background-color: var(--clr-accent-secondary, firebrick);
+}
+
 .editBtn,
-.saveBtn
-{
+.saveBtn {
   composes: btn;
   background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
