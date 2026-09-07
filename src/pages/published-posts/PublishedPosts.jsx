@@ -49,6 +49,9 @@ const PublishedPosts = () => {
     <>
       <div className={styles.publishedPosts}>
         <title>Scriblr | Published Posts</title>
+        <Link className={styles.homeLink} to={'/'}>
+          <span className={styles.leftArrow}>←</span>Home
+        </Link>
         <h2 className={styles.subTitle}>Published Posts</h2>
 
         <ul className={styles.list}>
