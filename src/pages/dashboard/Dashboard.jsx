@@ -20,7 +20,7 @@ const Dashboard = () => {
           </li>
           <li>
             {/* Link to published posts  */}
-            <Link className={styles.publishedPosts} to={'/published'}>
+            <Link className={styles.publishedPosts} to={'/posts/published'}>
               Published Posts
               <span>→</span>
             </Link>

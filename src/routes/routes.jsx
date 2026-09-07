@@ -8,6 +8,7 @@ import EditPost from '../pages/edit-post/EditPost'
 import Categories from '../pages/categories/Categories'
 import EditCategory from '../pages/edit-category/EditCategory'
 import Tags from '../pages/tags/Tags'
+import PublishedPosts from '../pages/published-posts/PublishedPosts'
 
 /* Array of routes */
 const routes = [
@@ -23,6 +24,7 @@ const routes = [
       { path: 'categories', element: <Categories /> },
       { path: 'categories/:id/edit', element: <EditCategory /> },
       { path: 'tags', element: <Tags /> },
+      { path: 'posts/published', element: <PublishedPosts /> },
     ],
   },
 ]
