@@ -1,0 +1,13 @@
+.posts {
+  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+  border: 2px solid var(--clr-accent, teal);
+  border-radius: var(--radius-small, 0.3125rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 0.5rem);
+}
+
+.posts:hover {
+  background-color: var(--clr-accent, teal);
+  color: var(--clr-white, white);
+}
