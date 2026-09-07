@@ -144,6 +144,7 @@ const PostForm = () => {
     }
   }
 
+  // TODO FIX: Error submitting form. It's not redirecting to posts page after submitting
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     // const isValid = true

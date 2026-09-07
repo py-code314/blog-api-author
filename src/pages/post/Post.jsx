@@ -124,6 +124,8 @@ const Post = () => {
           Back to All Posts
         </Link>
 
+        {/* // TODO: Add link 'Back to Home' */}
+
         {deleteError && (
           <ErrorContext
             value={{

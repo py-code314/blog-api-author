@@ -46,14 +46,17 @@ const RecentPosts = () => {
     <>
       <div className={styles.recentPosts}>
         <h2 className={styles.subTitle}>Recent Posts</h2>
+        {/* Loop through and display posts */}
+        {/* // TODO: Check display after adding more content  */}
         <ul className={styles.list}>
           {posts?.length > 0 &&
             posts.map((post) => (
               <li className={styles.post} key={post.id}>
                 <h3>{post.title}</h3>
                 <div className={styles.content}>{parse(post.content)}</div>
+                {/* Link to view post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  View details →
+                  View details <span>→</span>
                 </Link>
               </li>
             ))}

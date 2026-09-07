@@ -139,6 +139,7 @@ const NewPost = () => {
     }
   }
 
+  // TODO FIX: Error submitting post (msg: post content can't be empty)
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     // const isValid = true
