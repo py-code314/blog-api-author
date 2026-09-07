@@ -12,13 +12,19 @@ const Dashboard = () => {
         <RecentPosts />
         <ul>
           <li>
-            {/* Posts link  */}
+            {/* Link to posts  */}
             <Link className={styles.posts} to={'/posts'}>
-              Go to All Posts
+              All Posts
               <span>→</span>
             </Link>
           </li>
-          <li></li>
+          <li>
+            {/* Link to published posts  */}
+            <Link className={styles.publishedPosts} to={'/published'}>
+              Published Posts
+              <span>→</span>
+            </Link>
+          </li>
           <li></li>
         </ul>
       </div>
