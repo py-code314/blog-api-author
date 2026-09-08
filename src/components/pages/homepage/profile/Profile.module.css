@@ -1,3 +1,11 @@
+.profileError {
+  display: flex;
+  gap: var(--space-16, 1rem);
+  border: 1px solid var(--clr-black, black);
+  border-radius: var(--radius-small, 00.3125rem);
+  padding: var(--space-24, 1.5rem) var(--space-16, 1rem);
+}
+
 .profile {
   display: grid;
   gap: var(--space-16, 1rem);
@@ -27,7 +35,7 @@
 }
 
 .loaderWrapper {
-  height: var(--space-160, 10rem);;
+  height: var(--space-160, 10rem);
   display: flex;
   justify-content: center;
   align-items: center;
