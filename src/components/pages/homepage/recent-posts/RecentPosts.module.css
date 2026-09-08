@@ -1,7 +1,6 @@
 .recentPosts {
   display: grid;
   gap: var(--space-16, 1rem);
-  padding: var(--space-16, 1rem);
 }
 
 .list {

@@ -1,0 +1,4 @@
+.dashboard {
+  display: grid;
+  gap: var(--space-32, 2rem);
+}

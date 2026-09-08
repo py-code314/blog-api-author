@@ -9,7 +9,7 @@
   min-height: 100svh;
   margin: auto;
   display: grid;
-  gap: var(--space-16, 1rem);
+  gap: var(--space-32, 2rem);
   grid-template-areas:
     'header  header'
     'sidebar  main'
@@ -20,4 +20,5 @@
 
 .main {
   grid-area: main;
+  padding-inline: var(--space-32, 2rem);
 }
