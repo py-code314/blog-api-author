@@ -1,0 +1,34 @@
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 1rem);
+}
+
+.listItem {
+  flex: 1;
+  border: 2px solid var(--clr-accent, teal);
+  border-radius: var(--radius-small, 0.3125rem);
+}
+
+.posts,
+.publishedPosts,
+.drafts {
+   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8, 0.5rem);
+}
+
+.posts:hover,
+.publishedPosts:hover,
+.drafts:hover {
+  background-color: var(--clr-accent, teal);
+  color: var(--clr-white, white);
+  font-weight: var(--fw-bold, 700);
+}
+
+.rightArrow {
+  font-weight: var(--fw-bold, 700);
+  font-size: var(--fs-18, 1.125rem);
+}
