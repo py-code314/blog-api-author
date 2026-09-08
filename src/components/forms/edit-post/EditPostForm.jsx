@@ -7,7 +7,7 @@ import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
 import { useNavigate, useParams } from 'react-router'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../assets/icons/icon-error.svg'
+import errorIcon from '../../../assets/icons/icon-error-1.svg'
 /* -------------------- Context -------------------- */
 import { PostContext } from '../../../contexts/post/PostContext.jsx'
 import { PostFormContext } from '../../../contexts/post-form/PostFormContext.jsx'

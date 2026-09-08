@@ -6,7 +6,7 @@ import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../../assets/icons/icon-error.svg'
+import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Components -------------------- */
 import Button from '../../../core/Button/Button.jsx'
 

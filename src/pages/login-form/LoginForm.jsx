@@ -4,7 +4,7 @@ import { AuthContext } from '../../contexts/auth/AuthContext'
 import { LoginModalContext } from '../../contexts/login-modal/LoginModalContext'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
-import errorIcon from '../../assets/icons/icon-error.svg'
+import errorIcon from '../../assets/icons/icon-error-1.svg'
 import {
   loginUser,
   displayLoginServerErrors,

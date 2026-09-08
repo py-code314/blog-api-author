@@ -7,7 +7,7 @@ import { useSubmitForm } from '../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
 /* -------------------- Icons -------------------- */
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
-import errorIcon from '../../assets/icons/icon-error.svg'
+import errorIcon from '../../assets/icons/icon-error-1.svg'
 /* -------------------- Functions -------------------- */
 import {
   validateTitleInput,

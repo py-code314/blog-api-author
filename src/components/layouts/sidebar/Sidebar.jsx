@@ -7,7 +7,7 @@ import createIcon from '../../../assets/icons/icon-create.svg'
 import blogsIcon from '../../../assets/icons/icon-blogs.svg'
 import categoriesIcon from '../../../assets/icons/icon-categories.svg'
 import tagsIcon from '../../../assets/icons/icon-tags.svg'
-import profileIcon from '../../../assets/icons/icon-profile.svg'
+import profileIcon from '../../../assets/icons/icon-profile-1.svg'
 import settingsIcon from '../../../assets/icons/icon-settings.svg'
 import helpIcon from '../../../assets/icons/icon-help.svg'
 

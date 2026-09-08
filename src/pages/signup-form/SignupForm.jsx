@@ -3,7 +3,7 @@ import { useRef, useEffect, useContext, useState } from 'react'
 import { AuthContext } from '../../contexts/auth/AuthContext.jsx'
 import Button from '../../components/core/Button/Button'
 import checkMarkIcon from '../../assets/icons/icon-check.svg'
-import errorIcon from '../../assets/icons/icon-error.svg'
+import errorIcon from '../../assets/icons/icon-error-1.svg'
 import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'
 
 import {
