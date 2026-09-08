@@ -11,12 +11,11 @@ import errorIcon from '../../assets/icons/icon-error.svg'
 /* -------------------- Functions -------------------- */
 import {
   validateTitleInput,
-  // validateContentInput,
   displayEmptyInputErrors,
   displayServerErrors,
 } from '../../utils/new-post/index.js'
 /* -------------------- Context -------------------- */
-import { PostContext } from '../../contexts/post/PostContext.jsx'
+import { PostFormContext } from '../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
 import TextEditor from '../../components/forms/text-editor/TextEditor.jsx'
@@ -228,7 +227,7 @@ const NewPost = () => {
               Post Content (required)
             </label>
             <div className={styles.formValid}>
-              <PostContext
+              <PostFormContext
                 value={{
                   postData,
                   setPostData,
@@ -236,7 +235,7 @@ const NewPost = () => {
                   setErrorMsgs,
                 }}>
                 <TextEditor />
-              </PostContext>
+              </PostFormContext>
               {validFormData.content && (
                 <img
                   className={styles.formCheckmark}

@@ -79,11 +79,6 @@ const EditPostForm = () => {
     categories: null,
     tags: null,
     published: null,
-    // title: null,
-    // content: null,
-    // categories: null,
-    // tags: null,
-    // published: null,
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
 
@@ -149,7 +144,6 @@ const EditPostForm = () => {
     }
   }
 
-  // TODO FIX: Error submitting form. It's not redirecting to posts page after submitting
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     // const isValid = true
