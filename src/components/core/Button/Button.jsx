@@ -1,6 +1,5 @@
-// console.log("🚀 ~ styles:", styles)
+/* -------------------- Styles -------------------- */
 import styles from './Button.module.css'
-
 
 const Button = ({ type = 'button', children, onClick, ...rest }) => {
   const { id, className, title, disabled } = rest
