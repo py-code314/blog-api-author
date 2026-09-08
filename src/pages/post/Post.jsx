@@ -120,11 +120,16 @@ const Post = () => {
       <div className={styles.post}>
         <title>Scriblr | Post</title>
 
-        <Link className={styles.postsLink} to={'/posts'}>
-          Back to All Posts
-        </Link>
-
-        {/* // TODO: Add link 'Back to Home' */}
+        <div className={styles.links}>
+          {/* Link to all posts  */}
+          <Link className={styles.postsLink} to={'/posts'}>
+            <span className={styles.leftArrow}>←</span> All Posts
+          </Link>
+          {/* Link to home  */}
+          <Link className={styles.homeLink} to={'/'}>
+            Home
+          </Link>
+        </div>
 
         {deleteError && (
           <ErrorContext

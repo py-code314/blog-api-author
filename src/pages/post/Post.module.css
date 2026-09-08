@@ -4,12 +4,18 @@
   padding: var(--space-32, 2rem);
 }
 
-.postsLink {
+.postsLink,
+.homeLink {
   background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   justify-self: start;
   border-radius: var(--radius-small, 0.3125rem);
+}
+
+.leftArrow {
+  font-weight: var(--fw-bold, 700);
+  font-size: var(--fs-18, 1.125rem);
 }
 
 .header {
@@ -24,6 +30,11 @@
   display: flex;
   align-items: center;
   gap: var(--space-16, 1rem);
+}
+
+.links {
+  composes: btns;
+  justify-content: space-between;
 }
 
 .details,
