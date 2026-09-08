@@ -18,7 +18,8 @@ import {
 import { PostFormContext } from '../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
-import TextEditor from '../../components/forms/text-editor/TextEditor.jsx'
+// import TextEditor from '../../components/forms/post-content/TextEditor.jsx'
+import TextEditor from '../../components/forms/post/post-content/TextEditor.jsx'
 
 const NewPost = () => {
   const titleRef = useRef(null)

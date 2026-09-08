@@ -8,7 +8,7 @@ import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
 import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
 import EditCategory from '../edit-category/EditCategory'
-import AddCategoryForm from '../../components/forms/add-category/AddCategoryForm'
+import AddCategoryForm from '../../components/forms/category/add-category/AddCategoryForm'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Context -------------------- */

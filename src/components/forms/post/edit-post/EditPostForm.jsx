@@ -2,24 +2,25 @@
 import styles from './EditPostForm.module.css'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
-import { useData } from '../../../hooks/useData.js'
-import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
+import { useData } from '../../../../hooks/useData.js'
+import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { useNavigate, useParams } from 'react-router'
 /* -------------------- Images -------------------- */
-import checkMarkIcon from '../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../assets/icons/icon-error-1.svg'
+import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
+import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Context -------------------- */
-import { PostContext } from '../../../contexts/post/PostContext.jsx'
-import { PostFormContext } from '../../../contexts/post-form/PostFormContext.jsx'
+import { PostContext } from '../../../../contexts/post/PostContext.jsx'
+import { PostFormContext } from '../../../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
-import Button from '../../core/Button/Button.jsx'
-import TextEditor from '../text-editor/TextEditor.jsx'
+import Button from '../../../core/Button/Button.jsx'
+// import TextEditor from '../post/post-content/TextEditor.js'
+import TextEditor from '../post-content/TextEditor.jsx'
 /* -------------------- Functions -------------------- */
 import {
   validateTitleInput,
   displayEmptyInputErrors,
   displayServerErrors,
-} from '../../../utils/new-post/index.js'
+} from '../../../../utils/new-post/index.js'
 
 const EditPostForm = () => {
   const { id } = useParams()

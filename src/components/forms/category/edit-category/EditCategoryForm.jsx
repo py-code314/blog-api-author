@@ -1,41 +1,42 @@
 /* -------------------- Styles -------------------- */
-import styles from './AddCategoryForm.module.css'
+import styles from './EditCategoryForm.module.css'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
-import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
+import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
 /* -------------------- Images -------------------- */
-import checkMarkIcon from '../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../assets/icons/icon-error-1.svg'
+import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
+import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Components -------------------- */
-import Button from '../../core/Button/Button.jsx'
+import Button from '../../../core/Button/Button.jsx'
 
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
-} from '../../../utils/category-tag/index.js'
+} from '../../../../utils/category-tag/index.js'
 /* -------------------- Context -------------------- */
-import { CategoryContext } from '../../../contexts/category/CategoryContext.jsx'
+import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 
-const AddCategoryForm = () => {
-  const { setIsNew } = useContext(CategoryContext)
+const EditCategoryForm = ({ categoryData }) => {
+  const { setIsEdit } = useContext(CategoryContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
 
+  const { category } = categoryData
+  const { id, name: categoryName } = category
+
   const [fetchData, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/categories/new`,
+    `http://localhost:8080/api/v1/categories/${id}/update`,
   )
 
-  // Focus input on page load
   useEffect(() => {
     if (nameRef.current) {
       nameRef.current.focus()
     }
   }, [])
 
-  // Redirect to categories after successful submission
   useEffect(() => {
     if (data?.success) {
       navigate(`/categories`)
@@ -43,7 +44,7 @@ const AddCategoryForm = () => {
   }, [data, navigate])
 
   // State variables
-  const [name, setName] = useState('')
+  const [name, setName] = useState(categoryName)
   const [validName, setValidName] = useState(null)
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -76,16 +77,15 @@ const AddCategoryForm = () => {
         setName('')
         setValidName(null)
         setErrorMsg('')
-        setIsNew(false)
+        setIsEdit(false)
       } else if (!result.validData) {
         displayServerError(result.errors, setValidName, setErrorMsg)
       }
     }
   }
 
-  // Reset state variables if user cancels action
   const handleCancel = () => {
-    setIsNew(false)
+    setIsEdit(false)
     setName('')
     setValidName(null)
     setErrorMsg('')
@@ -111,7 +111,6 @@ const AddCategoryForm = () => {
               onChange={handleNameChange}
               ref={nameRef}
             />
-            {/* Valid input  */}
             {validName && (
               <img
                 className={styles.formCheckmark}
@@ -123,7 +122,6 @@ const AddCategoryForm = () => {
               />
             )}
           </div>
-          {/* Error message  */}
           {validName === false && (
             <div className={styles.formError}>
               <img
@@ -144,12 +142,11 @@ const AddCategoryForm = () => {
           )}
         </div>
 
+        {/* Save button */}
         <div className={styles.btns}>
-          {/* Save button */}
           <Button className="saveBtn" title="Save" type="submit">
-            Submit
+            Save
           </Button>
-          {/* Cancel button  */}
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
             Cancel
           </Button>
@@ -159,4 +156,4 @@ const AddCategoryForm = () => {
   )
 }
 
-export default AddCategoryForm
+export default EditCategoryForm

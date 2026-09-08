@@ -5,7 +5,7 @@ import { useData } from '../../hooks/useData.js'
 import { useParams } from 'react-router'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
-import EditPostForm from '../../components/forms/edit-post/EditPostForm.jsx'
+import EditPostForm from '../../components/forms/post/edit-post/EditPostForm.jsx'
 /* -------------------- Images -------------------- */
 import errorIcon2 from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Context -------------------- */

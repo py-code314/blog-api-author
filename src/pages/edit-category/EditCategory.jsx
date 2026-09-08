@@ -5,7 +5,7 @@ import { useData } from '../../hooks/useData.js'
 import { useContext } from 'react'
 /* -------------------- Components -------------------- */
 import Button from '../../components/core/Button/Button.jsx'
-import EditCategoryForm from '../../components/forms/edit-category/EditCategoryForm.jsx'
+import EditCategoryForm from '../../components/forms/category/edit-category/EditCategoryForm.jsx'
 /* -------------------- Images -------------------- */
 import errorIcon3 from '../../assets/icons/icon-error-3.svg'
 /* -------------------- Context -------------------- */

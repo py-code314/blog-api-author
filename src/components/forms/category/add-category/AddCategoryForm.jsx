@@ -1,42 +1,41 @@
 /* -------------------- Styles -------------------- */
-import styles from './EditCategoryForm.module.css'
+import styles from './AddCategoryForm.module.css'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
-import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
+import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
 /* -------------------- Images -------------------- */
-import checkMarkIcon from '../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../assets/icons/icon-error-1.svg'
+import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
+import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Components -------------------- */
-import Button from '../../core/Button/Button.jsx'
+import Button from '../../../core/Button/Button.jsx'
 
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
-} from '../../../utils/category-tag/index.js'
+} from '../../../../utils/category-tag/index.js'
 /* -------------------- Context -------------------- */
-import { CategoryContext } from '../../../contexts/category/CategoryContext.jsx'
+import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 
-const EditCategoryForm = ({ categoryData }) => {
-  const { setIsEdit } = useContext(CategoryContext)
+const AddCategoryForm = () => {
+  const { setIsNew } = useContext(CategoryContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
 
-  const { category } = categoryData
-  const { id, name: categoryName } = category
-
   const [fetchData, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/categories/${id}/update`,
+    `http://localhost:8080/api/v1/categories/new`,
   )
 
+  // Focus input on page load
   useEffect(() => {
     if (nameRef.current) {
       nameRef.current.focus()
     }
   }, [])
 
+  // Redirect to categories after successful submission
   useEffect(() => {
     if (data?.success) {
       navigate(`/categories`)
@@ -44,7 +43,7 @@ const EditCategoryForm = ({ categoryData }) => {
   }, [data, navigate])
 
   // State variables
-  const [name, setName] = useState(categoryName)
+  const [name, setName] = useState('')
   const [validName, setValidName] = useState(null)
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -77,15 +76,16 @@ const EditCategoryForm = ({ categoryData }) => {
         setName('')
         setValidName(null)
         setErrorMsg('')
-        setIsEdit(false)
+        setIsNew(false)
       } else if (!result.validData) {
         displayServerError(result.errors, setValidName, setErrorMsg)
       }
     }
   }
 
+  // Reset state variables if user cancels action
   const handleCancel = () => {
-    setIsEdit(false)
+    setIsNew(false)
     setName('')
     setValidName(null)
     setErrorMsg('')
@@ -111,6 +111,7 @@ const EditCategoryForm = ({ categoryData }) => {
               onChange={handleNameChange}
               ref={nameRef}
             />
+            {/* Valid input  */}
             {validName && (
               <img
                 className={styles.formCheckmark}
@@ -122,6 +123,7 @@ const EditCategoryForm = ({ categoryData }) => {
               />
             )}
           </div>
+          {/* Error message  */}
           {validName === false && (
             <div className={styles.formError}>
               <img
@@ -142,11 +144,12 @@ const EditCategoryForm = ({ categoryData }) => {
           )}
         </div>
 
-        {/* Save button */}
         <div className={styles.btns}>
+          {/* Save button */}
           <Button className="saveBtn" title="Save" type="submit">
-            Save
+            Submit
           </Button>
+          {/* Cancel button  */}
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
             Cancel
           </Button>
@@ -156,4 +159,4 @@ const EditCategoryForm = ({ categoryData }) => {
   )
 }
 
-export default EditCategoryForm
+export default AddCategoryForm

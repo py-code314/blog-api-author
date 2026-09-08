@@ -5,9 +5,9 @@ import { useContext, useRef } from 'react'
 /* -------------------- Components -------------------- */
 import { Editor } from '@tinymce/tinymce-react'
 /* -------------------- Context -------------------- */
-import { PostFormContext } from '../../../contexts/post-form/PostFormContext'
+import { PostFormContext } from '../../../../contexts/post-form/PostFormContext'
 /* -------------------- Functions -------------------- */
-import { validateContentInput } from '../../../utils/new-post'
+import { validateContentInput } from '../../../../utils/new-post'
 
 const TextEditor = () => {
   const editorRef = useRef(null)
