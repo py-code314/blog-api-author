@@ -3,7 +3,7 @@
 import Profile from '../../components/pages/homepage/profile/Profile'
 import RecentPosts from '../../components/pages/homepage/recent-posts/RecentPosts'
 import PostsLinks from '../../components/pages/homepage/posts-links/PostsLinks'
-import { Link } from 'react-router'
+import AllStats from '../../components/pages/homepage/stats/AllStats'
 
 const Dashboard = () => {
   return (
@@ -11,8 +11,8 @@ const Dashboard = () => {
       <div className={styles.dashboard}>
         <Profile />
         <RecentPosts />
-        <PostsLinks/>
-        
+        <PostsLinks />
+        <AllStats />
       </div>
     </>
   )
