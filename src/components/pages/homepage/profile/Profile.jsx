@@ -17,6 +17,7 @@ const Profile = () => {
       </div>
     )
 
+  // TODO FIX: Fix error styles
   // Show error message upon failure to fetch the data
   if (error)
     return (

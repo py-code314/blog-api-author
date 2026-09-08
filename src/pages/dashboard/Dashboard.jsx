@@ -10,22 +10,28 @@ const Dashboard = () => {
       <div className={styles.dashboard}>
         <Profile />
         <RecentPosts />
-        <ul>
-          <li>
+        <ul className={styles.list}>
+          <li className={styles.listItem}>
             {/* Link to posts  */}
             <Link className={styles.posts} to={'/posts'}>
               All Posts
-              <span>→</span>
+              <span className={styles.rightArrow}>→</span>
             </Link>
           </li>
-          <li>
+          <li className={styles.listItem}>
             {/* Link to published posts  */}
             <Link className={styles.publishedPosts} to={'/posts/published'}>
               Published Posts
-              <span>→</span>
+              <span className={styles.rightArrow}>→</span>
             </Link>
           </li>
-          <li></li>
+          <li className={styles.listItem}>
+            {/* Link to drafts  */}
+            <Link className={styles.drafts} to={'/posts/drafts'}>
+              Drafts
+              <span className={styles.rightArrow}>→</span>
+            </Link>
+          </li>
         </ul>
       </div>
     </>
