@@ -21,7 +21,7 @@ import {
   displayServerErrors,
 } from '../../../utils/new-post/index.js'
 
-const PostForm = () => {
+const EditPostForm = () => {
   const { id } = useParams()
   const titleRef = useRef(null)
   const navigate = useNavigate()
@@ -74,11 +74,16 @@ const PostForm = () => {
   const [postData, setPostData] = useState(defaultPostData)
 
   const defaultValidFormData = {
-    title: null,
-    content: null,
+    title: true,
+    content: true,
     categories: null,
     tags: null,
     published: null,
+    // title: null,
+    // content: null,
+    // categories: null,
+    // tags: null,
+    // published: null,
   }
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
 
@@ -149,7 +154,7 @@ const PostForm = () => {
     e.preventDefault()
     // const isValid = true
     const isValid = validateForm()
-    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
+    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       const result = await fetchData(postData)
@@ -471,4 +476,4 @@ const PostForm = () => {
   )
 }
 
-export default PostForm
+export default EditPostForm
