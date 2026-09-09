@@ -1,5 +1,7 @@
+/* -------------------- Styles -------------------- */
 import styles from '../footer/Footer.module.css'
 
+/* Component to show footer */
 const Footer = () => {
   return (
     <footer className={styles.footer}>

@@ -1,19 +1,20 @@
 /* -------------------- Styles -------------------- */
 import styles from './Post.module.css'
+/* -------------------- Images -------------------- */
+import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
-import { useData } from '../../hooks/useData'
-import { useNavigate, useParams } from 'react-router'
 import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router'
+import { useData } from '../../hooks/useData'
+/* -------------------- Context -------------------- */
+import { ErrorContext } from '../../contexts/error/ErrorContext'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
 import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
-/* -------------------- Images -------------------- */
-import errorIcon from '../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
-/* -------------------- Context -------------------- */
-import { ErrorContext } from '../../contexts/error/ErrorContext'
+
 
 const Post = () => {
   const { id } = useParams()
@@ -90,9 +91,8 @@ const Post = () => {
         },
       )
 
-      // const response = new Error()
       const result = await response.json()
-      // console.log('🚀 ~ handleDeletePost ~ result:', result)
+
       if (result.success) {
         navigate('/posts')
       } else {

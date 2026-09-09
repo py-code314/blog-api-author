@@ -1,16 +1,20 @@
+/* -------------------- Styles -------------------- */
 import styles from './Navbar.module.css'
-import { NavLink } from 'react-router'
+/* -------------------- Context -------------------- */
 import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/auth/AuthContext'
+/* -------------------- Components -------------------- */
+import { NavLink } from 'react-router'
 import Button from '../../core/Button/Button'
 import SignupModal from '../../../pages/signup-modal/SignupModal'
 import LoginModal from '../../../pages/login-modal/LoginModal'
 
-/* Display Navbar */
+/* Component for navigation links */
 const NavBar = () => {
   const { token, setToken, activeModal, setActiveModal } =
     useContext(AuthContext)
 
+  // Handler functions
   const handleSignup = () => {
     setActiveModal('signup')
   }
@@ -20,9 +24,10 @@ const NavBar = () => {
   }
 
   const handleLogout = () => {
+    // Update token status
     setToken(null)
 
-    // Clear JWT
+    // Delete JWT from local storage
     localStorage.removeItem('jwtToken')
   }
 
@@ -31,6 +36,7 @@ const NavBar = () => {
       <nav className={styles.navbar}>
         {/* Navigation links */}
         <ul className={styles.navList}>
+          {/* Show nav items conditionally */}
           {token ? (
             <>
               <li className={styles.navItem}>

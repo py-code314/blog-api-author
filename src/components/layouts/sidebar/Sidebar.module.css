@@ -34,6 +34,7 @@
   color: var(--clr-white, white);
 }
 
+/* Change black icon to white */
 .activeIcon {
   -webkit-filter: invert(100%);
   filter: brightness(0) saturate(100%) invert(100%) sepia(64%) saturate(2%)

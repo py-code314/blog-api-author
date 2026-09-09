@@ -1,7 +1,5 @@
 /* -------------------- Styles -------------------- */
 import styles from './Sidebar.module.css'
-/* -------------------- Components -------------------- */
-import { NavLink } from 'react-router'
 /* -------------------- Images -------------------- */
 import createIcon from '../../../assets/icons/icon-create.svg'
 import blogsIcon from '../../../assets/icons/icon-blogs.svg'
@@ -10,7 +8,10 @@ import tagsIcon from '../../../assets/icons/icon-tags.svg'
 import profileIcon from '../../../assets/icons/icon-profile-1.svg'
 import settingsIcon from '../../../assets/icons/icon-settings.svg'
 import helpIcon from '../../../assets/icons/icon-help.svg'
+/* -------------------- Components -------------------- */
+import { NavLink } from 'react-router'
 
+/* Component to show sidebar */
 const Sidebar = () => {
   return (
     <>
@@ -20,7 +21,8 @@ const Sidebar = () => {
           <ul className={styles.navList}>
 
             <li className={styles.navItem}>
-              {/* Add post link  */}
+              {/* Link to show 'add post form'  */}
+              {/* Use 'NavLink' to apply active styles to the link */}
               <NavLink
                 className={({ isActive }) =>
                   `${styles.navLink} ${isActive ? styles.activeLink : ''}`
@@ -28,6 +30,7 @@ const Sidebar = () => {
                 to={'/new-post'}>
                 {({ isActive }) => (
                   <>
+                    {/* Apply active styles to icon too if the link is clicked */}
                     <img
                       className={`${isActive ? styles.activeIcon : ''}`}
                       src={createIcon}
@@ -42,7 +45,7 @@ const Sidebar = () => {
             </li>
 
             <li className={styles.navItem}>
-            {/* Posts link  */}
+            {/* Link to show all posts  */}
               <NavLink
                 className={({ isActive }) =>
                   `${styles.navLink} ${isActive ? styles.activeLink : ''}`
@@ -108,6 +111,7 @@ const Sidebar = () => {
             </li>
           </ul>
           
+          {/* Placeholder links */}
           <ul className={styles.navList}>
             <li className={`${styles.navItem} ${styles.inactiveLink}`}>
               <img
