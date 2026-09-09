@@ -1,29 +1,30 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditTagForm.module.css'
+/* -------------------- Images -------------------- */
+import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
+import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
 import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
-/* -------------------- Images -------------------- */
-import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Context -------------------- */
+import { TagContext } from '../../../../contexts/tag/TagContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../../core/Button/Button.jsx'
-
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
 } from '../../../../utils/category-tag/index.js'
-/* -------------------- Context -------------------- */
-import { TagContext } from '../../../../contexts/tag/TagContext.jsx'
 
+/* Component to display 'edit tag form' */
 const EditTagForm = ({ tagData }) => {
-  const { setIsEdit } = useContext(TagContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
+  const { setIsEdit } = useContext(TagContext)
 
+  // Destructure props
   const { tag } = tagData
   const { id, name: tagName } = tag
 
@@ -31,29 +32,33 @@ const EditTagForm = ({ tagData }) => {
     `http://localhost:8080/api/v1/tags/${id}/update`,
   )
 
+  // State variables
+  const [name, setName] = useState(tagName)
+  const [validName, setValidName] = useState(null)
+  const [errorMsg, setErrorMsg] = useState('')
+
+  // Focus form after page load
   useEffect(() => {
     if (nameRef.current) {
       nameRef.current.focus()
     }
   }, [])
 
+  // Redirect to tags page after successful submission
   useEffect(() => {
     if (data?.success) {
       navigate(`/tags`)
     }
   }, [data, navigate])
 
-  // State variables
-  const [name, setName] = useState(tagName)
-  const [validName, setValidName] = useState(null)
-  const [errorMsg, setErrorMsg] = useState('')
-
+  // Handler for name input
   const handleNameChange = (e) => {
     const name = e.target.value
     setName(name)
     validateNameInput(name, setValidName, setErrorMsg)
   }
 
+  // Handlers to validate and submit form
   const validateForm = () => {
     displayEmptyInputError(name, setValidName, setErrorMsg)
 
@@ -66,14 +71,13 @@ const EditTagForm = ({ tagData }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // const isValid = true
     const isValid = validateForm()
 
     if (isValid) {
       const result = await fetchData({ name })
-      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
+        // Reset state after successful submission
         setName('')
         setValidName(null)
         setErrorMsg('')
@@ -84,6 +88,7 @@ const EditTagForm = ({ tagData }) => {
     }
   }
 
+  // Reset state if user cancels editing
   const handleCancel = () => {
     setIsEdit(false)
     setName('')
@@ -142,7 +147,7 @@ const EditTagForm = ({ tagData }) => {
           )}
         </div>
 
-        {/* Save button */}
+        {/* Buttons */}
         <div className={styles.btns}>
           <Button className="saveBtn" title="Save" type="submit">
             Save

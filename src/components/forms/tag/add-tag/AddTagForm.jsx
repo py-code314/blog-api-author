@@ -1,32 +1,38 @@
 /* -------------------- Styles -------------------- */
 import styles from './AddTagForm.module.css'
+/* -------------------- Images -------------------- */
+import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
+import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
 import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { useNavigate } from 'react-router'
-/* -------------------- Images -------------------- */
-import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
-import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Context -------------------- */
+import { TagContext } from '../../../../contexts/tag/TagContext'
 /* -------------------- Components -------------------- */
 import Button from '../../../core/Button/Button.jsx'
-
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
 } from '../../../../utils/category-tag/index.js'
-/* -------------------- Context -------------------- */
-import { TagContext } from '../../../../contexts/tag/TagContext'
 
+/* Component to display 'add tag form' */
 const AddTagForm = () => {
-  const { setIsNew } = useContext(TagContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
+  const { setIsNew } = useContext(TagContext)
 
+  // Get data and form submit function from custom hook
   const [fetchData, data] = useSubmitForm(
     `http://localhost:8080/api/v1/tags/new`,
   )
+
+  // State variables
+  const [name, setName] = useState('')
+  const [validName, setValidName] = useState(null)
+  const [errorMsg, setErrorMsg] = useState('')
 
   // Focus input on page load
   useEffect(() => {
@@ -42,17 +48,14 @@ const AddTagForm = () => {
     }
   }, [data, navigate])
 
-  // State variables
-  const [name, setName] = useState('')
-  const [validName, setValidName] = useState(null)
-  const [errorMsg, setErrorMsg] = useState('')
-
+  // Handler for tag name
   const handleNameChange = (e) => {
     const name = e.target.value
     setName(name)
     validateNameInput(name, setValidName, setErrorMsg)
   }
 
+  // Handlers for validating and submitting the form
   const validateForm = () => {
     displayEmptyInputError(name, setValidName, setErrorMsg)
 
@@ -65,14 +68,13 @@ const AddTagForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // const isValid = true
     const isValid = validateForm()
 
     if (isValid) {
       const result = await fetchData({ name })
-      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
+        // Reset state after successful submission
         setName('')
         setValidName(null)
         setErrorMsg('')
@@ -83,7 +85,7 @@ const AddTagForm = () => {
     }
   }
 
-  // Reset state variables if user cancels action
+  // Reset state if user cancels adding a new tag
   const handleCancel = () => {
     setIsNew(false)
     setName('')
@@ -144,12 +146,11 @@ const AddTagForm = () => {
           )}
         </div>
 
+        {/* Buttons  */}
         <div className={styles.btns}>
-          {/* Save button */}
           <Button className="saveBtn" title="Save" type="submit">
             Submit
           </Button>
-          {/* Cancel button  */}
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
             Cancel
           </Button>

@@ -2,22 +2,24 @@
 import styles from './TextEditor.module.css'
 /* -------------------- Hooks -------------------- */
 import { useContext, useRef } from 'react'
-/* -------------------- Components -------------------- */
-import { Editor } from '@tinymce/tinymce-react'
 /* -------------------- Context -------------------- */
 import { PostFormContext } from '../../../../contexts/post-form/PostFormContext'
+/* -------------------- Components -------------------- */
+import { Editor } from '@tinymce/tinymce-react'
 /* -------------------- Functions -------------------- */
 import { validateContentInput } from '../../../../utils/new-post'
 
+/* Component for post content */
 const TextEditor = () => {
   const editorRef = useRef(null)
   const { postData, setPostData, setValidFormData, setErrorMsgs } =
     useContext(PostFormContext)
-  
+  // API key for TinyMCE
   const apiKey = import.meta.env.VITE_TINY_MCE_API_KEY
 
+  // Handler for content input
   // eslint-disable-next-line no-unused-vars
-  const handleEditorChange = (content, editor) => {
+  const handleEditorChange = (content, _editor) => {
     setPostData((prevPostData) => ({ ...prevPostData, content }))
 
     validateContentInput(content, setValidFormData, setErrorMsgs)
@@ -26,13 +28,13 @@ const TextEditor = () => {
   return (
     <>
       <div className={styles.formInput}>
+        {/* Post content  */}
         <Editor
           id="content"
           apiKey={apiKey}
           onInit={(_evt, editor) => (editorRef.current = editor)}
           init={{
             height: 500,
-            // width: 1000,
             menubar: false,
             plugins: [
               'accordion',
