@@ -11,7 +11,7 @@ import { ErrorContext } from '../../contexts/error/ErrorContext'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
-import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
+import ErrorMessage from '../../components/core/error/ErrorMessage'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
 

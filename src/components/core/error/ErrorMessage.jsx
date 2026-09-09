@@ -1,16 +1,19 @@
 /* -------------------- Styles -------------------- */
 import styles from './ErrorMessage.module.css'
 /* -------------------- Images -------------------- */
-import errorIcon from '../../../../assets/icons/icon-error-2.svg'
-/* -------------------- Context -------------------- */
-import { ErrorContext } from '../../../../contexts/error/ErrorContext'
+import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
 import { useContext } from 'react'
-import Button from '../../../core/Button/Button'
+import Button from '../../core/Button/Button'
+/* -------------------- Context -------------------- */
+import { ErrorContext } from '../../../contexts/error/ErrorContext'
 
+/* Component to display error message when deleting a post or category
+or tag fails */
 const ErrorMessage = () => {
   const { deleteError, handleDismiss } = useContext(ErrorContext)
-  const {code, title, msg} = deleteError
+  const { code, title, msg } = deleteError
+  
   return (
     <>
       <div className={styles.errorWrapper}>

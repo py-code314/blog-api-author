@@ -1,9 +1,9 @@
 /* -------------------- Styles -------------------- */
 import styles from './RecentPosts.module.css'
 /* -------------------- Hooks -------------------- */
-import { useData } from '../../../../hooks/useData.js'
+import { useData } from '../../../../../hooks/useData.js'
 /* -------------------- Images -------------------- */
-import errorIcon from '../../../../assets/icons/icon-error-2.svg'
+import errorIcon from '../../../../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
 /* -------------------- Components -------------------- */

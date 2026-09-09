@@ -6,7 +6,7 @@ import { useState } from 'react'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 import Button from '../../components/core/Button/Button'
-import ErrorMessage from '../../components/pages/homepage/error/ErrorMessage'
+import ErrorMessage from '../../components/core/error/ErrorMessage'
 import EditCategory from '../edit-category/EditCategory'
 import AddCategoryForm from '../../components/forms/category/add-category/AddCategoryForm'
 /* -------------------- Icons -------------------- */

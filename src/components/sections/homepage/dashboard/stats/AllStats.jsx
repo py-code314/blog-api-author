@@ -1,9 +1,9 @@
 /* -------------------- Styles -------------------- */
 import styles from './AllStats.module.css'
 /* -------------------- Hooks -------------------- */
-import { useData } from '../../../../hooks/useData'
+import { useData } from '../../../../../hooks/useData'
 /* -------------------- Icons -------------------- */
-import errorIcon from '../../../../assets/icons/icon-error-2.svg'
+import errorIcon from '../../../../../assets/icons/icon-error-2.svg'
 
 const AllStats = () => {
   // Get all stats

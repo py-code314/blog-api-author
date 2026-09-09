@@ -1,7 +1,7 @@
 import styles from './Profile.module.css'
-import { useData } from '../../../../hooks/useData.js'
-import profileIcon from '../../../../assets/icons/icon-profile-2.svg'
-import errorIcon from '../../../../assets/icons/icon-error-2.svg'
+import {useData} from '../../../../../hooks/useData.js'
+import profileIcon from '../../../../../assets/icons/icon-profile-2.svg'
+import errorIcon from '../../../../../assets/icons/icon-error-2.svg'
 
 const Profile = () => {
   // Get own profile data
