@@ -1,59 +1,65 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditCategoryForm.module.css'
-/* -------------------- Hooks -------------------- */
-import { useState, useRef, useEffect, useContext } from 'react'
-import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
-import { useNavigate } from 'react-router'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Hooks -------------------- */
+import { useState, useRef, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router'
+import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
+/* -------------------- Context -------------------- */
+import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../../core/Button/Button.jsx'
-
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
 } from '../../../../utils/category-tag/index.js'
-/* -------------------- Context -------------------- */
-import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 
+/* Component to display 'edit category form' */
 const EditCategoryForm = ({ categoryData }) => {
-  const { setIsEdit } = useContext(CategoryContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
+  const { setIsEdit } = useContext(CategoryContext)
 
+  // Destructure props
   const { category } = categoryData
   const { id, name: categoryName } = category
 
+  // Get data and form submit function
   const [fetchData, data] = useSubmitForm(
     `http://localhost:8080/api/v1/categories/${id}/update`,
   )
-
-  useEffect(() => {
-    if (nameRef.current) {
-      nameRef.current.focus()
-    }
-  }, [])
-
-  useEffect(() => {
-    if (data?.success) {
-      navigate(`/categories`)
-    }
-  }, [data, navigate])
 
   // State variables
   const [name, setName] = useState(categoryName)
   const [validName, setValidName] = useState(null)
   const [errorMsg, setErrorMsg] = useState('')
 
+  // Focus name input on page load
+  useEffect(() => {
+    if (nameRef.current) {
+      nameRef.current.focus()
+    }
+  }, [])
+
+  // Redirect to categories after successful edit
+  useEffect(() => {
+    if (data?.success) {
+      navigate(`/categories`)
+    }
+  }, [data, navigate])
+
+  // Name input handler
   const handleNameChange = (e) => {
     const name = e.target.value
     setName(name)
     validateNameInput(name, setValidName, setErrorMsg)
   }
 
+  // Form submission handlers
   const validateForm = () => {
     displayEmptyInputError(name, setValidName, setErrorMsg)
 
@@ -66,14 +72,13 @@ const EditCategoryForm = ({ categoryData }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // const isValid = true
     const isValid = validateForm()
 
     if (isValid) {
       const result = await fetchData({ name })
-      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
+        // Reset state if there are no errors
         setName('')
         setValidName(null)
         setErrorMsg('')
@@ -84,6 +89,7 @@ const EditCategoryForm = ({ categoryData }) => {
     }
   }
 
+  // Reset state if user cancels editing category
   const handleCancel = () => {
     setIsEdit(false)
     setName('')
@@ -94,7 +100,7 @@ const EditCategoryForm = ({ categoryData }) => {
   return (
     <>
       <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
-        {/* Name  */}
+        {/* Name */}
         <div className={styles.formControl}>
           <label htmlFor="name" className={styles.formLabel}>
             Name (required)
@@ -142,7 +148,7 @@ const EditCategoryForm = ({ categoryData }) => {
           )}
         </div>
 
-        {/* Save button */}
+        {/* Buttons */}
         <div className={styles.btns}>
           <Button className="saveBtn" title="Save" type="submit">
             Save

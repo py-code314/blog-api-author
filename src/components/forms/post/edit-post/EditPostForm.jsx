@@ -1,19 +1,18 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditPostForm.module.css'
-/* -------------------- Hooks -------------------- */
-import { useState, useRef, useEffect, useContext } from 'react'
-import { useData } from '../../../../hooks/useData.js'
-import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
-import { useNavigate, useParams } from 'react-router'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Hooks -------------------- */
+import { useState, useRef, useEffect, useContext } from 'react'
+import { useNavigate, useParams } from 'react-router'
+import { useData } from '../../../../hooks/useData.js'
+import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 /* -------------------- Context -------------------- */
 import { PostContext } from '../../../../contexts/post/PostContext.jsx'
 import { PostFormContext } from '../../../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../../core/Button/Button.jsx'
-// import TextEditor from '../post/post-content/TextEditor.js'
 import TextEditor from '../post-content/TextEditor.jsx'
 /* -------------------- Functions -------------------- */
 import {
@@ -22,12 +21,18 @@ import {
   displayServerErrors,
 } from '../../../../utils/new-post/index.js'
 
+/* Component to edit a post */
 const EditPostForm = () => {
   const { id } = useParams()
   const titleRef = useRef(null)
   const navigate = useNavigate()
-
   const { currentPostData } = useContext(PostContext)
+
+  // Destructure data
+  const { post } = currentPostData
+  const { categories, title, content, published, tags } = post
+  const categoryIds = categories.map((category) => category.id)
+  const tagIds = tags.map((tag) => tag.id)
 
   // Get all categories
   const {
@@ -46,23 +51,6 @@ const EditPostForm = () => {
   const [fetchData, status, data] = useSubmitForm(
     `http://localhost:8080/api/v1/posts/${id}/update`,
   )
-
-  useEffect(() => {
-    if (titleRef.current) {
-      titleRef.current.focus()
-    }
-  }, [])
-
-  useEffect(() => {
-    if (data?.success) {
-      navigate(`/posts/${id}`)
-    }
-  }, [status, data, navigate, id])
-
-  const { post } = currentPostData
-  const { categories, title, content, published, tags } = post
-  const categoryIds = categories.map((category) => category.id)
-  const tagIds = tags.map((tag) => tag.id)
 
   // State variables
   const defaultPostData = {
@@ -91,6 +79,18 @@ const EditPostForm = () => {
     published: '',
   }
   const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
+
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.focus()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (data?.success) {
+      navigate(`/posts/${id}`)
+    }
+  }, [status, data, navigate, id])
 
   const handleTitleChange = (e) => {
     const title = e.target.value
@@ -149,11 +149,9 @@ const EditPostForm = () => {
     e.preventDefault()
     // const isValid = true
     const isValid = validateForm()
-    console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       const result = await fetchData(postData)
-      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
         setPostData({
@@ -220,7 +218,6 @@ const EditPostForm = () => {
             </div>
           )}
         </div>
-
         {/* Content  */}
         <div className={styles.formControl}>
           <label htmlFor="content" className={styles.formLabel}>
@@ -234,6 +231,7 @@ const EditPostForm = () => {
                 setValidFormData,
                 setErrorMsgs,
               }}>
+              {/* Use TinyMCE text editor for content */}
               <TextEditor />
             </PostFormContext>
             {validFormData.content && (
@@ -266,7 +264,6 @@ const EditPostForm = () => {
             </div>
           )}
         </div>
-
         {/* Categories  */}
         {loadingCategories ? (
           <div className={styles.loaderWrapper}>
@@ -329,7 +326,6 @@ const EditPostForm = () => {
             )}
           </div>
         )}
-
         {/* Tags  */}
         {loadingTags ? (
           <div className={styles.loaderWrapper}>
@@ -392,7 +388,6 @@ const EditPostForm = () => {
             )}
           </div>
         )}
-
         {/* Published status */}
         <div className={styles.formControl}>
           <p className={styles.formLabel}>
@@ -455,7 +450,6 @@ const EditPostForm = () => {
             </div>
           )}
         </div>
-
         {/* Publish/Save button */}
         <Button className="publishBtn" title="Publish/Save" type="submit">
           {status === 'fetching'
@@ -466,6 +460,7 @@ const EditPostForm = () => {
               ? 'Publish'
               : 'Save'}
         </Button>
+        // TODO: Add Cancel button
       </form>
     </>
   )
