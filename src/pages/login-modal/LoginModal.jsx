@@ -1,6 +1,7 @@
 import styles from './LoginModal.module.css'
 import { useContext, useState } from 'react'
-import Modal from '../../components/layouts/modal/Modal'
+// import Modal from '../../components/layouts/modal/Modal'
+import Modal from '../../components/core/modal/Modal'
 import LoginForm from '../login-form/LoginForm'
 import { AuthContext } from '../../contexts/auth/AuthContext'
 import { LoginModalContext } from '../../contexts/login-modal/LoginModalContext'

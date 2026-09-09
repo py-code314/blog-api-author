@@ -17,7 +17,7 @@ import {
 /* -------------------- Context -------------------- */
 import { PostFormContext } from '../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
-import Button from '../../components/core/Button/Button.jsx'
+import Button from '../../components/core/button/Button.jsx'
 // import TextEditor from '../../components/forms/post-content/TextEditor.jsx'
 import TextEditor from '../../components/forms/post/post-content/TextEditor.jsx'
 

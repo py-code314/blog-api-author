@@ -1,23 +1,29 @@
+/* -------------------- Styles -------------------- */
 import styles from './Modal.module.css'
+/* -------------------- Hooks -------------------- */
 import { useRef, useEffect, useContext } from 'react'
+/* -------------------- Context -------------------- */
 import { AuthContext } from '../../../contexts/auth/AuthContext'
 import { SignupModalContext } from '../../../contexts/signup-modal/SignupModalContext'
 import { LoginModalContext } from '../../../contexts/login-modal/LoginModalContext'
-import Button from '../../core/Button/Button'
+/* -------------------- Components -------------------- */
+import Button from '../button/Button'
 
+/* Component to show dialog modal */
 const Modal = ({ children }) => {
   const modalRef = useRef(null)
   const { activeModal } = useContext(AuthContext)
   const { handleSignupClose } = useContext(SignupModalContext)
-  const {handleLoginClose} = useContext(LoginModalContext)
+  const { handleLoginClose } = useContext(LoginModalContext)
+
+  // Computed variables
   const isModalOpen = activeModal === 'signup' || activeModal === 'login'
 
+  // Show and close modal based on 'isModalOpen' value
   useEffect(() => {
-    // Grab a reference to the modal
     const modal = modalRef.current
     if (!modal) return
 
-    // Open modal when 'isOpen' changes to true
     if (isModalOpen) {
       modal.showModal()
     } else {
@@ -25,7 +31,7 @@ const Modal = ({ children }) => {
     }
   }, [isModalOpen])
 
-  // Update 'isOpen' when Esc key pressed
+  // Close modal when Esc key is pressed
   const handleEscKeyDown = (e) => {
     if (e.key === 'Escape') {
       if (activeModal === 'signup') {
@@ -36,6 +42,7 @@ const Modal = ({ children }) => {
     }
   }
 
+  // Close modal when Close button is clicked
   const handleCloseBtn = () => {
     if (activeModal === 'signup') {
       handleSignupClose()
@@ -49,6 +56,7 @@ const Modal = ({ children }) => {
       className={styles.modal}
       ref={modalRef}
       onKeyDown={handleEscKeyDown}>
+      {/* Close button */}
       <Button
         className="btnCloseModal"
         title="Close modal"

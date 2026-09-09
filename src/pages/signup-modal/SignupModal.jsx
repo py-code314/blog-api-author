@@ -1,6 +1,7 @@
 import styles from './SignupModal.module.css'
 import { useContext, useState } from 'react'
-import Modal from '../../components/layouts/modal/Modal'
+// import Modal from '../../components/layouts/modal/Modal'
+import Modal from '../../components/core/modal/Modal'
 import SignupForm from '../signup-form/SignupForm'
 import { AuthContext } from '../../contexts/auth/AuthContext'
 import { SignupModalContext } from '../../contexts/signup-modal/SignupModalContext'

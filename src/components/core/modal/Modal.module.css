@@ -4,9 +4,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
-  /* padding: var(--space-32, 2rem);
-  padding-block-start: var(--space-48, 3rem); */
+  
   background: var(--clr-white, white);
   width: var(--space-700, 43.75rem);
   max-width: var(--space-700, 43.75rem);
