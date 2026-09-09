@@ -10,19 +10,15 @@
   border-radius: var(--radius-small, 0.3125rem);
 }
 
-.posts,
-.publishedPosts,
-.drafts {
-   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
+.link {
+  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-8, 0.5rem);
 }
 
-.posts:hover,
-.publishedPosts:hover,
-.drafts:hover {
+.link:hover {
   background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
   font-weight: var(--fw-bold, 700);

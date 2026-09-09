@@ -1,16 +1,16 @@
 /* -------------------- Styles -------------------- */
 import styles from './AllStats.module.css'
-/* -------------------- Hooks -------------------- */
-import { useData } from '../../../../../hooks/useData'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../../../../assets/icons/icon-error-2.svg'
+/* -------------------- Hooks -------------------- */
+import { useData } from '../../../../../hooks/useData'
 
+/* Component to show stats */
 const AllStats = () => {
   // Get all stats
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/stats/all',
   )
-  // console.log("🚀 ~ AllPosts ~ data:", data)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -45,11 +45,13 @@ const AllStats = () => {
     categoriesTotal,
     tagsTotal,
   } = data
+
   return (
     <>
       <div className={styles.stats}>
         <h2 className={styles.subTitle}>Stats</h2>
 
+        {/* Stats  */}
         <ul className={styles.list}>
           <li>
             <strong>Total Posts: </strong>

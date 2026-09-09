@@ -1,8 +1,12 @@
+/* -------------------- Styles -------------------- */
 import styles from './Profile.module.css'
-import {useData} from '../../../../../hooks/useData.js'
+/* -------------------- Images -------------------- */
 import profileIcon from '../../../../../assets/icons/icon-profile-2.svg'
 import errorIcon from '../../../../../assets/icons/icon-error-2.svg'
+/* -------------------- Hooks -------------------- */
+import { useData } from '../../../../../hooks/useData.js'
 
+/* Component to show profile */
 const Profile = () => {
   // Get own profile data
   const { data, isLoading, error } = useData(
@@ -47,6 +51,7 @@ const Profile = () => {
       </div>
     )
 
+  // Destructure data
   const { profile } = data
   const { bio, user } = profile
 
@@ -55,6 +60,7 @@ const Profile = () => {
       <div className={styles.profile}>
         <h2 className={styles.subtitle}>Welcome {user.name || user.email}</h2>
         <div className={styles.profileWrapper}>
+          {/* Profile image  */}
           <div className={styles.imageContainer}>
             <img
               className={styles.profileIcon}
@@ -64,6 +70,7 @@ const Profile = () => {
               height={128}
             />
           </div>
+          {/* Profile info  */}
           <div className={styles.details}>
             <p>
               <strong>Name: </strong>

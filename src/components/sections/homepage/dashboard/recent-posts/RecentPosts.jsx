@@ -1,14 +1,15 @@
 /* -------------------- Styles -------------------- */
 import styles from './RecentPosts.module.css'
-/* -------------------- Hooks -------------------- */
-import { useData } from '../../../../../hooks/useData.js'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../../../assets/icons/icon-error-2.svg'
-/* -------------------- Functions -------------------- */
-import parse from 'html-react-parser'
+/* -------------------- Hooks -------------------- */
+import { useData } from '../../../../../hooks/useData.js'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
+/* -------------------- Functions -------------------- */
+import parse from 'html-react-parser'
 
+/* Show previews of recent posts */
 const RecentPosts = () => {
   // Get posts data
   const { data, isLoading, error } = useData(
@@ -46,7 +47,6 @@ const RecentPosts = () => {
     <>
       <div className={styles.recentPosts}>
         <h2 className={styles.subTitle}>Recent Posts</h2>
-        {/* Loop through and display posts */}
         <ul className={styles.list}>
           {posts?.length > 0 &&
             posts.map((post) => (
