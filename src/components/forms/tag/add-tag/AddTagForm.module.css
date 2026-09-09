@@ -47,6 +47,7 @@
 .formErrorMsg {
   color: var(--clr-red, red);
   font-size: var(--fs-16, 1rem);
+  font-style: italic;
 }
 
 .btns {

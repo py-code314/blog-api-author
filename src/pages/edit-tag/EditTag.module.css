@@ -61,4 +61,5 @@
 .errorContent {
   font-size: var(--fs-18, 1.125rem);
   color: var(--clr-red, red);
+  font-style: italic;
 }

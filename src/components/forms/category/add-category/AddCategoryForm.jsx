@@ -1,32 +1,38 @@
 /* -------------------- Styles -------------------- */
 import styles from './AddCategoryForm.module.css'
-/* -------------------- Hooks -------------------- */
-import { useState, useRef, useEffect, useContext } from 'react'
-import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
-import { useNavigate } from 'react-router'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Hooks -------------------- */
+import { useState, useRef, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router'
+import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
+/* -------------------- Context -------------------- */
+import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 /* -------------------- Components -------------------- */
 import Button from '../../../core/Button/Button.jsx'
-
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
   displayEmptyInputError,
   displayServerError,
 } from '../../../../utils/category-tag/index.js'
-/* -------------------- Context -------------------- */
-import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 
+/* Component to display 'add category form'  */
 const AddCategoryForm = () => {
-  const { setIsNew } = useContext(CategoryContext)
   const nameRef = useRef(null)
   const navigate = useNavigate()
+  const { setIsNew } = useContext(CategoryContext)
 
+  // Get data and submit function from the hook
   const [fetchData, data] = useSubmitForm(
     `http://localhost:8080/api/v1/categories/new`,
   )
+
+  // State variables
+  const [name, setName] = useState('')
+  const [validName, setValidName] = useState(null)
+  const [errorMsg, setErrorMsg] = useState('')
 
   // Focus input on page load
   useEffect(() => {
@@ -42,17 +48,14 @@ const AddCategoryForm = () => {
     }
   }, [data, navigate])
 
-  // State variables
-  const [name, setName] = useState('')
-  const [validName, setValidName] = useState(null)
-  const [errorMsg, setErrorMsg] = useState('')
-
+  // Input handler function
   const handleNameChange = (e) => {
     const name = e.target.value
     setName(name)
     validateNameInput(name, setValidName, setErrorMsg)
   }
 
+  // Form submission handler functions
   const validateForm = () => {
     displayEmptyInputError(name, setValidName, setErrorMsg)
 
@@ -65,14 +68,13 @@ const AddCategoryForm = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // const isValid = true
     const isValid = validateForm()
 
     if (isValid) {
       const result = await fetchData({ name })
-      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
+        // Reset state if there are no errors
         setName('')
         setValidName(null)
         setErrorMsg('')
@@ -83,7 +85,7 @@ const AddCategoryForm = () => {
     }
   }
 
-  // Reset state variables if user cancels action
+  // Reset state if user cancels adding a new category
   const handleCancel = () => {
     setIsNew(false)
     setName('')
@@ -111,7 +113,7 @@ const AddCategoryForm = () => {
               onChange={handleNameChange}
               ref={nameRef}
             />
-            {/* Valid input  */}
+            {/* Show checkmark if input is valid */}
             {validName && (
               <img
                 className={styles.formCheckmark}
@@ -123,6 +125,7 @@ const AddCategoryForm = () => {
               />
             )}
           </div>
+
           {/* Error message  */}
           {validName === false && (
             <div className={styles.formError}>
@@ -144,12 +147,12 @@ const AddCategoryForm = () => {
           )}
         </div>
 
+        {/* Buttons */}
         <div className={styles.btns}>
-          {/* Save button */}
           <Button className="saveBtn" title="Save" type="submit">
             Submit
           </Button>
-          {/* Cancel button  */}
+
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
             Cancel
           </Button>

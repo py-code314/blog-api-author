@@ -47,6 +47,7 @@
 
 .formErrorMsg {
   color: var(--clr-red, red);
+  font-style: italic;
 }
 
 .formSelect {

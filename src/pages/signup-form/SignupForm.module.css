@@ -1,5 +1,6 @@
 .signupError {
   color: var(--clr-red, red);
+  font-style: italic;
   margin-block-end: var(--space-6, 0.375rem);
 }
 
@@ -47,4 +48,5 @@
 
 .formErrorMsg {
   color: var(--clr-red, red);
+  font-style: italic;
 }
