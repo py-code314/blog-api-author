@@ -1,9 +1,13 @@
+/* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 
+/* Hook for submitting a form */
 export const useSubmitForm = (url) => {
+  // State variables
   const [status, setStatus] = useState('idle')
   const [data, setData] = useState(null)
 
+  // Fetch data
   const fetchData = async (formData) => {
     setStatus('fetching')
     setData(null)
@@ -21,7 +25,6 @@ export const useSubmitForm = (url) => {
       })
 
       const responseData = await response.json()
-      // console.log("🚀 ~ fetchData ~ responseData:", responseData)
 
       setData(responseData)
       setStatus('fetched')
@@ -33,6 +36,7 @@ export const useSubmitForm = (url) => {
       return null
     }
   }
-
+  
+  // Return the function that actually submits form data
   return [fetchData, status, data]
 }

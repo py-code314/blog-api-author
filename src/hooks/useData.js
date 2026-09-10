@@ -1,3 +1,4 @@
+/* -------------------- Hooks -------------------- */
 import { useState, useEffect } from 'react'
 
 /* Hook to fetch data from a given URL */
@@ -37,7 +38,6 @@ export const useData = (url, options = {}) => {
         }
 
         let data = await response.json()
-        // console.log('🚀 ~ fetchData ~ data:', data)
 
         setData(data)
         setError(false)
