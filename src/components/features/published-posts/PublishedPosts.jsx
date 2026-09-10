@@ -1,20 +1,20 @@
 /* -------------------- Styles -------------------- */
 import styles from './PublishedPosts.module.css'
+/* -------------------- Images -------------------- */
+import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../../hooks/useData'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
-/* -------------------- Icons -------------------- */
-import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
 
+/* Display all published posts */
 const PublishedPosts = () => {
-  // Get all posts
+  // Get all published posts
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/posts/me/published',
   )
-  // console.log("🚀 ~ PublishedPosts ~ data:", data)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -49,9 +49,11 @@ const PublishedPosts = () => {
     <>
       <div className={styles.publishedPosts}>
         <title>Scriblr | Published Posts</title>
+        {/* Link to Home  */}
         <Link className={styles.homeLink} to={'/'}>
           <span className={styles.leftArrow}>←</span>Home
         </Link>
+        
         <h2 className={styles.subTitle}>Published Posts</h2>
 
         <ul className={styles.list}>

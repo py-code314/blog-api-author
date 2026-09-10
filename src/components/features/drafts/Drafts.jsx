@@ -1,11 +1,11 @@
 /* -------------------- Styles -------------------- */
 import styles from './Drafts.module.css'
+/* -------------------- Images -------------------- */
+import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
 import {useData} from '../../../hooks/useData.js'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
-/* -------------------- Icons -------------------- */
-import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
 
@@ -14,7 +14,6 @@ const Drafts = () => {
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/posts/me/drafts',
   )
-  // console.log("🚀 ~ Drafts ~ data:", data)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -40,6 +39,7 @@ const Drafts = () => {
             <p>Error retrieving posts. Please try again later.</p>
           </div>
         </div>
+        {/* Link to home  */}
         <Link className={styles.homeLink} to={'/'}>
           Back to Home
         </Link>
@@ -49,6 +49,7 @@ const Drafts = () => {
     <>
       <div className={styles.drafts}>
         <title>Scriblr | Drafts</title>
+        {/* Link to home  */}
         <Link className={styles.homeLink} to={'/'}>
           <span className={styles.leftArrow}>←</span>Home
         </Link>

@@ -1,24 +1,24 @@
 /* -------------------- Styles -------------------- */
 import styles from './NewPost.module.css'
-/* -------------------- Hooks -------------------- */
-import { useState, useRef, useEffect } from 'react'
-import { useData } from '../../../hooks/useData'
-import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
-import { useNavigate } from 'react-router'
-/* -------------------- Icons -------------------- */
+/* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../assets/icons/icon-error-1.svg'
+/* -------------------- Hooks -------------------- */
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import { useData } from '../../../hooks/useData'
+import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
+/* -------------------- Context -------------------- */
+import { PostFormContext } from '../../../contexts/post-form/PostFormContext.jsx'
+/* -------------------- Components -------------------- */
+import Button from '../../../components/core/button/Button.jsx'
+import TextEditor from '../../../components/forms/post/post-content/TextEditor.jsx'
 /* -------------------- Functions -------------------- */
 import {
   validateTitleInput,
   displayEmptyInputErrors,
   displayServerErrors,
 } from '../../../utils/new-post/index.js'
-/* -------------------- Context -------------------- */
-import { PostFormContext } from '../../../contexts/post-form/PostFormContext.jsx'
-/* -------------------- Components -------------------- */
-import Button from '../../../components/core/button/Button.jsx'
-import TextEditor from '../../../components/forms/post/post-content/TextEditor.jsx'
 
 const NewPost = () => {
   const titleRef = useRef(null)
@@ -38,11 +38,10 @@ const NewPost = () => {
     error: tagsError,
   } = useData('http://localhost:8080/api/v1/tags/all')
 
+  // Get form submit function and data
   const [fetchData, status, data] = useSubmitForm(
     'http://localhost:8080/api/v1/posts/new',
   )
-  // console.log('🚀 ~ NewPost ~ data:', data)
-  // console.log('🚀 ~ NewPost ~ status:', status)
 
   // State variables
   const defaultPostData = {
@@ -72,18 +71,21 @@ const NewPost = () => {
   }
   const [errorMsgs, setErrorMsgs] = useState(defaultErrorMsgs)
 
+  // Focus on title input
   useEffect(() => {
     if (titleRef.current) {
       titleRef.current.focus()
     }
   }, [])
 
+  // Redirect to posts after successful submission
   useEffect(() => {
     if (data?.success) {
       navigate('/posts')
     }
   }, [status, data, navigate])
 
+  // Handler functions for form inputs
   const handleTitleChange = (e) => {
     const title = e.target.value
 
@@ -110,7 +112,7 @@ const NewPost = () => {
     const options = [...e.target.selectedOptions]
     const values = options.map((option) => option.value)
 
-    // Update categories with category ids
+    // Update categories with tag ids
     setPostData((prevPostData) => ({
       ...prevPostData,
       tags: values,
@@ -120,7 +122,6 @@ const NewPost = () => {
   const handlePublishStatus = (e) => {
     const value = e.target.value
     const published = value === 'yes' ? true : value === 'no' ? false : null
-    // const published = value === 'yes' ? true : false
 
     setPostData((prevPostData) => ({
       ...prevPostData,
@@ -128,6 +129,7 @@ const NewPost = () => {
     }))
   }
 
+  // Functions to validate and submit form
   const validateForm = () => {
     displayEmptyInputErrors(postData, setValidFormData, setErrorMsgs)
 
@@ -140,13 +142,10 @@ const NewPost = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    // const isValid = true
     const isValid = validateForm()
-    // console.log('🚀 ~ handleFormSubmit ~ isValid:', isValid)
 
     if (isValid) {
       const result = await fetchData(postData)
-      // console.log('🚀 ~ handleFormSubmit ~ result:', result)
 
       if (result.success) {
         setPostData(defaultPostData)
@@ -158,7 +157,7 @@ const NewPost = () => {
     }
   }
 
-  // Reset state variables if user cancels action
+  // Reset state variables if user cancels creating a new post
   const handleCancel = () => {
     setPostData(defaultPostData)
     setValidFormData(defaultValidFormData)

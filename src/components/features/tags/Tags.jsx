@@ -1,20 +1,21 @@
 /* -------------------- Styles -------------------- */
 import styles from './Tags.module.css'
+/* -------------------- Images -------------------- */
+import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
-import { useData } from '../../../hooks/useData'
 import { useState } from 'react'
+import { useData } from '../../../hooks/useData'
+/* -------------------- Context -------------------- */
+import { ErrorContext } from '../../../contexts/error/ErrorContext'
+import { TagContext } from '../../../contexts/tag/TagContext'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 import Button from '../../../components/core/Button/Button'
 import ErrorMessage from '../../../components/core/error/ErrorMessage'
 import EditTag from '../../sections/edit-tag/EditTag'
 import AddTagForm from '../../../components/forms/tag/add-tag/AddTagForm'
-/* -------------------- Icons -------------------- */
-import errorIcon from '../../../assets/icons/icon-error-2.svg'
-/* -------------------- Context -------------------- */
-import { ErrorContext } from '../../../contexts/error/ErrorContext'
-import { TagContext } from '../../../contexts/tag/TagContext'
 
+/* Component to show all tags */
 const Tags = () => {
   // State variables
   // To add error msg
@@ -58,14 +59,21 @@ const Tags = () => {
             <p>Error retrieving tags. Please try again later.</p>
           </div>
         </div>
+        {/* Link to Home  */}
         <Link className={styles.homeLink} to={'/'}>
           <span className={styles.backIcon}>←</span>Back to Home
         </Link>
       </div>
     )
 
+  // Handler functions
   const handleAddTag = () => {
     setIsNew(true)
+  }
+
+  const handleEditTag = (id) => {
+    setIsEdit(true)
+    setTagId(id)
   }
 
   const handleDeleteTag = async (id) => {
@@ -87,7 +95,7 @@ const Tags = () => {
       )
 
       const result = await response.json()
-      // console.log('🚀 ~ handleDeletePost ~ result:', result)
+
       if (result.success) {
         setIsDelete(true)
         setDeleteError(null)
@@ -121,10 +129,7 @@ const Tags = () => {
     setTagId(null)
   }
 
-  const handleEditTag = (id) => {
-    setIsEdit(true)
-    setTagId(id)
-  }
+  
 
   return (
     <>
@@ -182,7 +187,8 @@ const Tags = () => {
                   </li>
                 )}
 
-                {/* Show error msg if deleting a tag fails. Display it conditionally and only under that particular tag  */}
+                {/* Show error msg if deleting a tag fails. Display 
+                it conditionally and only under that particular tag  */}
                 {tag.id === tagId && deleteError && (
                   <ErrorContext
                     value={{

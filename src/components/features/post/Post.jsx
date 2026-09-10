@@ -10,12 +10,12 @@ import { useData } from '../../../hooks/useData'
 import { ErrorContext } from '../../../contexts/error/ErrorContext'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
-import Button from '../../../components/core/Button/Button'
+import Button from '../../../components/core/button/Button'
 import ErrorMessage from '../../../components/core/error/ErrorMessage'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
 
-
+/* Show post details */
 const Post = () => {
   const { id } = useParams()
   let navigate = useNavigate()
@@ -25,6 +25,7 @@ const Post = () => {
     `http://localhost:8080/api/v1/posts/me/${id}`,
   )
 
+  // State variables
   const [deleteError, setDeleteError] = useState(null)
 
   // Show loading spinner while fetching the data
@@ -57,10 +58,12 @@ const Post = () => {
       </div>
     )
 
+  // Destructure data
   const { post } = data
   const { categories, title, content, published, createdAt, updatedAt, tags } =
     post
 
+  // Computed variables
   const dateCreated = new Date(createdAt).toLocaleString()
   const dateUpdated = new Date(updatedAt).toLocaleString()
 
@@ -72,6 +75,7 @@ const Post = () => {
   let postTags = tags.map((tag) => tag.name)
   postTags = postTags.join(', ')
 
+  // Handler functions
   const handleEditPost = (id) => {
     navigate(`/posts/${id}/edit`)
   }
@@ -96,6 +100,7 @@ const Post = () => {
       if (result.success) {
         navigate('/posts')
       } else {
+        // Server errors
         setDeleteError({
           code: result.errorCode,
           title: result.errorTitle,
@@ -104,6 +109,7 @@ const Post = () => {
       }
     } catch (error) {
       console.error(error)
+      // Network errors
       setDeleteError({
         code: 'NET_ERR',
         title: 'Network Error',
@@ -111,6 +117,8 @@ const Post = () => {
       })
     }
   }
+
+  // Handler to dismiss error msg
   const handleDismiss = () => {
     setDeleteError(null)
   }
@@ -131,6 +139,7 @@ const Post = () => {
           </Link>
         </div>
 
+        {/* Show error msg when deleting a post fails */}
         {deleteError && (
           <ErrorContext
             value={{
@@ -160,6 +169,7 @@ const Post = () => {
             </Button>
           </div>
         </div>
+        {/* Post details  */}
         <div className={styles.details}>
           <p>
             <strong>Created on:</strong> {dateCreated}

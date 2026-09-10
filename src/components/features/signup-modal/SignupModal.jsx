@@ -1,14 +1,19 @@
+/* -------------------- Styles -------------------- */
 import styles from './SignupModal.module.css'
+/* -------------------- Hooks -------------------- */
 import { useContext, useState } from 'react'
-import Modal from '../../../components/core/modal/Modal'
-import SignupForm from '../../forms/auth/signup-form/SignupForm'
+/* -------------------- Context -------------------- */
 import { AuthContext } from '../../../contexts/auth/AuthContext'
 import { SignupModalContext } from '../../../contexts/signup-modal/SignupModalContext'
+/* -------------------- Components -------------------- */
+import Modal from '../../../components/core/modal/Modal'
+import SignupForm from '../../forms/auth/signup-form/SignupForm'
 
+/* Modal to contain signup form */
 const SignupModal = () => {
   const { handleCloseModal } = useContext(AuthContext)
 
-  // State
+  // State variables
   const defaultSignupFormData = {
     email: '',
     password: '',
@@ -26,12 +31,14 @@ const SignupModal = () => {
   const [validFormData, setValidFormData] = useState(defaultValidFormData)
   const [signupErrorMsg, setSignupErrorMsg] = useState('')
 
+  // Handler to close the modal
   const handleSignupClose = () => {
     setSignupFormData(defaultSignupFormData)
     setValidFormData(defaultValidFormData)
     setSignupErrorMsg('')
     handleCloseModal()
   }
+  
   return (
     <SignupModalContext
       value={{

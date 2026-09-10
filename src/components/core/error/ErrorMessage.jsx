@@ -4,7 +4,7 @@ import styles from './ErrorMessage.module.css'
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
 import { useContext } from 'react'
-import Button from '../../core/Button/Button'
+import Button from '../button/Button'
 /* -------------------- Context -------------------- */
 import { ErrorContext } from '../../../contexts/error/ErrorContext'
 

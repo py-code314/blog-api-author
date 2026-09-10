@@ -6,6 +6,7 @@ import RecentPosts from '../../../components/sections/recent-posts/RecentPosts'
 import PostsLinks from '../../../components/sections/posts-links/PostsLinks'
 import AllStats from '../../../components/sections/stats/AllStats'
 
+/* Show dashboard immediately upon login */
 const Dashboard = () => {
   return (
     <>

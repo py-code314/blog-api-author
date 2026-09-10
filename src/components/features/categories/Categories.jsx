@@ -1,20 +1,21 @@
 /* -------------------- Styles -------------------- */
 import styles from './Categories.module.css'
-/* -------------------- Hooks -------------------- */
-import { useData } from '../../../hooks/useData'
-import { useState } from 'react'
-/* -------------------- Components -------------------- */
-import { Link } from 'react-router'
-import Button from '../../../components/core/Button/Button'
-import ErrorMessage from '../../../components/core/error/ErrorMessage'
-import EditCategory from '../../sections/edit-category/EditCategory'
-import AddCategoryForm from '../../../components/forms/category/add-category/AddCategoryForm'
-/* -------------------- Icons -------------------- */
+/* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+/* -------------------- Hooks -------------------- */
+import { useState } from 'react'
+import { useData } from '../../../hooks/useData'
 /* -------------------- Context -------------------- */
 import { ErrorContext } from '../../../contexts/error/ErrorContext'
 import { CategoryContext } from '../../../contexts/category/CategoryContext'
+/* -------------------- Components -------------------- */
+import { Link } from 'react-router'
+import Button from '../../../components/core/button/Button'
+import ErrorMessage from '../../../components/core/error/ErrorMessage'
+import EditCategory from '../../sections/edit-category/EditCategory'
+import AddCategoryForm from '../../../components/forms/category/add-category/AddCategoryForm'
 
+/* Display all categories */
 const Categories = () => {
   // State variables
   // To add error msg
@@ -28,7 +29,8 @@ const Categories = () => {
   // To re-render categories after deleting a category
   const [isDelete, setIsDelete] = useState(false)
 
-  // Pass isEdit and isNew as arguments to run useData second time to get updated values of categories from db
+  /* Pass isEdit, isNew, and isNew as arguments to run useData 
+  second time to get updated values of categories from db */
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/categories/all',
     { isEdit, isNew, isDelete },
@@ -64,8 +66,14 @@ const Categories = () => {
       </div>
     )
 
+  // Handler functions
   const handleAddCategory = () => {
     setIsNew(true)
+  }
+
+  const handleEditCategory = (id) => {
+    setIsEdit(true)
+    setCategoryId(id)
   }
 
   const handleDeleteCategory = async (id) => {
@@ -87,7 +95,6 @@ const Categories = () => {
       )
 
       const result = await response.json()
-      // console.log('🚀 ~ handleDeletePost ~ result:', result)
       if (result.success) {
         setIsDelete(true)
         setDeleteError(null)
@@ -119,11 +126,6 @@ const Categories = () => {
   const handleDismiss = () => {
     setDeleteError(null)
     setCategoryId(null)
-  }
-
-  const handleEditCategory = (id) => {
-    setIsEdit(true)
-    setCategoryId(id)
   }
 
   return (
@@ -167,14 +169,13 @@ const Categories = () => {
                   <li className={styles.category}>
                     <p className={styles.name}>{category.name}</p>
                     <div className={styles.actionGroup}>
-                      {/* Edit button */}
+                      {/* Buttons */}
                       <Button
                         className="editBtn"
                         title="Edit category"
                         onClick={() => handleEditCategory(category.id)}>
                         Edit
                       </Button>
-                      {/* Delete button */}
                       <Button
                         className="deleteBtn"
                         title="Delete category"
@@ -185,7 +186,8 @@ const Categories = () => {
                   </li>
                 )}
 
-                {/* Show error msg if deleting a category fails. Display it conditionally and only under that particular category  */}
+                {/* Show error msg if deleting a category fails. 
+                Display it conditionally and only under that particular category  */}
                 {category.id === categoryId && deleteError && (
                   <ErrorContext
                     value={{
