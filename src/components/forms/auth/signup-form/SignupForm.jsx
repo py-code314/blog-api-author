@@ -1,11 +1,16 @@
+/* -------------------- Styles -------------------- */
 import styles from './SignupForm.module.css'
-import { useRef, useEffect, useContext, useState } from 'react'
-import { AuthContext } from '../../../../contexts/auth/AuthContext.jsx'
-import Button from '../../../core/button/Button'
+/* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Hooks -------------------- */
+import { useRef, useEffect, useContext, useState } from 'react'
+/* -------------------- Context -------------------- */
+import { AuthContext } from '../../../../contexts/auth/AuthContext.jsx'
 import { SignupModalContext } from '../../../../contexts/signup-modal/SignupModalContext'
-
+/* -------------------- Components -------------------- */
+import Button from '../../../core/button/Button'
+/* -------------------- Functions -------------------- */
 import {
   validateEmailInput,
   validatePasswordInput,
@@ -17,8 +22,8 @@ import {
 } from '../../../../utils/signup/index.js'
 
 const SignupForm = () => {
-  const { activeModal, setActiveModal } = useContext(AuthContext)
   const emailInputRef = useRef(null)
+  const { activeModal, setActiveModal } = useContext(AuthContext)
   const {
     handleSignupClose,
     signupFormData,
@@ -42,7 +47,8 @@ const SignupForm = () => {
 
   useEffect(() => {
     if (isModalOpen && emailInputRef.current) {
-      // Use setTimeout to make sure focus() runs after browser finishes drawing modal and input field
+      /* Use setTimeout to make sure focus() runs after browser
+       finishes drawing modal and input field */
       setTimeout(() => {
         // Focus email input field upon modal is open
         emailInputRef.current.focus()
@@ -57,7 +63,7 @@ const SignupForm = () => {
     }
   }, [isModalOpen])
 
-  // Handle input changes
+  // Handle form fields
   const handleEmailChange = (e) => {
     const email = e.target.value
     const emailRegExp =
@@ -130,13 +136,12 @@ const SignupForm = () => {
     }
   }
 
-  // ? Should I move this function into SignupModal
   // Handle form submission
   const handleFormSubmit = async (e) => {
     e.preventDefault()
     setIsFormSubmitted(true)
     setSignupErrorMsg('')
-    // const isValid = true
+
     const isValid = validateForm()
 
     if (isValid) {
@@ -147,13 +152,11 @@ const SignupForm = () => {
         // Successful submission
         if (response.ok) {
           const data = await response.json()
-          console.log(data)
 
           if (data.success) {
             // Reset state
             handleSignupClose()
             setIsFormSubmitted(false)
-            // setSignupFormData(defaultSignupFormData)
             setErrorMessages(defaultErrorMessages)
             setActiveModal('login')
           }
@@ -183,6 +186,7 @@ const SignupForm = () => {
 
   return (
     <div className={styles.signup}>
+      {/* Display server and network errors  */}
       {signupErrorMsg && (
         <p className={styles.signupError} aria-live="polite" id="signup-error">
           {signupErrorMsg}
@@ -311,7 +315,6 @@ const SignupForm = () => {
               type="password"
               min={8}
               placeholder="South^Park97"
-              // pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$"
               required
               value={signupFormData.confirmPassword}
               onChange={handleConfirmPasswordChange}

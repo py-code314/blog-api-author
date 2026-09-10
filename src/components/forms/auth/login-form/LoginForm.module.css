@@ -29,10 +29,6 @@
   border-radius: var(--radius-small, 0.3125rem);
 }
 
-/* .formHint {
-  margin-block-end: var(--space-6, 0.375rem);
-} */
-
 .formValid {
   display: flex;
   align-items: center;

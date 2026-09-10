@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router'
 /* -------------------- Context -------------------- */
 import { TagContext } from '../../../../contexts/tag/TagContext'
 /* -------------------- Components -------------------- */
-import Button from '../../../core/Button/Button.jsx'
+import Button from '../../../core/button/Button.jsx'
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,

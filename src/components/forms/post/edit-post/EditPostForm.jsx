@@ -12,7 +12,7 @@ import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 import { PostContext } from '../../../../contexts/post/PostContext.jsx'
 import { PostFormContext } from '../../../../contexts/post-form/PostFormContext.jsx'
 /* -------------------- Components -------------------- */
-import Button from '../../../core/Button/Button.jsx'
+import Button from '../../../core/button/Button.jsx'
 import TextEditor from '../post-content/TextEditor.jsx'
 /* -------------------- Functions -------------------- */
 import {

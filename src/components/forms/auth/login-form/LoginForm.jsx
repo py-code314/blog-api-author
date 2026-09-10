@@ -1,11 +1,16 @@
+/* -------------------- Styles -------------------- */
 import styles from './LoginForm.module.css'
-import { useRef, useEffect, useContext, useState } from 'react'
-import { AuthContext } from '../../../../contexts/auth/AuthContext'
-import { LoginModalContext } from '../../../../contexts/login-modal/LoginModalContext'
-import Button from '../../../core/button/Button'
-
+/* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+/* -------------------- Hooks -------------------- */
+import { useRef, useEffect, useContext, useState } from 'react'
+/* -------------------- Context -------------------- */
+import { AuthContext } from '../../../../contexts/auth/AuthContext'
+import { LoginModalContext } from '../../../../contexts/login-modal/LoginModalContext'
+/* -------------------- Components -------------------- */
+import Button from '../../../core/button/Button'
+/* -------------------- Functions -------------------- */
 import {
   loginUser,
   displayLoginServerErrors,
@@ -14,8 +19,8 @@ import {
 } from '../../../../utils/login/index'
 
 const LoginForm = () => {
-  const { setToken, saveToken, activeModal, setUser } = useContext(AuthContext)
   const emailInputRef = useRef(null)
+  const { setToken, saveToken, activeModal, setUser } = useContext(AuthContext)
   const {
     handleLoginClose,
     defaultLoginFormData,
@@ -53,7 +58,7 @@ const LoginForm = () => {
     }
   }, [isModalOpen])
 
-  // Handle input changes
+  // Handle form fields
   const handleEmailChange = (e) => {
     const email = e.target.value
     const emailRegExp =
@@ -123,7 +128,8 @@ const LoginForm = () => {
     e.preventDefault()
     setIsFormSubmitted(true)
     setLoginErrorMsg('')
-    // const isValid = true
+
+    // Validate form
     const isValid = validateForm(
       loginFormData,
       validFormData,
@@ -139,7 +145,7 @@ const LoginForm = () => {
         // Successful submission
         if (response.ok) {
           const data = await response.json()
-          // Store JWT
+          
           if (data.success) {
             setUser(data.user)
 
@@ -147,7 +153,9 @@ const LoginForm = () => {
             setIsFormSubmitted(false)
             setLoginFormData(defaultLoginFormData)
             setErrorMsgs(defaultErrorMsgs)
+            // Update token in state
             setToken(data.token)
+            // Store JWT in local storage
             saveToken(data.token)
           }
         } else {
@@ -168,7 +176,7 @@ const LoginForm = () => {
           {
             data.jwt === false &&
               setLoginErrorMsg(
-                'Something went wrong on our end. Please try signing in again. ',
+                'Something went wrong on our end. Please try logging in again. ',
               )
           }
         }
@@ -191,6 +199,7 @@ const LoginForm = () => {
 
   return (
     <div className={styles.login}>
+      {/* Display error messages from server and network errors */}
       {loginErrorMsg && (
         <p className={styles.loginError} aria-live="polite" id="login-error">
           {loginErrorMsg}

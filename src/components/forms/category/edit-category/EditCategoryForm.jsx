@@ -10,7 +10,7 @@ import { useSubmitForm } from '../../../../hooks/useSubmitForm.js'
 /* -------------------- Context -------------------- */
 import { CategoryContext } from '../../../../contexts/category/CategoryContext.jsx'
 /* -------------------- Components -------------------- */
-import Button from '../../../core/Button/Button.jsx'
+import Button from '../../../core/button/Button.jsx'
 /* -------------------- Functions -------------------- */
 import {
   validateNameInput,
