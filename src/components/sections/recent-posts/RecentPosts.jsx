@@ -45,7 +45,7 @@ const RecentPosts = () => {
 
   return (
     <>
-      <div className={styles.recentPosts}>
+      <section className={styles.recentPosts}>
         <h2 className={styles.subTitle}>Recent Posts</h2>
         <ul className={styles.list}>
           {posts?.length > 0 &&
@@ -60,7 +60,7 @@ const RecentPosts = () => {
               </li>
             ))}
         </ul>
-      </div>
+      </section>
     </>
   )
 }

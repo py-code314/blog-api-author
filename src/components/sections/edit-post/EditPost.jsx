@@ -1,20 +1,21 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditPost.module.css'
+/* -------------------- Images -------------------- */
+import errorIcon2 from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */
-import { useData } from '../../../hooks/useData.js'
 import { useParams } from 'react-router'
+import { useData } from '../../../hooks/useData.js'
+/* -------------------- Context -------------------- */
+import { PostContext } from '../../../contexts/post/PostContext.jsx'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 import EditPostForm from '../../../components/forms/post/edit-post/EditPostForm.jsx'
-/* -------------------- Images -------------------- */
-import errorIcon2 from '../../../assets/icons/icon-error-2.svg'
-/* -------------------- Context -------------------- */
-import { PostContext } from '../../../contexts/post/PostContext.jsx'
 
+/* Component to get a single post data */
 const EditPost = () => {
   const { id } = useParams()
 
-  // Get a single post data
+  // Get post data
   const {
     data: currentPostData,
     isLoading,
@@ -39,6 +40,7 @@ const EditPost = () => {
       <div className={styles.editPost}>
         <title>Scriblr | Edit Post</title>
 
+        {/* Link to go back to post  */}
         <Link className={styles.postLink} to={`/posts/${id}`}>
           Back to Post
         </Link>
@@ -58,11 +60,12 @@ const EditPost = () => {
 
   return (
     <>
-      <div className={styles.editPost}>
+      <section className={styles.editPost}>
         <title>Scriblr | Edit Post</title>
         {/* Keep h2 outside the form for Accessibility */}
         <div className={styles.header}>
           <h2 className={styles.subTitle}>Edit Post</h2>
+          {/* // TODO: Delete this link  */}
           <Link className={styles.cancelLink} to={`/posts/${id}`}>
             Cancel Edit
           </Link>
@@ -74,7 +77,7 @@ const EditPost = () => {
           }}>
           <EditPostForm />
         </PostContext>
-      </div>
+      </section>
     </>
   )
 }

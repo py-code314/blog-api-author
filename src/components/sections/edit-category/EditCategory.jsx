@@ -1,25 +1,27 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditCategory.module.css'
-/* -------------------- Hooks -------------------- */
-import { useData } from '../../../hooks/useData.js'
-import { useContext } from 'react'
-/* -------------------- Components -------------------- */
-import Button from '../../../components/core/Button/Button.jsx'
-import EditCategoryForm from '../../../components/forms/category/edit-category/EditCategoryForm.jsx'
 /* -------------------- Images -------------------- */
 import errorIcon3 from '../../../assets/icons/icon-error-3.svg'
+/* -------------------- Hooks -------------------- */
+import { useContext } from 'react'
+import { useData } from '../../../hooks/useData.js'
 /* -------------------- Context -------------------- */
 import { CategoryContext } from '../../../contexts/category/CategoryContext.jsx'
+/* -------------------- Components -------------------- */
+import Button from '../../../components/core/button/Button.jsx'
+import EditCategoryForm from '../../../components/forms/category/edit-category/EditCategoryForm.jsx'
 
+/* Component to get a single category data */
 const EditCategory = () => {
   const { categoryId, setIsEdit } = useContext(CategoryContext)
 
-  // Get a single category
+  // Get data for a single category
   const { data, isLoading, error } = useData(
     `http://localhost:8080/api/v1/categories/${categoryId}`,
   )
 
-  const handleEdit = () => {
+  // Handler function
+  const handleBackBtn = () => {
     setIsEdit(false)
   }
 
@@ -50,7 +52,7 @@ const EditCategory = () => {
         <Button
           className="backBtn"
           title="Back to category"
-          onClick={handleEdit}>
+          onClick={handleBackBtn}>
           <span>⬅</span>Back
         </Button>
       </div>

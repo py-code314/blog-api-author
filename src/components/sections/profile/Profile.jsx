@@ -57,7 +57,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className={styles.profile}>
+      <section className={styles.profile}>
         <h2 className={styles.subtitle}>Welcome {user.name || user.email}</h2>
         <div className={styles.profileWrapper}>
           {/* Profile image  */}
@@ -86,7 +86,7 @@ const Profile = () => {
             </p>
           </div>
         </div>
-      </div>
+      </section>
     </>
   )
 }

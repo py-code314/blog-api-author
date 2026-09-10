@@ -1,16 +1,17 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditTag.module.css'
-/* -------------------- Hooks -------------------- */
-import { useData } from '../../../hooks/useData.js'
-import { useContext } from 'react'
-/* -------------------- Components -------------------- */
-import Button from '../../../components/core/Button/Button.jsx'
-import EditTagForm from '../../../components/forms/tag/edit-tag/EditTagForm'
 /* -------------------- Images -------------------- */
 import errorIcon3 from '../../../assets/icons/icon-error-3.svg'
+/* -------------------- Hooks -------------------- */
+import { useContext } from 'react'
+import { useData } from '../../../hooks/useData.js'
 /* -------------------- Context -------------------- */
 import { TagContext } from '../../../contexts/tag/TagContext.jsx'
+/* -------------------- Components -------------------- */
+import Button from '../../../components/core/button/Button.jsx'
+import EditTagForm from '../../../components/forms/tag/edit-tag/EditTagForm'
 
+/* Component to get data for a single tag */
 const EditTag = () => {
   const { tagId, setIsEdit } = useContext(TagContext)
 
@@ -19,7 +20,8 @@ const EditTag = () => {
     `http://localhost:8080/api/v1/tags/${tagId}`,
   )
 
-  const handleEdit = () => {
+  // Handler for Back button
+  const handleBackBtn = () => {
     setIsEdit(false)
   }
 
@@ -50,7 +52,7 @@ const EditTag = () => {
         <Button
           className="backBtn"
           title="Back to Tag"
-          onClick={handleEdit}>
+          onClick={handleBackBtn}>
           <span>⬅</span>Back
         </Button>
       </div>

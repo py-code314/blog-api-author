@@ -8,30 +8,32 @@ draft posts */
 const PostsLinks = () => {
   return (
     <>
-      <ul className={styles.list}>
-        <li className={styles.listItem}>
-          {/* Link to posts  */}
-          {/* // TODO: Add arrows to all links  */}
-          <Link className={styles.link} to={'/posts'}>
-            All Posts
-            <span className={styles.rightArrow}>→</span>
-          </Link>
-        </li>
-        <li className={styles.listItem}>
-          {/* Link to published posts  */}
-          <Link className={styles.link} to={'/posts/published'}>
-            Published Posts
-            <span className={styles.rightArrow}>→</span>
-          </Link>
-        </li>
-        <li className={styles.listItem}>
-          {/* Link to drafts  */}
-          <Link className={styles.link} to={'/posts/drafts'}>
-            Drafts
-            <span className={styles.rightArrow}>→</span>
-          </Link>
-        </li>
-      </ul>
+      <section>
+        <ul className={styles.list}>
+          <li className={styles.listItem}>
+            {/* Link to posts  */}
+            {/* // TODO: Add arrows to all links  */}
+            <Link className={styles.link} to={'/posts'}>
+              All Posts
+              <span className={styles.rightArrow}>→</span>
+            </Link>
+          </li>
+          <li className={styles.listItem}>
+            {/* Link to published posts  */}
+            <Link className={styles.link} to={'/posts/published'}>
+              Published Posts
+              <span className={styles.rightArrow}>→</span>
+            </Link>
+          </li>
+          <li className={styles.listItem}>
+            {/* Link to drafts  */}
+            <Link className={styles.link} to={'/posts/drafts'}>
+              Drafts
+              <span className={styles.rightArrow}>→</span>
+            </Link>
+          </li>
+        </ul>
+      </section>
     </>
   )
 }

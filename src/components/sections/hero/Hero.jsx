@@ -1,17 +1,18 @@
 /* -------------------- Styles -------------------- */
 import styles from './Hero.module.css'
+/* -------------------- Hooks -------------------- */
+import { useContext } from 'react'
+/* -------------------- Context -------------------- */
+import { AuthContext } from '../../../contexts/auth/AuthContext'
 /* -------------------- Components -------------------- */
 import Button from '../../core/button/Button'
 import SignupModal from '../../features/signup-modal/SignupModal'
-/* -------------------- Context -------------------- */
-import { AuthContext } from '../../../contexts/auth/AuthContext'
-/* -------------------- Hooks -------------------- */
-import { useContext } from 'react'
 
 /* Display Hero section */
 const Hero = () => {
   const { activeModal, setActiveModal } = useContext(AuthContext)
 
+  // Handler to show signup modal
   const handleSignup = () => {
     setActiveModal('signup')
   }
@@ -28,6 +29,7 @@ const Hero = () => {
           audience today.
         </p>
 
+        {/* Sign-up button  */}
         <Button
           id="startWritingBtn"
           className="startBtn"

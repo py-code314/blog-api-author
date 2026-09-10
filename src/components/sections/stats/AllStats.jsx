@@ -48,7 +48,7 @@ const AllStats = () => {
 
   return (
     <>
-      <div className={styles.stats}>
+      <section className={styles.stats}>
         <h2 className={styles.subTitle}>Stats</h2>
 
         {/* Stats  */}
@@ -74,7 +74,7 @@ const AllStats = () => {
             {tagsTotal}
           </li>
         </ul>
-      </div>
+      </section>
     </>
   )
 }
