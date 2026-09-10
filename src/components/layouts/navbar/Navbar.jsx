@@ -5,9 +5,9 @@ import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/auth/AuthContext'
 /* -------------------- Components -------------------- */
 import { NavLink } from 'react-router'
-import Button from '../../core/Button/Button'
-import SignupModal from '../../../pages/signup-modal/SignupModal'
-import LoginModal from '../../../pages/login-modal/LoginModal'
+import Button from '../../core/button/Button'
+import SignupModal from '../../features/signup-modal/SignupModal'
+import LoginModal from '../../features/login-modal/LoginModal'
 
 /* Component for navigation links */
 const NavBar = () => {

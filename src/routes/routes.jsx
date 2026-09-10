@@ -1,15 +1,15 @@
 /* -------------------- Components -------------------- */
 import App from '../App'
-import Dashboard from '../pages/dashboard/Dashboard'
-import NewPost from '../pages/new-post/NewPost'
-import AllPosts from '../pages/posts/Posts'
-import Post from '../pages/post/Post'
-import EditPost from '../pages/edit-post/EditPost'
-import Categories from '../pages/categories/Categories'
-import EditCategory from '../pages/edit-category/EditCategory'
-import Tags from '../pages/tags/Tags'
-import PublishedPosts from '../pages/published-posts/PublishedPosts'
-import Drafts from '../pages/drafts/Drafts'
+import Dashboard from '../components/features/dashboard/Dashboard'
+import NewPost from '../components/features/new-post/NewPost'
+import AllPosts from '../components/features/posts/Posts'
+import Post from '../components/features/post/Post'
+import EditPost from '../components/sections/edit-post/EditPost'
+import Categories from '../components/features/categories/Categories'
+// import EditCategory from '../pages/edit-category/EditCategory'
+import Tags from '../components/features/tags/Tags'
+import PublishedPosts from '../components/features/published-posts/PublishedPosts'
+import Drafts from '../components/features/drafts/Drafts'
 
 /* Array of routes */
 const routes = [
@@ -23,7 +23,7 @@ const routes = [
       { path: 'posts/:id', element: <Post /> },
       { path: 'posts/:id/edit', element: <EditPost /> },
       { path: 'categories', element: <Categories /> },
-      { path: 'categories/:id/edit', element: <EditCategory /> },
+      // { path: 'categories/:id/edit', element: <EditCategory /> },
       { path: 'tags', element: <Tags /> },
       { path: 'posts/published', element: <PublishedPosts /> },
       { path: 'posts/drafts', element: <Drafts /> },
