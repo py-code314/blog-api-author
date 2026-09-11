@@ -1,3 +1,4 @@
+/* Function to check for empty log-in form inputs */
 export function validateForm(
   loginFormData,
   validFormData,

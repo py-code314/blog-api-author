@@ -1,3 +1,4 @@
+/* Function to validate name */
 export function validateNameInput(name, setValidFormData, setErrorMessages) {
   // Validate input
   const trimmedName = name.trim()

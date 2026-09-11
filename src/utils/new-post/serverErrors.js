@@ -1,3 +1,4 @@
+/* Function to display server errors for invalid new post form data */
 export function displayServerErrors(errors, setValidFormData, setErrorMsgs) {
   errors.forEach((error) => {
     if (error.path === 'title') {

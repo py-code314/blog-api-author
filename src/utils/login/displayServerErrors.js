@@ -1,3 +1,4 @@
+/* Function to display server errors for invalid login form data */
 export function displayLoginServerErrors(data, setValidFormData, setErrorMsgs) {
   data.errors.forEach((error) => {
     if (error.path === 'email') {

@@ -1,3 +1,4 @@
+/* Function to validate email */
 export function validateEmailInput(
   email,
   setValidFormData,

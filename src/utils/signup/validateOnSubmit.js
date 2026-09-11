@@ -1,3 +1,4 @@
+/* Function to check for empty inputs on form submission */
 export function displayEmptyInputErrors(
   signupFormData,
   setValidFormData,

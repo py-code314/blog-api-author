@@ -1,3 +1,4 @@
+/* Display errors if email isn't registered or password is wrong */
 export function displayAuthErrors(data, setValidFormData, setErrorMsgs) {
   const errorMsg = data.errorMsg
 

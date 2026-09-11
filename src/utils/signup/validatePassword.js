@@ -1,3 +1,4 @@
+/* Function to validate password */
 export function validatePasswordInput(
   password,
   setValidFormData,

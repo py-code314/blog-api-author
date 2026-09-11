@@ -1,3 +1,4 @@
+/* Function to validate confirm password field */
 export function validateConfirmPasswordInput(
   confirmPassword,
   setValidFormData,

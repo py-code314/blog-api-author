@@ -1,3 +1,4 @@
+/* Function to check for empty post content */
 export function validateContentInput(content, setValidFormData, setErrorMessages) {
   const trimmedContent = content.trim()
 

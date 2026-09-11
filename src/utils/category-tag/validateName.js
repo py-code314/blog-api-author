@@ -1,3 +1,4 @@
+/* Function to validate category and tag names */
 export function validateNameInput(name, setValidName, setErrorMsg) {
   const trimmedName = name.trim()
 

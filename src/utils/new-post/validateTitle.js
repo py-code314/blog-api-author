@@ -1,3 +1,4 @@
+/* Function to validate new post title */
 export function validateTitleInput(title, setValidFormData, setErrorMessages) {
   const trimmedTitle = title.trim()
 

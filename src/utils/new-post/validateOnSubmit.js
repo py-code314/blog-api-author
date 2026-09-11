@@ -1,3 +1,4 @@
+/* Function to check for empty new post fields on form submission */
 export function displayEmptyInputErrors(
   postData,
   setValidFormData,

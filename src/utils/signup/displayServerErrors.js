@@ -1,3 +1,4 @@
+/* Function to display server errors for invalid sign-up form data */
 export function displaySignupServerErrors(errors, setValidFormData, setErrorMessages) {
   errors.forEach((error) => {
     if (error.path === 'email') {
