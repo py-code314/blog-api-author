@@ -2,6 +2,10 @@
 import styles from './Categories.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import addIcon from '../../../assets/icons/icon-add.svg'
+import editIcon from '../../../assets/icons/icon-edit.svg'
+import deleteIcon from '../../../assets/icons/icon-delete.svg'
+
 /* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 import { useData } from '../../../hooks/useData'
@@ -139,6 +143,7 @@ const Categories = () => {
           className="addBtn"
           title="Add category"
           onClick={handleAddCategory}>
+          <img src={addIcon} alt="" width={25} height={25} />
           Add Category
         </Button>
 
@@ -174,12 +179,14 @@ const Categories = () => {
                         className="editBtn"
                         title="Edit category"
                         onClick={() => handleEditCategory(category.id)}>
+                        <img src={editIcon} alt="" width={20} height={20} />
                         Edit
                       </Button>
                       <Button
                         className="deleteBtn"
                         title="Delete category"
                         onClick={() => handleDeleteCategory(category.id)}>
+                        <img src={deleteIcon} alt="" width={20} height={20} />
                         Delete
                       </Button>
                     </div>

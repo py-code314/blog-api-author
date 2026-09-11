@@ -29,9 +29,12 @@
   color: var(--clr-white, white);
   border-radius: var(--radius-x-large, 1.25rem);
   margin-block-start: var(--space-16, 1rem);
-  font-size: var(--fs-18);
+  font-size: var(--fs-20, 1.25rem);
   align-self: start;
   letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 00.5rem);
 }
 
 .btnCloseModal {
@@ -72,6 +75,9 @@
   justify-self: start;
   width: fit-content;
   border-radius: var(--radius-small, 0.3125rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 00.5rem);
 }
 
 /* Cancel button for post form */
@@ -85,8 +91,12 @@
   composes: btn;
   background-color: var(--clr-accent, teal);
   color: var(--clr-white, white);
-  padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
+  font-weight: var(--fw-bold, 700);
+  padding: var(--space-6, 0.375rem) var(--space-10, 0.625rem);
   border-radius: var(--radius-small, 0.3125rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 00.5rem);
 }
 
 .backBtn {
@@ -106,6 +116,7 @@
 .dismissBtn {
   composes: editBtn;
   justify-self: end;
-  background-color: var(--clr-accent-secondary, firebrick);
-  font-weight: var(--fw-bold);
+  background-color: var(--clr-accent-tertiary, brown);
+  font-weight: var(--fw-bold, 700);
+  display: flex;
 }

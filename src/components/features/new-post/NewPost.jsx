@@ -3,6 +3,9 @@ import styles from './NewPost.module.css'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../assets/icons/icon-error-1.svg'
+import publishIcon from '../../../assets/icons/icon-publish.svg'
+import saveIcon from '../../../assets/icons/icon-save.svg'
+import cancelIcon from '../../../assets/icons/icon-cancel.svg'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router'
@@ -457,16 +460,31 @@ const NewPost = () => {
           <div className={styles.btns}>
             {/* Publish/Save button */}
             <Button className="publishBtn" title="Publish/Save" type="submit">
-              {status === 'fetching'
-                ? postData.published
-                  ? 'Publishing'
-                  : 'Saving'
-                : postData.published
-                  ? 'Publish'
-                  : 'Save'}
+              {status === 'fetching' ? (
+                postData.published ? (
+                  <>
+                    <img src={publishIcon} alt="" width={20} height={20} />{' '}
+                    Publishing
+                  </>
+                ) : (
+                  <>
+                    <img src={saveIcon} alt="" width={20} height={20} /> Saving
+                  </>
+                )
+              ) : postData.published ? (
+                <>
+                  <img src={publishIcon} alt="" width={20} height={20} />{' '}
+                  Publish
+                </>
+              ) : (
+                <>
+                  <img src={saveIcon} alt="" width={20} height={20} /> Save
+                </>
+              )}
             </Button>
             {/* Cancel button  */}
             <Button className="abortBtn" title="Cancel" onClick={handleCancel}>
+              <img src={cancelIcon} alt="" width={20} height={20} />
               Cancel
             </Button>
           </div>

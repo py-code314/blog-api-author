@@ -2,6 +2,9 @@
 import styles from './Tags.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import addIcon from '../../../assets/icons/icon-add.svg'
+import editIcon from '../../../assets/icons/icon-edit.svg'
+import deleteIcon from '../../../assets/icons/icon-delete.svg'
 /* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 import { useData } from '../../../hooks/useData'
@@ -10,7 +13,7 @@ import { ErrorContext } from '../../../contexts/error/ErrorContext'
 import { TagContext } from '../../../contexts/tag/TagContext'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
-import Button from '../../../components/core/Button/Button'
+import Button from '../../../components/core/button/Button'
 import ErrorMessage from '../../../components/core/error/ErrorMessage'
 import EditTag from '../../sections/edit-tag/EditTag'
 import AddTagForm from '../../../components/forms/tag/add-tag/AddTagForm'
@@ -139,6 +142,7 @@ const Tags = () => {
 
         {/* Add button */}
         <Button className="addBtn" title="Add tag" onClick={handleAddTag}>
+          <img src={addIcon} alt="" width={25} height={25} />
           Add Tag
         </Button>
 
@@ -174,6 +178,7 @@ const Tags = () => {
                         className="editBtn"
                         title="Edit tag"
                         onClick={() => handleEditTag(tag.id)}>
+                        <img src={editIcon} alt="" width={20} height={20} />
                         Edit
                       </Button>
                       {/* Delete button */}
@@ -181,6 +186,7 @@ const Tags = () => {
                         className="deleteBtn"
                         title="Delete tag"
                         onClick={() => handleDeleteTag(tag.id)}>
+                        <img src={deleteIcon} alt="" width={20} height={20} />
                         Delete
                       </Button>
                     </div>

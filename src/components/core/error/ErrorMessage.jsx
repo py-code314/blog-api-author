@@ -2,6 +2,8 @@
 import styles from './ErrorMessage.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import dismissIcon from '../../../assets/icons/icon-close.svg'
+
 /* -------------------- Hooks -------------------- */
 import { useContext } from 'react'
 import Button from '../button/Button'
@@ -35,6 +37,7 @@ const ErrorMessage = () => {
           title="Dismiss message"
           onClick={handleDismiss}>
           Dismiss
+          <img src={dismissIcon} alt="" width={27} height={27} />
         </Button>
       </div>
     </>
@@ -42,3 +45,5 @@ const ErrorMessage = () => {
 }
 
 export default ErrorMessage
+
+

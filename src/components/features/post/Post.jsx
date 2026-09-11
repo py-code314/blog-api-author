@@ -2,6 +2,8 @@
 import styles from './Post.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import editIcon from '../../../assets/icons/icon-edit.svg'
+import deleteIcon from '../../../assets/icons/icon-delete.svg'
 /* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
@@ -158,6 +160,7 @@ const Post = () => {
               className="editBtn"
               title="Edit post"
               onClick={() => handleEditPost(post.id)}>
+              <img src={editIcon} alt="" width={20} height={20} />
               Edit
             </Button>
             {/* Delete button */}
@@ -165,6 +168,7 @@ const Post = () => {
               className="deleteBtn"
               title="Delete post"
               onClick={() => handleDeletePost(post.id)}>
+              <img src={deleteIcon} alt="" width={20} height={20} />
               Delete
             </Button>
           </div>

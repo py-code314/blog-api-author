@@ -2,6 +2,7 @@
 import styles from './Posts.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+// import rightArrowIcon from '../../../assets/icons/icon-arrow-right.svg'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../../hooks/useData'
 /* -------------------- Components -------------------- */
@@ -60,7 +61,8 @@ const AllPosts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  View details →
+                  View details
+                  {/* <img src={rightArrowIcon} alt="" /> */}
                 </Link>
               </li>
             ))}

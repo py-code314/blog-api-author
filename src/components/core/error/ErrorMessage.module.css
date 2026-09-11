@@ -1,5 +1,5 @@
 .errorWrapper {
-  border: 1px solid red;
+  border: 1px solid var(--clr-accent-tertiary, brown);
   border-radius: var(--radius-small);
   padding: var(--space-16);
   display: grid;

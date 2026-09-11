@@ -1,5 +1,7 @@
 /* -------------------- Styles -------------------- */
 import styles from './Hero.module.css'
+/* -------------------- Icons -------------------- */
+import writeIcon from '../../../assets/icons/icon-write.svg'
 /* -------------------- Hooks -------------------- */
 import { useContext } from 'react'
 /* -------------------- Context -------------------- */
@@ -35,6 +37,7 @@ const Hero = () => {
           className="startBtn"
           title="Sign up"
           onClick={handleSignup}>
+          <img src={writeIcon} alt="" width={25} height={25} />
           Start Writing{' '}
         </Button>
       </section>

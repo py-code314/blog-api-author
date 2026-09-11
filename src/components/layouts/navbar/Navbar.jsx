@@ -4,7 +4,7 @@ import styles from './Navbar.module.css'
 import { useContext } from 'react'
 import { AuthContext } from '../../../contexts/auth/AuthContext'
 /* -------------------- Components -------------------- */
-import { NavLink } from 'react-router'
+import { Link } from 'react-router'
 import Button from '../../core/button/Button'
 import SignupModal from '../../features/signup-modal/SignupModal'
 import LoginModal from '../../features/login-modal/LoginModal'
@@ -40,9 +40,9 @@ const NavBar = () => {
           {token ? (
             <>
               <li className={styles.navItem}>
-                <NavLink className={styles.navLink} to={`/new-post`}>
-                  + Post
-                </NavLink>
+                <Link className={styles.link} to={`/new-post`}>
+                  <span>➕</span> Post
+                </Link>
               </li>
               <li className={styles.navItem}>
                 <Button

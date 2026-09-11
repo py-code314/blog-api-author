@@ -3,6 +3,8 @@ import styles from './EditCategoryForm.module.css'
 /* -------------------- Images -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
+import saveIcon from '../../../../assets/icons/icon-save.svg'
+import cancelIcon from '../../../../assets/icons/icon-cancel.svg'
 /* -------------------- Hooks -------------------- */
 import { useState, useRef, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router'
@@ -151,9 +153,11 @@ const EditCategoryForm = ({ categoryData }) => {
         {/* Buttons */}
         <div className={styles.btns}>
           <Button className="saveBtn" title="Save" type="submit">
+            <img src={saveIcon} alt="" width={20} height={20} />
             Save
           </Button>
           <Button className="cancelBtn" title="Cancel" onClick={handleCancel}>
+            <img src={cancelIcon} alt="" width={20} height={20} />
             Cancel
           </Button>
         </div>
