@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router'
-
-import routes from './routes/routes.jsx'
+/* -------------------- Styles -------------------- */
 import './index.css'
-// import App from './App.jsx'
+/* -------------------- Components -------------------- */
+import { StrictMode } from 'react'
+import { RouterProvider } from 'react-router'
+/* -------------------- Functions -------------------- */
+import { createRoot } from 'react-dom/client'
+import { createBrowserRouter } from 'react-router'
+/* -------------------- Routes -------------------- */
+import routes from './routes/routes.jsx'
 
 // Create router
 const router = createBrowserRouter(routes)
