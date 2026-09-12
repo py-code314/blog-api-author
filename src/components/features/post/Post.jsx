@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './Post.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import editIcon from '../../../assets/icons/icon-edit.svg'
 import deleteIcon from '../../../assets/icons/icon-delete.svg'

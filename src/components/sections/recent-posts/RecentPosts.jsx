@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './RecentPosts.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import detailsIcon from '../../../assets/icons/icon-double-arrow-right.svg'
 /* -------------------- Hooks -------------------- */

@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditTag.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon3 from '../../../assets/icons/icon-error-3.svg'
 /* -------------------- Hooks -------------------- */
 import { useContext } from 'react'

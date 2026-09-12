@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './Profile.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import profileIcon from '../../../assets/icons/icon-profile-2.svg'
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 /* -------------------- Hooks -------------------- */

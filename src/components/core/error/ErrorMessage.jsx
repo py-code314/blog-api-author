@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './ErrorMessage.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import dismissIcon from '../../../assets/icons/icon-close.svg'
 

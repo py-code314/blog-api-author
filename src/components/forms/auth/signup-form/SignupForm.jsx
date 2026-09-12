@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './SignupForm.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import checkMarkIcon from '../../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../../assets/icons/icon-error-1.svg'
 /* -------------------- Hooks -------------------- */

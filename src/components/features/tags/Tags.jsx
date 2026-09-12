@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './Tags.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import addIcon from '../../../assets/icons/icon-add.svg'
 import editIcon from '../../../assets/icons/icon-edit.svg'

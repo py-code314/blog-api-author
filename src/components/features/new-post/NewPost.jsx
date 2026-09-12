@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './NewPost.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import checkMarkIcon from '../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../assets/icons/icon-error-1.svg'
 import publishIcon from '../../../assets/icons/icon-publish.svg'

@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './Drafts.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import moreIcon from '../../../assets/icons/icon-double-arrow-right.svg'
 /* -------------------- Hooks -------------------- */
