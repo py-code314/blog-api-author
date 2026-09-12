@@ -2,6 +2,7 @@
 import styles from './PublishedPosts.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import detailsIcon from '../../../assets/icons/icon-double-arrow-right.svg'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../../hooks/useData'
 /* -------------------- Components -------------------- */
@@ -41,7 +42,7 @@ const PublishedPosts = () => {
           </div>
         </div>
         <Link className={styles.homeLink} to={'/'}>
-          Back to Home
+          Home
         </Link>
       </div>
     )
@@ -51,9 +52,9 @@ const PublishedPosts = () => {
         <title>Scriblr | Published Posts</title>
         {/* Link to Home  */}
         <Link className={styles.homeLink} to={'/'}>
-          <span className={styles.leftArrow}>←</span>Home
+          Home
         </Link>
-        
+
         <h2 className={styles.subTitle}>Published Posts</h2>
 
         <ul className={styles.list}>
@@ -66,7 +67,8 @@ const PublishedPosts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  View details →
+                  View details 
+                  <img src={detailsIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
             ))

@@ -41,7 +41,7 @@ const NavBar = () => {
             <>
               <li className={styles.navItem}>
                 <Link className={styles.link} to={`/new-post`}>
-                  <span>➕</span> Post
+                  <span className={styles.addIcon}>+</span> Post
                 </Link>
               </li>
               <li className={styles.navItem}>

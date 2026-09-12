@@ -2,6 +2,7 @@
 import styles from './RecentPosts.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import detailsIcon from '../../../assets/icons/icon-double-arrow-right.svg'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../../hooks/useData'
 /* -------------------- Components -------------------- */
@@ -55,7 +56,8 @@ const RecentPosts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to view post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  View details <span>→</span>
+                  View details
+                 <img src={detailsIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
             ))}

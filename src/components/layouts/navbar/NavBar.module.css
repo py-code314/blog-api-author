@@ -10,12 +10,20 @@
 }
 
 .navItem {
-  font-size: var(--fs-18);
+  font-size: var(--fs-18, 1.125rem);
 }
 
 .link {
   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   border: 1px solid var(--clr-black, black);
   border-radius: var(--radius-x-large, 1.25rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 0.25rem);
+}
+
+.link:hover {
+  background-color: var(--clr-black, black);
+  color: var(--clr-white, white);
   font-weight: var(--fw-bold, 700);
 }

@@ -1,5 +1,7 @@
 /* -------------------- Styles -------------------- */
 import styles from './PostsLinks.module.css'
+/* -------------------- Icons -------------------- */
+import forwardIcon from '../../../assets/icons/icon-arrow-forward.svg'
 /* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 
@@ -12,24 +14,23 @@ const PostsLinks = () => {
         <ul className={styles.list}>
           <li className={styles.listItem}>
             {/* Link to posts  */}
-            {/* // TODO: Add arrows to all links  */}
             <Link className={styles.link} to={'/posts'}>
               All Posts
-              <span className={styles.rightArrow}>→</span>
+              <img className={styles.rightArrow} src={forwardIcon} alt="" width={18} height={18} />
             </Link>
           </li>
           <li className={styles.listItem}>
             {/* Link to published posts  */}
             <Link className={styles.link} to={'/posts/published'}>
               Published Posts
-              <span className={styles.rightArrow}>→</span>
+              <img className={styles.rightArrow}  src={forwardIcon} alt="" width={18} height={18} />
             </Link>
           </li>
           <li className={styles.listItem}>
             {/* Link to drafts  */}
-            <Link className={styles.link} to={'/posts/drafts'}>
-              Drafts
-              <span className={styles.rightArrow}>→</span>
+            <Link className={styles.link} to={'/posts/published'}>
+              Published Posts
+              <img className={styles.rightArrow}  src={forwardIcon} alt="" width={18} height={18} />
             </Link>
           </li>
         </ul>

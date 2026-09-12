@@ -4,6 +4,7 @@ import styles from './Post.module.css'
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import editIcon from '../../../assets/icons/icon-edit.svg'
 import deleteIcon from '../../../assets/icons/icon-delete.svg'
+import backIcon from '../../../assets/icons/icon-arrow-back.svg'
 /* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
@@ -45,7 +46,8 @@ const Post = () => {
         <title>Scriblr | Post</title>
 
         <Link className={styles.postsLink} to={'/posts'}>
-          Back to All Posts
+          <img src={backIcon} alt="" width={17} height={17} />
+          All Posts
         </Link>
 
         <div className={styles.errorWrapper}>
@@ -133,7 +135,7 @@ const Post = () => {
         <div className={styles.links}>
           {/* Link to all posts  */}
           <Link className={styles.postsLink} to={'/posts'}>
-            <span className={styles.leftArrow}>←</span> All Posts
+            <img src={backIcon} alt="" width={17} height={17} /> All Posts
           </Link>
           {/* Link to home  */}
           <Link className={styles.homeLink} to={'/'}>

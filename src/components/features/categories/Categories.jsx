@@ -65,7 +65,7 @@ const Categories = () => {
           </div>
         </div>
         <Link className={styles.homeLink} to={'/'}>
-          <span className={styles.backIcon}>←</span>Back to Home
+          Home
         </Link>
       </div>
     )

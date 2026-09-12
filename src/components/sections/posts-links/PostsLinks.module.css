@@ -11,6 +11,8 @@
 }
 
 .link {
+  font-weight: var(--fw-bold, 700);
+  font-size: var(--fs-18, 1.125rem);
   padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
   display: flex;
   align-items: center;
@@ -24,7 +26,10 @@
   font-weight: var(--fw-bold, 700);
 }
 
-.rightArrow {
+.link:hover .rightArrow {
   font-weight: var(--fw-bold, 700);
-  font-size: var(--fs-18, 1.125rem);
+  -webkit-filter: invert(100%);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(64%) saturate(2%)
+    hue-rotate(306deg) brightness(105%) contrast(101%);
 }
+

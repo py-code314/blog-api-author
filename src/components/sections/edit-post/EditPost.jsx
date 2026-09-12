@@ -1,7 +1,8 @@
 /* -------------------- Styles -------------------- */
 import styles from './EditPost.module.css'
-/* -------------------- Images -------------------- */
+/* -------------------- Icons -------------------- */
 import errorIcon2 from '../../../assets/icons/icon-error-2.svg'
+import backIcon from '../../../assets/icons/icon-arrow-back.svg'
 /* -------------------- Hooks -------------------- */
 import { useParams } from 'react-router'
 import { useData } from '../../../hooks/useData.js'
@@ -42,7 +43,8 @@ const EditPost = () => {
 
         {/* Link to go back to post  */}
         <Link className={styles.postLink} to={`/posts/${id}`}>
-          Back to Post
+          <img src={backIcon} alt="" width={18} height={18} />
+          Post
         </Link>
 
         <h2 className={styles.subTitle}>Edit Post</h2>
@@ -66,9 +68,9 @@ const EditPost = () => {
         <div className={styles.header}>
           <h2 className={styles.subTitle}>Edit Post</h2>
           {/* // TODO: Delete this link  */}
-          <Link className={styles.cancelLink} to={`/posts/${id}`}>
+          {/* <Link className={styles.cancelLink} to={`/posts/${id}`}>
             Cancel Edit
-          </Link>
+          </Link> */}
         </div>
 
         <PostContext

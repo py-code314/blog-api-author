@@ -64,7 +64,7 @@ const Tags = () => {
         </div>
         {/* Link to Home  */}
         <Link className={styles.homeLink} to={'/'}>
-          <span className={styles.backIcon}>←</span>Back to Home
+          Home
         </Link>
       </div>
     )

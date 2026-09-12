@@ -2,6 +2,7 @@
 import styles from './Drafts.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+import moreIcon from '../../../assets/icons/icon-double-arrow-right.svg'
 /* -------------------- Hooks -------------------- */
 import {useData} from '../../../hooks/useData.js'
 /* -------------------- Components -------------------- */
@@ -41,7 +42,7 @@ const Drafts = () => {
         </div>
         {/* Link to home  */}
         <Link className={styles.homeLink} to={'/'}>
-          Back to Home
+          Home
         </Link>
       </div>
     )
@@ -51,7 +52,7 @@ const Drafts = () => {
         <title>Scriblr | Drafts</title>
         {/* Link to home  */}
         <Link className={styles.homeLink} to={'/'}>
-          <span className={styles.leftArrow}>←</span>Home
+          Home
         </Link>
         <h2 className={styles.subTitle}>Drafts</h2>
 
@@ -65,7 +66,8 @@ const Drafts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  View details →
+                  View details{' '}
+                  <img src={moreIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
             ))

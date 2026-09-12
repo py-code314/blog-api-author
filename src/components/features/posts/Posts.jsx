@@ -2,7 +2,7 @@
 import styles from './Posts.module.css'
 /* -------------------- Images -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
-// import rightArrowIcon from '../../../assets/icons/icon-arrow-right.svg'
+import detailsIcon from '../../../assets/icons/icon-double-arrow-right.svg'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../../hooks/useData'
 /* -------------------- Components -------------------- */
@@ -42,7 +42,7 @@ const AllPosts = () => {
         </div>
         {/* Link to home  */}
         <Link className={styles.homeLink} to={'/'}>
-          Back to Home
+          Home
         </Link>
       </div>
     )
@@ -62,7 +62,7 @@ const AllPosts = () => {
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
                   View details
-                  {/* <img src={rightArrowIcon} alt="" /> */}
+                  <img src={detailsIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
             ))}

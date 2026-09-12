@@ -62,6 +62,19 @@
   gap: var(--space-24, 1.5rem);
 }
 
+.postLink {
+  justify-self: start;
+  background-color: var(--clr-accent, teal);
+  color: var(--clr-white, white);
+  font-size: var(--fs-18, 1.125rem);
+  font-weight: var(--fw-bold, 700);
+  padding: var(--space-6, 0.375rem) var(--space-10, 0.625rem);
+  border-radius: var(--radius-small, 0.3125rem);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 00.5rem);
+}
+
 .header {
   display: flex;
   justify-content: space-between;
