@@ -67,10 +67,6 @@ const EditPost = () => {
         {/* Keep h2 outside the form for Accessibility */}
         <div className={styles.header}>
           <h2 className={styles.subTitle}>Edit Post</h2>
-          {/* // TODO: Delete this link  */}
-          {/* <Link className={styles.cancelLink} to={`/posts/${id}`}>
-            Cancel Edit
-          </Link> */}
         </div>
 
         <PostContext

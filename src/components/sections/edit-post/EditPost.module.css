@@ -81,12 +81,4 @@
   align-items: center;
 }
 
-/* TODO: Delete styles for cancel link  */
-.cancelLink {
-  background-color: var(--clr-accent-secondary, firebrick);
-  font-weight: var(--fw-bold, 700);
-  padding: var(--space-8, 0.5rem) var(--space-16, 1rem);
-  border-radius: var(--radius-small, 0.3125rem);
-  color: var(--clr-white, white)
-}
 
