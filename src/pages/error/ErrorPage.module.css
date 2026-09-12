@@ -1,0 +1,31 @@
+.errorPage {
+  min-height: 100svh;
+  padding: var(--space-16, 1rem) var(--space-128, 8rem);
+  /* Add background image */
+  background: var(--clr-golden-yellow) url('../../assets/images/sad-cat.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.title {
+  color: var(--clr-white, white);
+  font-family: var(--ff-title), system-ui;
+  font-size: var(--fs-40, 2.5rem);
+  text-decoration: underline;
+}
+
+.title:hover {
+  color: var(--clr-pretty-turquoise, cyan);
+}
+
+.main {
+  text-align: center;
+  padding-block-start: var(--space-80, 5rem);
+}
+
+.errorMsg {
+  color: var(--clr-white, white);
+  font-size: var(--fs-24, 1.5rem);
+}

@@ -9,12 +9,14 @@ import Post from '../components/features/post/Post'
 import EditPost from '../components/sections/edit-post/EditPost'
 import Categories from '../components/features/categories/Categories'
 import Tags from '../components/features/tags/Tags'
+import ErrorPage from '../pages/error/ErrorPage'
 
 /* Array of routes */
 const routes = [
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Dashboard /> },
       { path: 'new-post', element: <NewPost /> },
