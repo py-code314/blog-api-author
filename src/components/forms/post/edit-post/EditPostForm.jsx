@@ -172,7 +172,12 @@ const EditPostForm = () => {
     }
   }
 
-  const handleCancel = () => {}
+  const handleCancel = () => {
+    setPostData(defaultPostData)
+    setValidFormData(defaultValidFormData)
+    setErrorMsgs(defaultErrorMsgs)
+    navigate(`/posts/${id}`)
+  }
 
   return (
     <>
@@ -455,17 +460,7 @@ const EditPostForm = () => {
             </div>
           )}
         </div>
-        {/* Publish/Save button */}
-        {/* <Button className="publishBtn" title="Publish/Save" type="submit">
-          {status === 'fetching'
-            ? postData.published
-              ? 'Publishing'
-              : 'Saving'
-            : postData.published
-              ? 'Publish'
-              : 'Save'}
-        </Button> */}
-        {/* // TODO: Add Cancel button */}
+
         <div className={styles.btns}>
           {/* Publish/Save button */}
           <Button className="publishBtn" title="Publish/Save" type="submit">
