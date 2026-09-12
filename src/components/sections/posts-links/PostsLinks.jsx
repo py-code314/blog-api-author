@@ -28,8 +28,8 @@ const PostsLinks = () => {
           </li>
           <li className={styles.listItem}>
             {/* Link to drafts  */}
-            <Link className={styles.link} to={'/posts/published'}>
-              Published Posts
+            <Link className={styles.link} to={'/posts/drafts'}>
+              Drafts
               <img className={styles.rightArrow}  src={forwardIcon} alt="" width={18} height={18} />
             </Link>
           </li>

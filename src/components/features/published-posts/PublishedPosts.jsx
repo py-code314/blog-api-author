@@ -67,7 +67,7 @@ const PublishedPosts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  View details 
+                  Read more 
                   <img src={detailsIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
