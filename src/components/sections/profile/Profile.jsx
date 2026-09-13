@@ -5,9 +5,11 @@ import profileIcon from '../../../assets/icons/icon-profile-2.svg'
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 // import editIcon from '../../../assets/icons/icon-edit.svg'
 /* -------------------- Hooks -------------------- */
+import { useState } from 'react'
 import { useData } from '../../../hooks/useData.js'
 /* -------------------- Components -------------------- */
 import Button from '../../core/button/Button.jsx'
+import AddBioForm from '../../forms/profile/AddBioForm.jsx'
 
 /* Component to show profile */
 const Profile = () => {
@@ -15,6 +17,9 @@ const Profile = () => {
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/profiles/me',
   )
+
+  // State variables
+  const [addBio, setAddBio] = useState(false)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -58,7 +63,9 @@ const Profile = () => {
   const { profile } = data
   const { bio, user } = profile
 
-  const handleAddBio = () => {}
+  const handleAddBio = () => {
+    setAddBio(true)
+  }
 
   return (
     <>
@@ -100,6 +107,9 @@ const Profile = () => {
                 Add Bio
               </Button>
             )}
+
+            {/* Display 'add bio form' conditionally */}
+            {addBio && <AddBioForm setAddBio={ setAddBio} />}
           </div>
         </div>
       </section>
