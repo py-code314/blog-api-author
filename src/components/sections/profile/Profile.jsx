@@ -3,8 +3,11 @@ import styles from './Profile.module.css'
 /* -------------------- Icons -------------------- */
 import profileIcon from '../../../assets/icons/icon-profile-2.svg'
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
+// import editIcon from '../../../assets/icons/icon-edit.svg'
 /* -------------------- Hooks -------------------- */
 import { useData } from '../../../hooks/useData.js'
+/* -------------------- Components -------------------- */
+import Button from '../../core/button/Button.jsx'
 
 /* Component to show profile */
 const Profile = () => {
@@ -55,6 +58,8 @@ const Profile = () => {
   const { profile } = data
   const { bio, user } = profile
 
+  const handleAddBio = () => {}
+
   return (
     <>
       <section className={styles.profile}>
@@ -70,6 +75,7 @@ const Profile = () => {
               height={128}
             />
           </div>
+
           {/* Profile info  */}
           <div className={styles.details}>
             <p>
@@ -80,10 +86,20 @@ const Profile = () => {
               <strong>Email: </strong>
               {user.email}
             </p>
-            <p>
-              <strong>Bio: </strong>
-              {bio}
-            </p>
+
+            {bio ? (
+              <p>
+                <strong>Bio: </strong>bio
+              </p>
+            ) : (
+              // Add button
+              <Button
+                className="addBioBtn"
+                title="Add bio"
+                onClick={handleAddBio}>
+                Add Bio
+              </Button>
+            )}
           </div>
         </div>
       </section>

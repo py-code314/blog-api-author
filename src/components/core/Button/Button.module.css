@@ -80,6 +80,14 @@
   gap: var(--space-4, 00.5rem);
 }
 
+/* For profile section */
+.addBioBtn {
+  composes: addBtn;
+  padding: var(--space-4, 00.25rem) var(--space-8, 0.5rem);
+  margin-block-start: var(--space-4, 0.25rem);
+  background-color: var(--clr-accent-quaternary, royalblue);
+}
+
 /* Cancel button for post form */
 .abortBtn {
   composes: publishBtn;
