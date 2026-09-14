@@ -94,24 +94,18 @@ const AddBioForm = ({ setIsBio }) => {
 
   return (
     <>
-      <form
-        className={styles.form}
-        noValidate
-        onSubmit={handleFormSubmit}
-      >
+      <form className={styles.form} noValidate onSubmit={handleFormSubmit}>
         {/* Bio  */}
         <div className={styles.formControl}>
-          <div className={styles.formValid}>
-            <textarea
-              className={styles.formInput}
-              name="bio"
-              rows="5"
-              cols="30"
-              placeholder="Add bio..."
-              value={bio}
-              onChange={handleBioChange}
-              ref={bioRef}></textarea>
-          </div>
+          <textarea
+            className={styles.formInput}
+            name="bio"
+            rows="5"
+            cols="50"
+            placeholder="Add bio..."
+            value={bio}
+            onChange={handleBioChange}
+            ref={bioRef}></textarea>
 
           {/* Error message  */}
           {validBio === false && (

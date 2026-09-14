@@ -1,0 +1,42 @@
+.form {
+  padding: var(--space-12, 0.75rem) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12, 0.75rem);
+}
+
+.formControl {
+  display: grid;
+  gap: var(--space-4, 0.25rem);
+  width: 100%;
+}
+
+.formInput {
+  width: 90%;
+}
+
+.formInput {
+  display: block;
+  padding: var(--space-4, 0.25rem) var(--space-8, 0.5rem);
+  border: 1px solid var(--clr-black, black);
+  border-radius: var(--radius-small, 0.3125rem);
+}
+
+.formError {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 0.25rem);
+  padding-block: var(--space-4, 0.25rem);
+}
+
+.formErrorMsg {
+  color: var(--clr-red, red);
+  font-size: var(--fs-16, 1rem);
+  font-style: italic;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: var(--space-16, 1rem);
+}
