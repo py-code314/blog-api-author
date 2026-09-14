@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 /* Hook to fetch data from a given URL */
 export const useData = (url, options = {}) => {
-  const { isEdit = false, isNew = false, isDelete = false } = options
+  const { isEdit = false, isNew = false, isDelete = false, isBio = false } = options
 
   // State variables
   const [data, setData] = useState(null)
@@ -32,16 +32,19 @@ export const useData = (url, options = {}) => {
           },
           controller.signal,
         )
+        // console.log("🚀 ~ fetchData ~ response:", response)
 
         if (!response.ok) {
           throw new Error(`HTTP error: Status ${response.status}`)
         }
 
         let data = await response.json()
+        // console.log("🚀 ~ fetchData ~ data:", data)
 
         setData(data)
         setError(false)
       } catch (err) {
+        console.error(err)
         // Stop fetching if aborted
         if (err.name === 'AbortError') {
           console.log('Aborted')
@@ -58,7 +61,7 @@ export const useData = (url, options = {}) => {
     fetchData()
 
     return () => controller.abort()
-  }, [url, isEdit, isNew, isDelete])
+  }, [url, isEdit, isNew, isDelete, isBio])
 
   return { data, isLoading, error }
 }

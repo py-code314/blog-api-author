@@ -13,13 +13,14 @@ import AddBioForm from '../../forms/profile/AddBioForm.jsx'
 
 /* Component to show profile */
 const Profile = () => {
+  // State variables
+  const [isBio, setIsBio] = useState(false)
+
   // Get own profile data
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/profiles/me',
+    { isBio },
   )
-
-  // State variables
-  const [addBio, setAddBio] = useState(false)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -62,9 +63,11 @@ const Profile = () => {
   // Destructure data
   const { profile } = data
   const { bio, user } = profile
+  const { email, name } = user
 
+  // Handler to update bio input
   const handleAddBio = () => {
-    setAddBio(true)
+    setIsBio(true)
   }
 
   return (
@@ -85,18 +88,22 @@ const Profile = () => {
 
           {/* Profile info  */}
           <div className={styles.details}>
-            <p>
-              <strong>Name: </strong>
-              {user.name}
-            </p>
+            {name && (
+              <p>
+                <strong>Name: </strong>
+                {name}
+              </p>
+            )}
+
             <p>
               <strong>Email: </strong>
-              {user.email}
+              {email}
             </p>
 
             {bio ? (
               <p>
-                <strong>Bio: </strong>bio
+                <strong>Bio: </strong>
+                {bio}
               </p>
             ) : (
               // Add button
@@ -109,7 +116,7 @@ const Profile = () => {
             )}
 
             {/* Display 'add bio form' conditionally */}
-            {addBio && <AddBioForm setAddBio={ setAddBio} />}
+            {isBio && <AddBioForm setIsBio={setIsBio} />}
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 /* -------------------- Styles -------------------- */
 import styles from './AddBioForm.module.css'
 /* -------------------- Icons -------------------- */
-import checkMarkIcon from '../../../assets/icons/icon-check.svg'
+// import checkMarkIcon from '../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../assets/icons/icon-error-1.svg'
 import saveIcon from '../../../assets/icons/icon-save.svg'
 import cancelIcon from '../../../assets/icons/icon-cancel.svg'
@@ -13,20 +13,20 @@ import { useSubmitForm } from '../../../hooks/useSubmitForm.js'
 import Button from '../../core/button/Button.jsx'
 /* -------------------- Functions -------------------- */
 import {
-  // validateNameInput,
+  validateBioInput,
   displayEmptyInputError,
   displayServerError,
-} from '../../../utils/category-tag/index.js'
+} from '../../../utils/profile/index.js'
 
 /* Component to display 'add bio form'  */
-const AddBioForm = ({ setAddBio }) => {
+const AddBioForm = ({ setIsBio }) => {
   const bioRef = useRef(null)
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   // Get data and submit function from the hook
-  // const [fetchData, data] = useSubmitForm(
-  //   `http://localhost:8080/api/v1/profiles/new`,
-  // )
+  const [fetchData, data] = useSubmitForm(
+    `http://localhost:8080/api/v1/profiles/new`,
+  )
 
   // State variables
   const [bio, setBio] = useState('')
@@ -41,52 +41,52 @@ const AddBioForm = ({ setAddBio }) => {
   }, [])
 
   // Redirect to categories after successful submission
-  // useEffect(() => {
-  //   if (data?.success) {
-  //     navigate(`/`)
-  //   }
-  // }, [data, navigate])
+  useEffect(() => {
+    if (data?.success) {
+      navigate(`/`)
+    }
+  }, [data, navigate])
 
   // Input handler function
   const handleBioChange = (e) => {
     const bio = e.target.value
     setBio(bio)
-    // validateNameInput(bio, setValidBio, setErrorMsg)
+    validateBioInput(bio, setValidBio, setErrorMsg)
   }
 
   // Form submission handler functions
-  // const validateForm = () => {
-  //   displayEmptyInputError(bio, setValidBio, setErrorMsg)
+  const validateForm = () => {
+    displayEmptyInputError(bio, setValidBio, setErrorMsg)
 
-  //   if (validBio === true) {
-  //     return true
-  //   } else {
-  //     return false
-  //   }
-  // }
+    if (validBio === true) {
+      return true
+    } else {
+      return false
+    }
+  }
 
-  // const handleFormSubmit = async (e) => {
-  //   e.preventDefault()
-  //   const isValid = validateForm()
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    const isValid = validateForm()
 
-  //   if (isValid) {
-  //     const result = await fetchData({ bio })
+    if (isValid) {
+      const result = await fetchData({ bio })
 
-  //     if (result.success) {
-  //       // Reset state if there are no errors
-  //       setBio('')
-  //       // setValidBio(null)
-  //       // setErrorMsg('')
-  //       // setIsNew(false)
-  //     } else if (!result.validData) {
-  //       displayServerError(result.errors, setValidBio, setErrorMsg)
-  //     }
-  //   }
-  // }
+      if (result.success) {
+        // Reset state if there are no errors
+        setIsBio(false)
+        setBio('')
+        setValidBio(null)
+        setErrorMsg('')
+      } else if (!result.validData) {
+        displayServerError(result.errors, setValidBio, setErrorMsg)
+      }
+    }
+  }
 
   // Reset state if user cancels adding a new category
   const handleCancel = () => {
-    setAddBio(false)
+    setIsBio(false)
     setBio('')
     setValidBio(null)
     setErrorMsg('')
@@ -97,7 +97,7 @@ const AddBioForm = ({ setAddBio }) => {
       <form
         className={styles.form}
         noValidate
-        // onSubmit={handleFormSubmit}
+        onSubmit={handleFormSubmit}
       >
         {/* Bio  */}
         <div className={styles.formControl}>
@@ -111,17 +111,6 @@ const AddBioForm = ({ setAddBio }) => {
               value={bio}
               onChange={handleBioChange}
               ref={bioRef}></textarea>
-
-            {/* {validBio && (
-              <img
-                className={styles.formCheckmark}
-                aria-hidden="true"
-                src={checkMarkIcon}
-                alt=""
-                width={30}
-                height={30}
-              />
-            )} */}
           </div>
 
           {/* Error message  */}
