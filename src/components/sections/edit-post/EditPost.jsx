@@ -21,7 +21,7 @@ const EditPost = () => {
     data: currentPostData,
     isLoading,
     error,
-  } = useData(`http://localhost:8080/api/v1/posts/${id}`)
+  } = useData(`http://localhost:8080/api/v1/posts/me/${id}`)
 
   // Show loading spinner while fetching the data
   if (isLoading)
