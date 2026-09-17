@@ -8,6 +8,8 @@ import { AuthContext } from './contexts/auth/AuthContext'
 /* -------------------- Components -------------------- */
 import LandingPage from './pages/landing-page/LandingPage'
 import Homepage from './pages/homepage/Homepage'
+/* -------------------- Functions -------------------- */
+import { checkTokenExpiry } from './utils/login'
 
 /* Main App component */
 function App() {
@@ -16,9 +18,17 @@ function App() {
   const [user, setUser] = useState({})
   const { token, setToken, saveToken } = useToken()
 
+  // Check for JWT token expiry
+  const isTokenValid = token ? checkTokenExpiry(token) : false
+
   // Handler to set type of modal to show
   const handleCloseModal = () => {
     setActiveModal(null)
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('jwtToken')
+    setToken(null)
   }
 
   return (
@@ -33,8 +43,10 @@ function App() {
           setActiveModal,
           user,
           setUser,
+          handleLogout,
+          isTokenValid,
         }}>
-        {token ? <Homepage /> : <LandingPage />}
+        {token && isTokenValid ? <Homepage /> : <LandingPage />}
       </AuthContext>
     </div>
   )

@@ -11,7 +11,7 @@ import LoginModal from '../../features/login-modal/LoginModal'
 
 /* Component for navigation links */
 const NavBar = () => {
-  const { token, setToken, activeModal, setActiveModal } =
+  const { token, activeModal, setActiveModal, isTokenValid, handleLogout } =
     useContext(AuthContext)
 
   // Handler functions
@@ -23,21 +23,13 @@ const NavBar = () => {
     setActiveModal('login')
   }
 
-  const handleLogout = () => {
-    // Update token status
-    setToken(null)
-
-    // Delete JWT from local storage
-    localStorage.removeItem('jwtToken')
-  }
-
   return (
     <>
       <nav className={styles.navbar}>
         {/* Navigation links */}
         <ul className={styles.navList}>
           {/* Show nav items conditionally */}
-          {token ? (
+          {token && isTokenValid ? (
             <>
               <li className={styles.navItem}>
                 <Link className={styles.link} to={`/new-post`}>

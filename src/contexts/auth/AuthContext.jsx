@@ -10,4 +10,6 @@ export const AuthContext = createContext({
   setActiveModal: () => {},
   user: {},
   setUser: () => {},
+  handleLogout: () => {},
+  isTokenValid: null,
 })
