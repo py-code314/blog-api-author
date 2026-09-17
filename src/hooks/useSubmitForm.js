@@ -44,9 +44,9 @@ export const useSubmitForm = (url) => {
       let result = await response.json()
 
       // Throw error from server instead of custom error
-      if (!response.ok) {
-        throw result
-      }
+      // if (!response.ok) {
+      //   throw result
+      // }
 
       // Set result as data if fetch is successful
       if (!signal.aborted) {
