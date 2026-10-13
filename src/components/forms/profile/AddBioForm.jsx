@@ -1,7 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './AddBioForm.module.css'
 /* -------------------- Icons -------------------- */
-// import checkMarkIcon from '../../../assets/icons/icon-check.svg'
 import errorIcon from '../../../assets/icons/icon-error-1.svg'
 import saveIcon from '../../../assets/icons/icon-save.svg'
 import cancelIcon from '../../../assets/icons/icon-cancel.svg'
