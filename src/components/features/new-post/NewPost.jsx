@@ -483,7 +483,7 @@ const NewPost = () => {
               )}
             </Button>
             {/* Cancel button  */}
-            <Button className="abortBtn" title="Cancel" onClick={handleCancel}>
+            <Button className="cancelPostBtn" title="Cancel" onClick={handleCancel}>
               <img src={cancelIcon} alt="" width={20} height={20} />
               Cancel
             </Button>

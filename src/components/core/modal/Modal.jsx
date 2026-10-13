@@ -31,6 +31,7 @@ const Modal = ({ children }) => {
     }
   }, [isModalOpen])
 
+  /* Handler functions */
   // Close modal when Esc key is pressed
   const handleEscKeyDown = (e) => {
     if (e.key === 'Escape') {

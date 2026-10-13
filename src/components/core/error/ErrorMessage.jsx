@@ -3,7 +3,6 @@ import styles from './ErrorMessage.module.css'
 /* -------------------- Icons -------------------- */
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import dismissIcon from '../../../assets/icons/icon-close.svg'
-
 /* -------------------- Hooks -------------------- */
 import { useContext } from 'react'
 import Button from '../button/Button'
@@ -15,18 +14,18 @@ or tag fails */
 const ErrorMessage = () => {
   const { deleteError, handleDismiss } = useContext(ErrorContext)
   const { code, title, msg } = deleteError
-  
+
   return (
     <>
       <div className={styles.errorWrapper}>
         <div className={styles.header}>
           <img src={errorIcon} alt="" width={40} height={40} />
+          {/* Error details  */}
           <div className={styles.titleWrapper}>
             <p>{code}</p>
             <p>{title}</p>
           </div>
         </div>
-
         <div className={styles.errorContent}>
           <p>{msg}</p>
         </div>
@@ -45,5 +44,3 @@ const ErrorMessage = () => {
 }
 
 export default ErrorMessage
-
-

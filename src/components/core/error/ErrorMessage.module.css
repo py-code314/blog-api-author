@@ -1,20 +1,20 @@
 .errorWrapper {
   border: 1px solid var(--clr-accent-tertiary, brown);
-  border-radius: var(--radius-small);
-  padding: var(--space-16);
+  border-radius: var(--radius-small, 00.3125rem);
+  padding: var(--space-16, 1rem);
   display: grid;
-  gap: var(--space-16);
+  gap: var(--space-16, 1rem);
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: var(--space-16);
+  gap: var(--space-16, 1rem);
 }
 
 .titleWrapper {
   composes: header;
-  gap: var(--space-8);
-  font-size: var(--fs-20);
-  font-weight: var(--fw-bold);
+  gap: var(--space-8, 0.5rem);
+  font-size: var(--fs-20, 1.25rem);
+  font-weight: var(--fw-bold, 700);
 }
