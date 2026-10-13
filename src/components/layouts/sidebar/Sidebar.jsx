@@ -1,6 +1,6 @@
 /* -------------------- Styles -------------------- */
 import styles from './Sidebar.module.css'
-/* -------------------- icons -------------------- */
+/* -------------------- Icons -------------------- */
 import createIcon from '../../../assets/icons/icon-create.svg'
 import blogsIcon from '../../../assets/icons/icon-blogs.svg'
 import categoriesIcon from '../../../assets/icons/icon-categories.svg'
