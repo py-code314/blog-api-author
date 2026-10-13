@@ -1,4 +1,6 @@
+/* -------------------- Styles -------------------- */
 import styles from './ErrorPage.module.css'
+/* -------------------- Components -------------------- */
 import { Link } from 'react-router'
 
 /* Display error page */
@@ -15,7 +17,9 @@ const ErrorPage = () => {
 
       {/* Error msg  */}
       <main className={styles.main}>
-        <p className={styles.errorMsg}>Uh oh, the page you're looking for can't be found.</p>
+        <p className={styles.errorMsg}>
+          Uh oh, the page you're looking for can't be found.
+        </p>
       </main>
     </div>
   )
