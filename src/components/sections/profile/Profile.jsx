@@ -72,7 +72,7 @@ const Profile = () => {
   return (
     <>
       <section className={styles.profile}>
-        <h2 className={styles.subtitle}>Welcome {user.name || user.email}</h2>
+        <h2 className={styles.subtitle}>Welcome Back {user.name || user.email}</h2>
         <div className={styles.profileWrapper}>
           {/* Profile image  */}
           <div className={styles.imageContainer}>
