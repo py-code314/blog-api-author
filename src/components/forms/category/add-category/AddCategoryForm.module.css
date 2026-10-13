@@ -8,8 +8,6 @@
 }
 
 .formControl {
-  display: grid;
-  gap: var(--space-4, 0.25rem);
   width: 50%;
 }
 
@@ -20,8 +18,13 @@
 
 .formLabel {
   display: block;
-  margin-block-end: var(--space-6, 0.375rem);
   font-weight: var(--fw-bold, 700);
+}
+
+.formHint {
+  font-size: var(--fs-14,0.875rem);
+  font-style: italic;
+  margin-block-end: var(--space-8, 0.5rem);
 }
 
 .formInput {

@@ -103,6 +103,9 @@ const AddTagForm = () => {
           <label htmlFor="name" className={styles.formLabel}>
             Name (required)
           </label>
+          <p className={styles.formHint}>
+            Only lowercase letters, numbers, and hyphens are allowed in tag name
+          </p>
 
           <div className={styles.formValid}>
             <input

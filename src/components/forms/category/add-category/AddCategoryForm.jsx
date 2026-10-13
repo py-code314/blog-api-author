@@ -104,6 +104,11 @@ const AddCategoryForm = () => {
             Name (required)
           </label>
 
+          <p className={styles.formHint}>
+            Only letters, numbers, hyphens, spaces, and ampersand are
+            allowed in the name
+          </p>
+
           <div className={styles.formValid}>
             <input
               type="text"
