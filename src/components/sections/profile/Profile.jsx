@@ -15,11 +15,12 @@ const Profile = () => {
   // State variables
   const [isBio, setIsBio] = useState(false)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/profiles/me`
+
   // Get own profile data
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/profiles/me',
-    { isBio },
-  )
+  const { data, isLoading, error } = useData(apiEndpoint, { isBio })
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -72,7 +73,9 @@ const Profile = () => {
   return (
     <>
       <section className={styles.profile}>
-        <h2 className={styles.subtitle}>Welcome Back {user.name || user.email}</h2>
+        <h2 className={styles.subtitle}>
+          Welcome Back {user.name || user.email}
+        </h2>
         <div className={styles.profileWrapper}>
           {/* Profile image  */}
           <div className={styles.imageContainer}>

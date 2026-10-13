@@ -30,9 +30,11 @@ const EditTagForm = ({ tagData }) => {
   const { tag } = tagData
   const { id, name: tagName } = tag
 
-  const [fetchData, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/tags/${id}/update`,
-  )
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/tags/${id}/update`
+
+  const [fetchData, data] = useSubmitForm(apiEndpoint)
 
   // State variables
   const [name, setName] = useState(tagName)

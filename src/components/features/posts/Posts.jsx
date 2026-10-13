@@ -11,10 +11,12 @@ import { Link } from 'react-router'
 import parse from 'html-react-parser'
 
 const AllPosts = () => {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/posts/me`
+
   // Get all posts both published and unpublished
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/posts/me',
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // Show loading spinner while fetching the data
   if (isLoading)

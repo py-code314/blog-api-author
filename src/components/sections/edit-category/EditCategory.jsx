@@ -15,10 +15,12 @@ import EditCategoryForm from '../../../components/forms/category/edit-category/E
 const EditCategory = () => {
   const { categoryId, setIsEdit } = useContext(CategoryContext)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/categories/${categoryId}`
+
   // Get data for a single category
-  const { data, isLoading, error } = useData(
-    `http://localhost:8080/api/v1/categories/${categoryId}`,
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // Handler function
   const handleBackBtn = () => {

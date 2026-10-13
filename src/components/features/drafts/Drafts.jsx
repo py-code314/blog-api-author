@@ -12,9 +12,13 @@ import parse from 'html-react-parser'
 
 /* Display drafts (unpublished posts) */
 const Drafts = () => {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/posts/me/drafts`
+  
   // Get all unpublished posts
   const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/posts/me/drafts',
+    apiEndpoint,
   )
 
   // Show loading spinner while fetching the data
@@ -67,8 +71,7 @@ const Drafts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  Read more{' '}
-                  <img src={moreIcon} alt="" width={20} height={20} />
+                  Read more <img src={moreIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
             ))

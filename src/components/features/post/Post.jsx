@@ -23,10 +23,12 @@ const Post = () => {
   const { id } = useParams()
   let navigate = useNavigate()
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/posts/me/${id}`
+
   // Get a single post data
-  const { data, isLoading, error } = useData(
-    `http://localhost:8080/api/v1/posts/me/${id}`,
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // State variables
   const [deleteError, setDeleteError] = useState(null)

@@ -12,10 +12,12 @@ import parse from 'html-react-parser'
 
 /* Show previews of recent posts */
 const RecentPosts = () => {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/posts/recent`
+
   // Get posts data
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/posts/recent',
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -57,7 +59,7 @@ const RecentPosts = () => {
                 {/* Link to view post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
                   Read more
-                 <img src={detailsIcon} alt="" width={20} height={20} />
+                  <img src={detailsIcon} alt="" width={20} height={20} />
                 </Link>
               </li>
             ))}

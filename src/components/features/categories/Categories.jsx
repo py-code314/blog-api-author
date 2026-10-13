@@ -32,12 +32,17 @@ const Categories = () => {
   // To re-render categories after deleting a category
   const [isDelete, setIsDelete] = useState(false)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/categories/all`
+
   /* Pass isEdit, isNew, and isNew as arguments to run useData 
   second time to get updated values of categories from db */
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/categories/all',
-    { isEdit, isNew, isDelete },
-  )
+  const { data, isLoading, error } = useData(apiEndpoint, {
+    isEdit,
+    isNew,
+    isDelete,
+  })
 
   // Show loading spinner while fetching the data
   if (isLoading)

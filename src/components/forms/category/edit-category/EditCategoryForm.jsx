@@ -30,10 +30,12 @@ const EditCategoryForm = ({ categoryData }) => {
   const { category } = categoryData
   const { id, name: categoryName } = category
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/categories/${id}/update`
+
   // Get data and form submit function
-  const [fetchData, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/categories/${id}/update`,
-  )
+  const [fetchData, data] = useSubmitForm(apiEndpoint)
 
   // State variables
   const [name, setName] = useState(categoryName)

@@ -26,10 +26,12 @@ const AddCategoryForm = () => {
   const navigate = useNavigate()
   const { setIsNew } = useContext(CategoryContext)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/categories/new`
+
   // Get data and submit function from the hook
-  const [fetchData, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/categories/new`,
-  )
+  const [fetchData, data] = useSubmitForm(apiEndpoint)
 
   // State variables
   const [name, setName] = useState('')
@@ -105,8 +107,8 @@ const AddCategoryForm = () => {
           </label>
 
           <p className={styles.formHint}>
-            Only letters, numbers, hyphens, spaces, and ampersand are
-            allowed in the name
+            Only letters, numbers, hyphens, spaces, and ampersand are allowed in
+            the name
           </p>
 
           <div className={styles.formValid}>

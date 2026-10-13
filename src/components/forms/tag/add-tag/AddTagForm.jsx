@@ -26,10 +26,12 @@ const AddTagForm = () => {
   const navigate = useNavigate()
   const { setIsNew } = useContext(TagContext)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/tags/new`
+
   // Get data and form submit function from custom hook
-  const [fetchData, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/tags/new`,
-  )
+  const [fetchData, data] = useSubmitForm(apiEndpoint)
 
   // State variables
   const [name, setName] = useState('')

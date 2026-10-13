@@ -32,12 +32,17 @@ const Tags = () => {
   // To re-render tags after deleting a tag
   const [isDelete, setIsDelete] = useState(false)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/tags/me`
+
   /* Pass 'isEdit', 'isNew' and 'isDelete' as arguments to run
    useData second time to get updated values of tags from db */
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/tags/me',
-    { isEdit, isNew, isDelete },
-  )
+  const { data, isLoading, error } = useData(apiEndpoint, {
+    isEdit,
+    isNew,
+    isDelete,
+  })
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -132,8 +137,6 @@ const Tags = () => {
     setDeleteError(null)
     setTagId(null)
   }
-
-  
 
   return (
     <>

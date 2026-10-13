@@ -12,10 +12,12 @@ import parse from 'html-react-parser'
 
 /* Display all published posts */
 const PublishedPosts = () => {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/posts/me/published`
+
   // Get all published posts
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/posts/me/published',
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // Show loading spinner while fetching the data
   if (isLoading)
@@ -67,7 +69,7 @@ const PublishedPosts = () => {
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
-                  Read more 
+                  Read more
                   <img src={detailsIcon} alt="" width={20} height={20} />
                 </Link>
               </li>

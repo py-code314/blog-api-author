@@ -7,10 +7,12 @@ import { useData } from '../../../hooks/useData'
 
 /* Component to show stats */
 const AllStats = () => {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/stats`
+
   // Get all stats
-  const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/stats/',
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // Show loading spinner while fetching the data
   if (isLoading)

@@ -16,12 +16,12 @@ import EditPostForm from '../../../components/forms/post/edit-post/EditPostForm.
 const EditPost = () => {
   const { id } = useParams()
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/posts/me/${id}`
+
   // Get post data
-  const {
-    data: currentPostData,
-    isLoading,
-    error,
-  } = useData(`http://localhost:8080/api/v1/posts/me/${id}`)
+  const { data: currentPostData, isLoading, error } = useData(apiEndpoint)
 
   // Show loading spinner while fetching the data
   if (isLoading)

@@ -15,10 +15,12 @@ import EditTagForm from '../../../components/forms/tag/edit-tag/EditTagForm'
 const EditTag = () => {
   const { tagId, setIsEdit } = useContext(TagContext)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/tags/${tagId}`
+
   // Get a single tag
-  const { data, isLoading, error } = useData(
-    `http://localhost:8080/api/v1/tags/${tagId}`,
-  )
+  const { data, isLoading, error } = useData(apiEndpoint)
 
   // Handler for Back button
   const handleBackBtn = () => {
@@ -49,10 +51,7 @@ const EditTag = () => {
           </div>
         </div>
         {/* Back button */}
-        <Button
-          className="backBtn"
-          title="Back to Tag"
-          onClick={handleBackBtn}>
+        <Button className="backBtn" title="Back to Tag" onClick={handleBackBtn}>
           <span>⬅</span>Back
         </Button>
       </div>

@@ -37,23 +37,27 @@ const EditPostForm = () => {
   const categoryIds = categories.map((category) => category.id)
   const tagIds = tags.map((tag) => tag.id)
 
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiCategories = `${baseURL}/categories/all`
+  const apiTags = `${baseURL}/tags/me`
+  const apiEndpoint = `${baseURL}/posts/${id}/update`
+
   // Get all categories
   const {
     data: categoriesData,
     isLoading: loadingCategories,
     error: categoriesError,
-  } = useData('http://localhost:8080/api/v1/categories/all')
+  } = useData(apiCategories)
 
   // Get all tags
   const {
     data: tagsData,
     isLoading: loadingTags,
     error: tagsError,
-  } = useData('http://localhost:8080/api/v1/tags/all')
+  } = useData(apiTags)
 
-  const [fetchData, status, data] = useSubmitForm(
-    `http://localhost:8080/api/v1/posts/${id}/update`,
-  )
+  const [fetchData, status, data] = useSubmitForm(apiEndpoint)
 
   // State variables
   const defaultPostData = {
@@ -486,7 +490,7 @@ const EditPostForm = () => {
             )}
           </Button>
           {/* Cancel button  */}
-          <Button className="abortBtn" title="Cancel" onClick={handleCancel}>
+          <Button className="cancelPostBtn" title="Cancel" onClick={handleCancel}>
             <img src={cancelIcon} alt="" width={20} height={20} />
             Cancel
           </Button>
