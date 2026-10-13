@@ -43,11 +43,6 @@ export const useSubmitForm = (url) => {
       // Assign either data or error to 'result' variable
       let result = await response.json()
 
-      // Throw error from server instead of custom error
-      // if (!response.ok) {
-      //   throw result
-      // }
-
       // Set result as data if fetch is successful
       if (!signal.aborted) {
         setData(result)
