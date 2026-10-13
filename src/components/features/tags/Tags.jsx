@@ -32,7 +32,8 @@ const Tags = () => {
   // To re-render tags after deleting a tag
   const [isDelete, setIsDelete] = useState(false)
 
-  // Pass 'isEdit', 'isNew' and 'isDelete' as arguments to run useData second time to get updated values of tags from db
+  /* Pass 'isEdit', 'isNew' and 'isDelete' as arguments to run
+   useData second time to get updated values of tags from db */
   const { data, isLoading, error } = useData(
     'http://localhost:8080/api/v1/tags/me',
     { isEdit, isNew, isDelete },

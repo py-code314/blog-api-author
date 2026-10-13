@@ -5,7 +5,6 @@ import errorIcon from '../../../assets/icons/icon-error-2.svg'
 import addIcon from '../../../assets/icons/icon-add.svg'
 import editIcon from '../../../assets/icons/icon-edit.svg'
 import deleteIcon from '../../../assets/icons/icon-delete.svg'
-
 /* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 import { useData } from '../../../hooks/useData'
@@ -99,6 +98,7 @@ const Categories = () => {
       )
 
       const result = await response.json()
+
       if (result.success) {
         setIsDelete(true)
         setDeleteError(null)
@@ -157,6 +157,7 @@ const Categories = () => {
           </CategoryContext>
         )}
 
+        {/* List of categories  */}
         <ul className={styles.categoryList}>
           {data.categories.length > 0 &&
             data.categories.map((category) => (

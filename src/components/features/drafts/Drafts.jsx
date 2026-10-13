@@ -10,6 +10,7 @@ import { Link } from 'react-router'
 /* -------------------- Functions -------------------- */
 import parse from 'html-react-parser'
 
+/* Display drafts (unpublished posts) */
 const Drafts = () => {
   // Get all unpublished posts
   const { data, isLoading, error } = useData(
