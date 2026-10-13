@@ -10,5 +10,5 @@
 }
 
 .description {
-  font-size: var(--fs-18);
+  font-size: var(--fs-18, 1.125rem);
 }

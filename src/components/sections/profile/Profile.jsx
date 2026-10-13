@@ -3,7 +3,6 @@ import styles from './Profile.module.css'
 /* -------------------- Icons -------------------- */
 import profileIcon from '../../../assets/icons/icon-profile-2.svg'
 import errorIcon from '../../../assets/icons/icon-error-2.svg'
-// import editIcon from '../../../assets/icons/icon-edit.svg'
 /* -------------------- Hooks -------------------- */
 import { useState } from 'react'
 import { useData } from '../../../hooks/useData.js'
