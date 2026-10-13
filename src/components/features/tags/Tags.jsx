@@ -34,7 +34,7 @@ const Tags = () => {
 
   // Pass 'isEdit', 'isNew' and 'isDelete' as arguments to run useData second time to get updated values of tags from db
   const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/tags/all',
+    'http://localhost:8080/api/v1/tags/me',
     { isEdit, isNew, isDelete },
   )
 

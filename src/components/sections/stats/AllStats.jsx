@@ -9,7 +9,7 @@ import { useData } from '../../../hooks/useData'
 const AllStats = () => {
   // Get all stats
   const { data, isLoading, error } = useData(
-    'http://localhost:8080/api/v1/stats/all',
+    'http://localhost:8080/api/v1/stats/',
   )
 
   // Show loading spinner while fetching the data
