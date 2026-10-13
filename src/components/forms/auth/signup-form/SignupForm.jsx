@@ -128,7 +128,7 @@ const SignupForm = () => {
       validFormData.email === true &&
       validFormData.password === true &&
       validFormData.confirmPassword === true &&
-      validFormData.name !== false
+      validFormData.name === true
     ) {
       return true
     } else {
@@ -353,7 +353,7 @@ const SignupForm = () => {
         {/* Name input */}
         <div className={styles.formControl}>
           <label htmlFor="name" className={styles.formLabel}>
-            Full Name (optional)
+            Full Name (required)
           </label>
 
           <div className={styles.formValid}>
@@ -362,6 +362,7 @@ const SignupForm = () => {
               name="name"
               id="name"
               placeholder="Eric Cartman"
+              required 
               className={styles.formInput}
               autoComplete="name"
               value={signupFormData.name}

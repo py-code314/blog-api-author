@@ -26,5 +26,14 @@ export function displayEmptyInputErrors(
       ...prevErrors,
       confirmPassword: 'Please re-enter your password',
     }))
+  } else if (!signupFormData.name.trim()) {
+    setValidFormData((prevValid) => ({
+      ...prevValid,
+      name: false,
+    }))
+    setErrorMessages((prevErrors) => ({
+      ...prevErrors,
+      name: 'Please enter your name',
+    }))
   }
 }

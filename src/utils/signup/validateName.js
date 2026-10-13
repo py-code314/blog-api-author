@@ -6,11 +6,14 @@ export function validateNameInput(name, setValidFormData, setErrorMessages) {
   // Name should only contain alphabets, spaces and hyphen with a minimum of 2 alphabets
   const nameRegex = /^(?=(?:.*[A-Za-z]){2})[A-Za-z\s-]{2,}$/
 
-  let isAlphabetic = true
-  if (trimmedName) {
-    isAlphabetic = nameRegex.test(trimmedName)
+  if (!trimmedName) {
+    setValidFormData((prevValid) => ({ ...prevValid, name: false }))
+    setErrorMessages((prevErrors) => ({
+      ...prevErrors,
+      name: 'Name is required',
+    }))
   }
-  if (!isAlphabetic) {
+  else if (!nameRegex.test(trimmedName)) {
     setValidFormData((prevValid) => ({ ...prevValid, name: false }))
     setErrorMessages((prevErrors) => ({
       ...prevErrors,
