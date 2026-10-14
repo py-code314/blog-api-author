@@ -54,7 +54,7 @@ const RecentPosts = () => {
           {posts?.length > 0 &&
             posts.map((post) => (
               <li className={styles.post} key={post.id}>
-                <h3>{post.title}</h3>
+                <h3 className={styles.postTitle}>{post.title}</h3>
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to view post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
