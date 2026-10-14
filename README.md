@@ -1,15 +1,19 @@
-# The Odin Project: Blog API (Author Frontend)
+# The Odin Project: Blog API (Author Portal)
 
 This is a solution to the [Blog API Project](https://www.theodinproject.com/lessons/node-path-nodejs-blog-api) as part of The Odin Project curriculum.
 
 ## Table of contents
 
-- [The Odin Project: Blog API (Author Frontend)](#the-odin-project-blog-api-author-frontend)
+- [The Odin Project: Blog API (Author Portal)](#the-odin-project-blog-api-author-portal)
   - [Table of contents](#table-of-contents)
-  - [Overview](#overview)
+  - [🎯 Overview](#-overview)
   - [🚀 Features](#-features)
+    - [1. Authentication \& Session Handling:](#1-authentication--session-handling)
+    - [2. Blog Post Management:](#2-blog-post-management)
+    - [3. Categories and Tags:](#3-categories-and-tags)
+    - [4. Dashboard:](#4-dashboard)
   - [🖼️ Screenshots](#️-screenshots)
-  - [Links](#links)
+  - [🔗 Links](#-links)
   - [🛠️ Tech Stack](#️-tech-stack)
   - [📋 Pre-Requisites](#-pre-requisites)
   - [⚙️ Getting Started](#️-getting-started)
@@ -17,20 +21,26 @@ This is a solution to the [Blog API Project](https://www.theodinproject.com/less
   - [Credits](#credits)
     - [Images](#images)
     - [Fonts \& Icons](#fonts--icons)
+    - [Resources](#resources)
 
-## Overview
 
-Author Blog website is a dedicated React frontend application designed specifically for content creators and authors. It provides an interface where authors can create, edit, and organize their blog posts.
+
+## 🎯 Overview
+
+Author Portal is a dedicated React frontend application designed specifically for content creators and authors. It provides an interface where authors can create, edit, and organize their blog posts.
+
+
 
 ## 🚀 Features
 
-1. Authentication & Session Handling:
+### 1. Authentication & Session Handling:
 
 - User registration and login interfaces.
 - Access restricted routes based on user authentication.
 - JWT-based authentication for secure session management.
 
-2. Blog Post Management:
+
+### 2. Blog Post Management:
 
 - Interactive post editor with options to publish or save as draft.
 - Only text based editor is available for now.
@@ -38,66 +48,79 @@ Author Blog website is a dedicated React frontend application designed specifica
 - Full editing capabilities for existing posts.
 - Single-click post deletion.
 
-3. Categories and Tags:
+
+### 3. Categories and Tags:
 
 - Create and manage categories and tags for posts.
 - Assign categories and tags to posts.
 - Option to edit and delete categories and tags.
 
-4. Dashboard:
+
+### 4. Dashboard:
 
 - View a summary of all posts, drafts, and published posts.
 - Access to create new posts, view categories and tags, and manage them.
+
+
+
 
 ## 🖼️ Screenshots
 
 <table>
   <tr>
     <td align="center">
-      <img src="./src/assets/images/screenshots/homepage.png" alt="Homepage" width="400">
+      <img src="" alt="Homepage" width="400">
       <br>
       <em>Homepage</em>
     </td>
     <td align="center">
-      <img src="./src/assets/images/screenshots/new-post.png" alt="New Post" width="400">
+      <img src="" alt="New Post" width="400">
       <br>
       <em>New Post</em>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="./src/assets/images/screenshots/posts.png" alt="Posts" width="400">
+      <img src="" alt="Posts" width="400">
       <br>
       <em>Posts</em>
     </td>
     <td align="center">
-      <img src="./src/assets/images/screenshots/categories.png" alt="Categories" width="400">
+      <img src="" alt="Categories" width="400">
       <br>
       <em>Categories</em>
     </td>
   </tr>
 </table>
 
-## Links
+
+
+## 🔗 Links
 
 - [Solution URL](https://github.com/py-code314/file-uploader)
+- [Live Page]()
+
+
 
 ## 🛠️ Tech Stack
 
-- React
-- React Router
-- Vite
-- CSS Modules
+- **Library:** React
+- **Router:** React Router
+- **Build Tool:** Vite
+- **Styling:** CSS Modules
+- **Text Editor:** TinyMCE
+
 
 
 ## 📋 Pre-Requisites
 
-Before you begin, make sure you have the following tools installed in your machine:
+Before you begin, make sure you have the following tools installed on your machine:
 
 
-- [Node.js](https://nodejs.org/en/download/)
-- npm
-- Running instance of **Blog API Backend**
+- **Node.js** ( [Installation instructions](https://www.theodinproject.com/lessons/foundations-installing-node-js) )
+- **npm** ( Installing Node also installs npm alongside it. )
+- Running instance of [**Blog API Backend**](https://github.com/py-code314/blog-api-backend)
+
 
 
 ## ⚙️ Getting Started
@@ -107,6 +130,8 @@ Before you begin, make sure you have the following tools installed in your machi
 3. Run `npm install` to install dependencies.
 4. Create `.env` file and configure the required environment variables based on the `.env.sample` file.
 5. Run `npm run dev` to start the development server.
+
+
 
 
 ## 📂 Project Structure
@@ -128,28 +153,36 @@ Before you begin, make sure you have the following tools installed in your machi
 │   ├── utils/                     # Utility functions (e.g., validateForm)
 │   ├── App.jsx                    # Root component
 │   ├── index.css                  # Global styles
-│   ├── main.js                    # Main entry point
-├── .env                          
-├── .env.sample                   
+│   ├── main.jsx                   # Main entry point
+├── .env                           # Environment variables 
+├── .env.sample                    # Template for required environment variables    
 ├── .gitignore                     
 ├── eslint.config.js
 ├── index.html
 ├── package-lock.json
-├── package.json
-├── README.md
+├── package.json                   # Project dependencies and scripts
+├── README.md                      # Project documentation
 └── vite.config.js
 ``` 
+
 
 
 ## Credits
 
 ### Images
 
-- Image **"seashore during golden hour"** by "
+- `seashore.jpg` - Image **"seashore during golden hour"** by "
   Sean Oulashin" is from [Unsplash](https://unsplash.com/photos/seashore-during-golden-hour-KMn4VEeEPR8)
-- Image **"brown and white cat in shallow focus shot"** by "
+- `sad-cat.jpg` - Image **"brown and white cat in shallow focus shot"** by "
   傅甬 华" is from [Unsplash](https://unsplash.com/photos/brown-and-white-cat-in-shallow-focus-shot-tEMU4lzAL0w)
 
 ### Fonts & Icons
 
 - Fonts and icons are downloaded from [Google Fonts](https://fonts.google.com/)
+
+
+### Resources
+
+- Box shadows - [CSS Scan](https://getcssscan.com/css-box-shadow-examples)
+- Loading spinner - [CSS Loaders](https://css-loaders.com/spinner/)
+- 
