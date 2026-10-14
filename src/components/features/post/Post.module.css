@@ -94,6 +94,10 @@
   padding-block: var(--space-16, 1rem);
 }
 
+.subTitle {
+  font-size: var(--fs-28, 1.75rem);
+}
+
 .btns {
   display: flex;
   align-items: center;
