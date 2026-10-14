@@ -17,6 +17,7 @@ import Button from '../../../core/button/Button.jsx'
 import {
   validateNameInput,
   displayEmptyInputError,
+  displayServerFormErrors,
   displayServerError,
 } from '../../../../utils/category-tag/index.js'
 
@@ -83,8 +84,12 @@ const AddTagForm = () => {
         setValidName(null)
         setErrorMsg('')
         setIsNew(false)
-      } else if (!result.validData) {
-        displayServerError(result.errors, setValidName, setErrorMsg)
+      } else if (result.validData === false) {
+        // Display form fields errors
+        displayServerFormErrors(result.errors, setValidName, setErrorMsg)
+      } else if (result.success === false) {
+        // Display rest of the backend errors
+        displayServerError(result.errorMessage, setValidName, setErrorMsg)
       }
     }
   }
