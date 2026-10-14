@@ -67,6 +67,10 @@
   gap: var(--space-16, 1rem);
 }
 
+.postTitle {
+  font-size: var(--fs-28, 1.75rem);
+}
+
 /* Limit content to 3 lines */
 .content {
   overflow: hidden;

@@ -65,7 +65,7 @@ const PublishedPosts = () => {
           ) : (
             data.posts.map((post) => (
               <li className={styles.post} key={post.id}>
-                <h3>{post.title}</h3>
+                <h3 className={styles.postTitle}>{post.title}</h3>
                 <div className={styles.content}>{parse(post.content)}</div>
                 {/* Link to post details  */}
                 <Link className={styles.detailsLink} to={`/posts/${post.id}`}>
