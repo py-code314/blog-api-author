@@ -1,6 +1,10 @@
 /* Submit sign-up form data */
 export async function registerUser(data) {
-  return await fetch('http://localhost:8080/api/v1/signup', {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/signup`
+
+  return await fetch(apiEndpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

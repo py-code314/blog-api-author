@@ -1,6 +1,10 @@
 /* Function to submit log-in data */
 export async function loginUser(data) {
-  return await fetch('http://localhost:8080/api/v1/login', {
+  // Configure API
+  const baseURL = import.meta.env.VITE_REACT_APP_API_URL
+  const apiEndpoint = `${baseURL}/login`
+
+  return await fetch(apiEndpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
