@@ -12,7 +12,8 @@
 
 .formLabel,
 .formInput,
-.formHint {
+.formHint,
+.formError {
   width: 90%;
 }
 
@@ -30,6 +31,7 @@
 }
 
 .formHint {
+  font-size: var(--fs-16, 1rem);
   margin-block-end: var(--space-6, 0.375rem);
 }
 
@@ -46,7 +48,17 @@
   padding-block: var(--space-8, 0.5rem);
 }
 
+.nameError {
+  align-items: start;
+}
+
+.nameErrorIcon {
+  margin-block-start: 3px;
+  flex-shrink: 0;
+}
+
 .formErrorMsg {
   color: var(--clr-red, red);
   font-style: italic;
+  font-size: var(--fs-18, 1.125rem);
 }

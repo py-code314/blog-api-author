@@ -12,7 +12,8 @@
 
 .formLabel,
 .formInput,
-.formHint {
+.formHint,
+.formError {
   width: 90%;
 }
 
@@ -45,4 +46,5 @@
 .formErrorMsg {
   color: var(--clr-red, red);
   font-style: italic;
+  font-size: var(--fs-18, 1.125rem);
 }

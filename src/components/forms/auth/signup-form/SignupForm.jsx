@@ -200,7 +200,7 @@ const SignupForm = () => {
             Email (required)
           </label>
           <p className={styles.formHint} id="email-hint">
-            Eg. elaine.here@gmail.com
+            E.g. elaine.here@gmail.com
           </p>
 
           <div className={styles.formValid}>
@@ -235,8 +235,8 @@ const SignupForm = () => {
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}
@@ -289,8 +289,8 @@ const SignupForm = () => {
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}
@@ -337,8 +337,8 @@ const SignupForm = () => {
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}
@@ -380,14 +380,14 @@ const SignupForm = () => {
             )}
           </div>
           {validFormData.name === false && (
-            <div className={styles.formError}>
+            <div className={`${styles.formError} ${styles.nameError}`}>
               <img
-                className={styles.formErrorIcon}
+                className={styles.nameErrorIcon}
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}

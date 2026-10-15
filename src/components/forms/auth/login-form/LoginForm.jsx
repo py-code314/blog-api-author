@@ -245,8 +245,8 @@ const LoginForm = () => {
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}
@@ -295,8 +295,8 @@ const LoginForm = () => {
                 aria-hidden="true"
                 src={errorIcon}
                 alt=""
-                width={25}
-                height={25}
+                width={20}
+                height={20}
               />
               <p
                 className={styles.formErrorMsg}
