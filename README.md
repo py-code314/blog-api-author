@@ -69,24 +69,24 @@ Author Portal is a dedicated React frontend application designed specifically fo
 <table>
   <tr>
     <td align="center">
-      <img src="" alt="Homepage" width="400">
+      <img src="./src/assets/images/screenshots/dashboard.png" alt="Dashboard" width="400">
       <br>
-      <em>Homepage</em>
+      <em>Dashboard</em>
     </td>
     <td align="center">
-      <img src="" alt="New Post" width="400">
+      <img src="./src/assets/images/screenshots/new-post.png" alt="New Post" width="400">
       <br>
       <em>New Post</em>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="" alt="Posts" width="400">
+      <img src="./src/assets/images/screenshots/post.png" alt="Post" width="400">
       <br>
-      <em>Posts</em>
+      <em>Post</em>
     </td>
     <td align="center">
-      <img src="" alt="Categories" width="400">
+      <img src="./src/assets/images/screenshots/categories.png" alt="Categories" width="400">
       <br>
       <em>Categories</em>
     </td>
@@ -98,7 +98,7 @@ Author Portal is a dedicated React frontend application designed specifically fo
 ## 🔗 Links
 
 - [Solution URL](https://github.com/py-code314/file-uploader)
-- [Live Page]()
+- [Live Page](https://chicken-run-blog-api.netlify.app/)
 
 
 
