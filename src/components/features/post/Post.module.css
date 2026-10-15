@@ -95,6 +95,7 @@
 }
 
 .subTitle {
+  flex: 1;
   font-size: var(--fs-28, 1.75rem);
 }
 
