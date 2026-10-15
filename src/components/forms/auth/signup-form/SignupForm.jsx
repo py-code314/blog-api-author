@@ -200,7 +200,7 @@ const SignupForm = () => {
             Email (required)
           </label>
           <p className={styles.formHint} id="email-hint">
-            Eg. hello.taylor@example.com
+            Eg. elaine.here@gmail.com
           </p>
 
           <div className={styles.formValid}>
@@ -208,7 +208,7 @@ const SignupForm = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="ericcartman@gmail.com"
+              placeholder="elaine.here@gmail.com"
               className={styles.formInput}
               autoComplete="email"
               inputMode="email"
@@ -265,7 +265,7 @@ const SignupForm = () => {
               name="password"
               type="password"
               min={8}
-              placeholder="South^Park97"
+              placeholder="Seinfeld#89"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$"
               required
               value={signupFormData.password}
@@ -314,7 +314,7 @@ const SignupForm = () => {
               name="confirmPassword"
               type="password"
               min={8}
-              placeholder="South^Park97"
+              placeholder="Seinfeld#89"
               required
               value={signupFormData.confirmPassword}
               onChange={handleConfirmPasswordChange}
@@ -361,8 +361,8 @@ const SignupForm = () => {
               type="text"
               name="name"
               id="name"
-              placeholder="Eric Cartman"
-              required 
+              placeholder="Elaine Benes"
+              required
               className={styles.formInput}
               autoComplete="name"
               value={signupFormData.name}

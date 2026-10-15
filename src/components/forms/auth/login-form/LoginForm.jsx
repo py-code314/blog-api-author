@@ -218,7 +218,7 @@ const LoginForm = () => {
               type="email"
               name="email"
               id="email"
-              placeholder="ericcartman@gmail.com"
+              placeholder="elaine.here@gmail.com"
               className={styles.formInput}
               autoComplete="email"
               inputMode="email"
@@ -271,7 +271,7 @@ const LoginForm = () => {
               name="password"
               type="password"
               min={8}
-              placeholder="South^Park97"
+              placeholder="Seinfeld#89"
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$"
               required
               value={loginFormData.password}
